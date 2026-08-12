@@ -1,0 +1,1088 @@
+{
+  "_metadata": {
+    "document": "Red Herring Prospectus - KSH International Limited",
+    "annotator": "Manual annotation by PII Redaction Tool developer",
+    "date": "2025-12-15",
+    "coverage": "Sampled sections covering ~15-20% of text but ~80-90% of PII instances",
+    "sections_annotated": [
+      "Table 0 (Front matter: registered/corporate office, contact, email, phone)",
+      "Table 2 Row 14 (BRLM & Registrar contact blocks)",
+      "Table 4 Rows 7-10 (Definitions: Chairman, CEO, CFO, CS named individuals)",
+      "Table 70 (Board of Directors: names, DINs, addresses)",
+      "Table 73 (Statutory Auditor details)",
+      "Paras 718-812 (General Information section)",
+      "Paras 863-937 (Statutory Auditors, Bankers to the Company)",
+      "Paras 226, 488 (KMP names in running text)"
+    ]
+  },
+  "annotations": [
+    {
+      "location": "Para[28]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "Contact Person: Sarthak Malvadkar, Company Secretary and Compliance Officer"
+    },
+    {
+      "location": "Para[28]",
+      "pii_type": "phone",
+      "text": "+ 91 20 4505 3237",
+      "context": "Telephone: + 91 20 4505 3237"
+    },
+    {
+      "location": "Para[29]",
+      "pii_type": "email",
+      "text": "cs.connect@kshinternational.com",
+      "context": "E-mail: cs.connect@kshinternational.com"
+    },
+    {
+      "location": "Para[26]",
+      "pii_type": "address",
+      "text": "11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune \u2013 410 501, Maharashtra, India",
+      "context": "Registered Office: 11/3, 11/4..."
+    },
+    {
+      "location": "Para[27]",
+      "pii_type": "address",
+      "text": "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner, Pune \u2013 411 045, Maharashtra, India",
+      "context": "Corporate Office: 201, Tower 2..."
+    },
+    {
+      "location": "Para[226]",
+      "pii_type": "person_name",
+      "text": "Sandesh Bhagwat",
+      "context": "Sandesh Bhagwat, CEO"
+    },
+    {
+      "location": "Para[226]",
+      "pii_type": "person_name",
+      "text": "Amod Joshi",
+      "context": "Amod Joshi, CFO"
+    },
+    {
+      "location": "Para[226]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "Sarthak Malvadkar, CS and Compliance Officer"
+    },
+    {
+      "location": "Para[226]",
+      "pii_type": "person_name",
+      "text": "Ganesh Prasad",
+      "context": "Ganesh Prasad, Technical Director"
+    },
+    {
+      "location": "Para[488]",
+      "pii_type": "person_name",
+      "text": "Sandesh Bhagwat",
+      "context": "Sandesh Bhagwat, CEO"
+    },
+    {
+      "location": "Para[488]",
+      "pii_type": "person_name",
+      "text": "Amod Joshi",
+      "context": "Amod Joshi, CFO"
+    },
+    {
+      "location": "Para[488]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "Sarthak Malvadkar, CS and Compliance Officer"
+    },
+    {
+      "location": "Para[488]",
+      "pii_type": "person_name",
+      "text": "Ganesh Prasad",
+      "context": "Ganesh Prasad, Technical Director"
+    },
+    {
+      "location": "Para[741]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "Sarthak Malvadkar is our Company Secretary and Compliance Officer"
+    },
+    {
+      "location": "Para[741]",
+      "pii_type": "address",
+      "text": "Gat No. 11/3, 11/4, 11/5, Village Birdewadi",
+      "context": "His contact details are as set forth below: Gat No. 11/3, 11/4, 11/5, Village Birdewadi"
+    },
+    {
+      "location": "Para[744]",
+      "pii_type": "phone",
+      "text": "+ 91 20 45053237",
+      "context": "Telephone: + 91 20 45053237"
+    },
+    {
+      "location": "Para[745]",
+      "pii_type": "email",
+      "text": "Sarthak.malvadkar@kshinterantional.com",
+      "context": "E-mail: Sarthak.malvadkar@kshinterantional.com"
+    },
+    {
+      "location": "Para[750]",
+      "pii_type": "person_name",
+      "text": "Lokesh Shah",
+      "context": "Contact Person: Lokesh Shah/ Soumavo Sarkar"
+    },
+    {
+      "location": "Para[750]",
+      "pii_type": "person_name",
+      "text": "Soumavo Sarkar",
+      "context": "Contact Person: Lokesh Shah/ Soumavo Sarkar"
+    },
+    {
+      "location": "Para[756]",
+      "pii_type": "phone",
+      "text": "+91 22 40094400",
+      "context": "Telephone: +91 22 40094400"
+    },
+    {
+      "location": "Para[756]",
+      "pii_type": "email",
+      "text": "ksh.ipo@nuvama.com",
+      "context": "Email: ksh.ipo@nuvama.com"
+    },
+    {
+      "location": "Para[757]",
+      "pii_type": "email",
+      "text": "customerservice.mb@nuvama.com",
+      "context": "Investor grievance E-mail: customerservice.mb@nuvama.com"
+    },
+    {
+      "location": "Para[762]",
+      "pii_type": "phone",
+      "text": "+91 22 6807 7100",
+      "context": "Telephone: +91 22 6807 7100"
+    },
+    {
+      "location": "Para[762]",
+      "pii_type": "email",
+      "text": "ksh@icicisecurities.com",
+      "context": "Email: ksh@icicisecurities.com"
+    },
+    {
+      "location": "Para[762]",
+      "pii_type": "email",
+      "text": "customercare@icicisecurities.com",
+      "context": "Investor grievance E-mail: customercare@icicisecurities.com"
+    },
+    {
+      "location": "Para[779]",
+      "pii_type": "phone",
+      "text": "+ 91 22 4009 4400",
+      "context": "Telephone: + 91 22 4009 4400"
+    },
+    {
+      "location": "Para[780]",
+      "pii_type": "email",
+      "text": "ksh.ipo@nuvama.com",
+      "context": "Email: ksh.ipo@nuvama.com"
+    },
+    {
+      "location": "Para[780]",
+      "pii_type": "email",
+      "text": "prakash.boricha@nuvama.com",
+      "context": "prakash.boricha@nuvama.com"
+    },
+    {
+      "location": "Para[780]",
+      "pii_type": "email",
+      "text": "sheetal.parab@nuvama.com",
+      "context": "sheetal.parab@nuvama.com"
+    },
+    {
+      "location": "Para[782]",
+      "pii_type": "person_name",
+      "text": "Prakash Boricha",
+      "context": "Contact Person: Prakash Boricha"
+    },
+    {
+      "location": "Para[786]",
+      "pii_type": "phone",
+      "text": "+91 22 6807 7100",
+      "context": "Telephone: +91 22 6807 7100"
+    },
+    {
+      "location": "Para[786]",
+      "pii_type": "email",
+      "text": "ksh@icicisecurities.com",
+      "context": "Email: ksh@icicisecurities.com"
+    },
+    {
+      "location": "Para[787]",
+      "pii_type": "email",
+      "text": "customercare@icicisecurities.com",
+      "context": "Investor grievance E-mail: customercare@icicisecurities.com"
+    },
+    {
+      "location": "Para[796]",
+      "pii_type": "email",
+      "text": "ipo@trilegal.com",
+      "context": "Email: ipo@trilegal.com"
+    },
+    {
+      "location": "Para[797]",
+      "pii_type": "phone",
+      "text": "+91 22 4079 1000",
+      "context": "Telephone: +91 22 4079 1000"
+    },
+    {
+      "location": "Para[801]",
+      "pii_type": "phone",
+      "text": "+91 81081 14949",
+      "context": "Telephone: +91 81081 14949"
+    },
+    {
+      "location": "Para[802]",
+      "pii_type": "email",
+      "text": "kshinternational.ipo@in.mpms.mufg.com",
+      "context": "E-mail: kshinternational.ipo@in.mpms.mufg.com"
+    },
+    {
+      "location": "Para[803]",
+      "pii_type": "email",
+      "text": "kshinternational.ipo@in.mpms.mufg.com",
+      "context": "Investor grievance E-mail: kshinternational.ipo@in.mpms.mufg.com"
+    },
+    {
+      "location": "Para[804]",
+      "pii_type": "person_name",
+      "text": "Shanti Gopalkrishnan",
+      "context": "Contact Person: Shanti Gopalkrishnan"
+    },
+    {
+      "location": "Para[810]",
+      "pii_type": "phone",
+      "text": "+91 22 30752929",
+      "context": "Telephone: +91 22 30752929"
+    },
+    {
+      "location": "Para[810]",
+      "pii_type": "phone",
+      "text": "+91 22 30752928",
+      "context": "Telephone: +91 22 30752928"
+    },
+    {
+      "location": "Para[810]",
+      "pii_type": "phone",
+      "text": "+91 22 30752914",
+      "context": "Telephone: +91 22 30752914"
+    },
+    {
+      "location": "Para[811]",
+      "pii_type": "email",
+      "text": "siddharth.jadhav@hdfcbank.com",
+      "context": "Email: siddharth.jadhav@hdfcbank.com"
+    },
+    {
+      "location": "Para[811]",
+      "pii_type": "email",
+      "text": "sachin.gawade@hdfcbank.com",
+      "context": "sachin.gawade@hdfcbank.com"
+    },
+    {
+      "location": "Para[811]",
+      "pii_type": "email",
+      "text": "eric.bacha@hdfcbank.com",
+      "context": "eric.bacha@hdfcbank.com"
+    },
+    {
+      "location": "Para[811]",
+      "pii_type": "email",
+      "text": "tushar.gavankar@hdfcbank.com",
+      "context": "tushar.gavankar@hdfcbank.com"
+    },
+    {
+      "location": "Para[811]",
+      "pii_type": "email",
+      "text": "pravin.teli2@hdfcbank.com",
+      "context": "pravin.teli2@hdfcbank.com"
+    },
+    {
+      "location": "Para[812]",
+      "pii_type": "person_name",
+      "text": "Eric Bacha",
+      "context": "Contact Person: Eric Bacha/ Sachin Gawade/ Pravin Teli/ Siddharth Jadhav/ Tushar Gavankar"
+    },
+    {
+      "location": "Para[812]",
+      "pii_type": "person_name",
+      "text": "Sachin Gawade",
+      "context": "Contact Person: Eric Bacha/ Sachin Gawade/ ..."
+    },
+    {
+      "location": "Para[812]",
+      "pii_type": "person_name",
+      "text": "Pravin Teli",
+      "context": "Contact Person: ... / Pravin Teli/ ..."
+    },
+    {
+      "location": "Para[812]",
+      "pii_type": "person_name",
+      "text": "Siddharth Jadhav",
+      "context": "Contact Person: ... / Siddharth Jadhav/ ..."
+    },
+    {
+      "location": "Para[812]",
+      "pii_type": "person_name",
+      "text": "Tushar Gavankar",
+      "context": "Contact Person: ... / Tushar Gavankar"
+    },
+    {
+      "location": "Para[819]",
+      "pii_type": "email",
+      "text": "Ipocmg@icicibank.com",
+      "context": "Email: Ipocmg@icicibank.com"
+    },
+    {
+      "location": "Para[819]",
+      "pii_type": "phone",
+      "text": "022-68052182",
+      "context": "Telephone: 022-68052182"
+    },
+    {
+      "location": "Para[819]",
+      "pii_type": "person_name",
+      "text": "Varun Badai",
+      "context": "Contact Person: Varun Badai"
+    },
+    {
+      "location": "Para[819]",
+      "pii_type": "address",
+      "text": "163, 5th Floor, H.T.Parekh Marg Backbay Reclamation Churchgate, Mumbai \u2013 400020",
+      "context": "163, 5th Floor, H.T.Parekh Marg..."
+    },
+    {
+      "location": "Para[827]",
+      "pii_type": "email",
+      "text": "siddharth.jadhav@hdfcbank.com",
+      "context": "Email: siddharth.jadhav@hdfcbank.com"
+    },
+    {
+      "location": "Para[827]",
+      "pii_type": "email",
+      "text": "sachin.gawade@hdfcbank.com",
+      "context": "sachin.gawade@hdfcbank.com"
+    },
+    {
+      "location": "Para[827]",
+      "pii_type": "email",
+      "text": "eric.bacha@hdfcbank.com",
+      "context": "eric.bacha@hdfcbank.com"
+    },
+    {
+      "location": "Para[827]",
+      "pii_type": "email",
+      "text": "tushar.gavankar@hdfcbank.com",
+      "context": "tushar.gavankar@hdfcbank.com"
+    },
+    {
+      "location": "Para[827]",
+      "pii_type": "email",
+      "text": "pravin.teli2@hdfcbank.com",
+      "context": "pravin.teli2@hdfcbank.com"
+    },
+    {
+      "location": "Para[828]",
+      "pii_type": "person_name",
+      "text": "Eric Bacha",
+      "context": "Contact Person: Eric Bacha/ Sachin Gawade/ ..."
+    },
+    {
+      "location": "Para[828]",
+      "pii_type": "person_name",
+      "text": "Sachin Gawade",
+      "context": "Contact Person: ... / Sachin Gawade/ ..."
+    },
+    {
+      "location": "Para[828]",
+      "pii_type": "person_name",
+      "text": "Pravin Teli",
+      "context": "Contact Person: ... / Pravin Teli/ ..."
+    },
+    {
+      "location": "Para[828]",
+      "pii_type": "person_name",
+      "text": "Siddharth Jadhav",
+      "context": "Contact Person: ... / Siddharth Jadhav/ ..."
+    },
+    {
+      "location": "Para[828]",
+      "pii_type": "person_name",
+      "text": "Tushar Gavankar",
+      "context": "Contact Person: ... / Tushar Gavankar"
+    },
+    {
+      "location": "Para[835]",
+      "pii_type": "email",
+      "text": "Ipocmg@icicibank.com",
+      "context": "Email: Ipocmg@icicibank.com"
+    },
+    {
+      "location": "Para[835]",
+      "pii_type": "phone",
+      "text": "022-68052182",
+      "context": "Telephone: 022-68052182"
+    },
+    {
+      "location": "Para[835]",
+      "pii_type": "person_name",
+      "text": "Varun Badai",
+      "context": "Contact Person: Varun Badai"
+    },
+    {
+      "location": "Para[842]",
+      "pii_type": "email",
+      "text": "siddharth.jadhav@hdfcbank.com",
+      "context": "Email: siddharth.jadhav@hdfcbank.com"
+    },
+    {
+      "location": "Para[842]",
+      "pii_type": "email",
+      "text": "sachin.gawade@hdfcbank.com",
+      "context": "sachin.gawade@hdfcbank.com"
+    },
+    {
+      "location": "Para[842]",
+      "pii_type": "email",
+      "text": "eric.bacha@hdfcbank.com",
+      "context": "eric.bacha@hdfcbank.com"
+    },
+    {
+      "location": "Para[842]",
+      "pii_type": "email",
+      "text": "tushar.gavankar@hdfcbank.com",
+      "context": "tushar.gavankar@hdfcbank.com"
+    },
+    {
+      "location": "Para[842]",
+      "pii_type": "email",
+      "text": "pravin.teli2@hdfcbank.com",
+      "context": "pravin.teli2@hdfcbank.com"
+    },
+    {
+      "location": "Para[843]",
+      "pii_type": "person_name",
+      "text": "Eric Bacha",
+      "context": "Contact Person: Eric Bacha/ Sachin Gawade/ ..."
+    },
+    {
+      "location": "Para[843]",
+      "pii_type": "person_name",
+      "text": "Sachin Gawade",
+      "context": "Contact Person: ... / Sachin Gawade/ ..."
+    },
+    {
+      "location": "Para[843]",
+      "pii_type": "person_name",
+      "text": "Pravin Teli",
+      "context": "Contact Person: ... / Pravin Teli/ ..."
+    },
+    {
+      "location": "Para[843]",
+      "pii_type": "person_name",
+      "text": "Siddharth Jadhav",
+      "context": "Contact Person: ... / Siddharth Jadhav/ ..."
+    },
+    {
+      "location": "Para[843]",
+      "pii_type": "person_name",
+      "text": "Tushar Gavankar",
+      "context": "Contact Person: ... / Tushar Gavankar"
+    },
+    {
+      "location": "Para[873]",
+      "pii_type": "email",
+      "text": "parag.pansare@kirtanepandit.com",
+      "context": "E-mail: parag.pansare@kirtanepandit.com"
+    },
+    {
+      "location": "Para[887]",
+      "pii_type": "phone",
+      "text": "+91 20 6606 4494",
+      "context": "Telephone: +91 20 6606 4494"
+    },
+    {
+      "location": "Para[888]",
+      "pii_type": "person_name",
+      "text": "Hitesh Ramani",
+      "context": "Contact Person: Hitesh Ramani"
+    },
+    {
+      "location": "Para[890]",
+      "pii_type": "email",
+      "text": "hitesh.ramani@citi.com",
+      "context": "Email: hitesh.ramani@citi.com"
+    },
+    {
+      "location": "Para[898]",
+      "pii_type": "phone",
+      "text": "+91 20 2640 3100",
+      "context": "Telephone: +91 20 2640 3100"
+    },
+    {
+      "location": "Para[898]",
+      "pii_type": "person_name",
+      "text": "Chitra Raste",
+      "context": "Contact Person: Chitra Raste"
+    },
+    {
+      "location": "Para[898]",
+      "pii_type": "email",
+      "text": "pro@eximbankindia.in",
+      "context": "Email: pro@eximbankindia.in"
+    },
+    {
+      "location": "Para[905]",
+      "pii_type": "phone",
+      "text": "+91-20-26234000",
+      "context": "Telephone: +91-20-26234000"
+    },
+    {
+      "location": "Para[905]",
+      "pii_type": "person_name",
+      "text": "Sharmila Joshi",
+      "context": "Contact Person: Sharmila Joshi"
+    },
+    {
+      "location": "Para[905]",
+      "pii_type": "email",
+      "text": "sharmila.joshi@indusind.com",
+      "context": "Email: sharmila.joshi@indusind.com"
+    },
+    {
+      "location": "Para[910]",
+      "pii_type": "phone",
+      "text": "+ 91 8879770456",
+      "context": "Telephone: + 91 8879770456"
+    },
+    {
+      "location": "Para[910]",
+      "pii_type": "person_name",
+      "text": "Cherag Gyara",
+      "context": "Contact Person: Cherag Gyara"
+    },
+    {
+      "location": "Para[910]",
+      "pii_type": "email",
+      "text": "cherag.gyara@icicibank.com",
+      "context": "Email: cherag.gyara@icicibank.com"
+    },
+    {
+      "location": "Para[916]",
+      "pii_type": "phone",
+      "text": "+91 20 6769 4648",
+      "context": "Telephone: +91 20 6769 4648"
+    },
+    {
+      "location": "Para[916]",
+      "pii_type": "person_name",
+      "text": "Manisha Shukla",
+      "context": "Contact Person: Manisha Shukla"
+    },
+    {
+      "location": "Para[917]",
+      "pii_type": "email",
+      "text": "manisha.shukla@hdfcbank.com",
+      "context": "Email: manisha.shukla@hdfcbank.com"
+    },
+    {
+      "location": "Para[923]",
+      "pii_type": "phone",
+      "text": "+91 20 2561 8211",
+      "context": "Telephone: +91 20 2561 8211"
+    },
+    {
+      "location": "Para[923]",
+      "pii_type": "person_name",
+      "text": "Tushar Wakhele",
+      "context": "Contact Person: Tushar Wakhele"
+    },
+    {
+      "location": "Para[924]",
+      "pii_type": "email",
+      "text": "rm6.ifbpune@sbi.co.in",
+      "context": "Email: rm6.ifbpune@sbi.co.in"
+    },
+    {
+      "location": "Para[929]",
+      "pii_type": "phone",
+      "text": "+ 91 91586 40360",
+      "context": "Telephone: + 91 91586 40360"
+    },
+    {
+      "location": "Para[930]",
+      "pii_type": "person_name",
+      "text": "Ashish Mathew Pulloor",
+      "context": "Contact Person: Ashish Mathew Pulloor"
+    },
+    {
+      "location": "Para[932]",
+      "pii_type": "email",
+      "text": "ashishmp@federalbank.co.in",
+      "context": "Email: ashishmp@federalbank.co.in"
+    },
+    {
+      "location": "Para[937]",
+      "pii_type": "phone",
+      "text": "+91 20 7157 6403",
+      "context": "Telephone: +91 20 7157 6403"
+    },
+    {
+      "location": "Para[937]",
+      "pii_type": "person_name",
+      "text": "Anand Soni",
+      "context": "Contact Person: Anand Soni"
+    },
+    {
+      "location": "Para[937]",
+      "pii_type": "email",
+      "text": "anand.soni@bajajfinserv.in",
+      "context": "Email: anand.soni@bajajfinserv.in"
+    },
+    {
+      "location": "Table[0].Row[1].Cell[2]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "Sarthak Malvadkar Company Secretary and Compliance Officer"
+    },
+    {
+      "location": "Table[0].Row[1].Cell[4]",
+      "pii_type": "email",
+      "text": "cs.connect@kshinternational.com",
+      "context": "Email: cs.connect@kshinternational.com"
+    },
+    {
+      "location": "Table[0].Row[1].Cell[4]",
+      "pii_type": "phone",
+      "text": "+ 91 20 45053237",
+      "context": "Telephone: + 91 20 45053237"
+    },
+    {
+      "location": "Table[0].Row[1].Cell[0]",
+      "pii_type": "address",
+      "text": "11/3, 11/4 and 11/5 Village Birdewadi Chakan Taluka - Khed Pune \u2013 410 501\nMaharashtra, India",
+      "context": "Full cell text is the registered office address"
+    },
+    {
+      "location": "Table[0].Row[1].Cell[1]",
+      "pii_type": "address",
+      "text": "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner Pune \u2013 411 045\nMaharashtra, India",
+      "context": "Full cell text is the corporate office address"
+    },
+    {
+      "location": "Table[0].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Kushal Subbayya Hegde",
+      "context": "OUR PROMOTERS: KUSHAL SUBBAYYA HEGDE, PUSHPA KUSHAL HEGDE..."
+    },
+    {
+      "location": "Table[0].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Pushpa Kushal Hegde",
+      "context": "...PUSHPA KUSHAL HEGDE, RAJESH KUSHAL HEGDE..."
+    },
+    {
+      "location": "Table[0].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rajesh Kushal Hegde",
+      "context": "...RAJESH KUSHAL HEGDE, ROHIT KUSHAL HEGDE..."
+    },
+    {
+      "location": "Table[0].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rohit Kushal Hegde",
+      "context": "...ROHIT KUSHAL HEGDE, RAKHI GIRIJA SHETTY..."
+    },
+    {
+      "location": "Table[0].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rakhi Girija Shetty",
+      "context": "...RAKHI GIRIJA SHETTY, DHAULAGIRI FAMILY TRUST..."
+    },
+    {
+      "location": "Table[0].Row[8].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Kushal Subbayya Hegde",
+      "context": "Name column in Promoter Selling Shareholder table"
+    },
+    {
+      "location": "Table[0].Row[9].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Pushpa Kushal Hegde",
+      "context": "Name column in Promoter Selling Shareholder table"
+    },
+    {
+      "location": "Table[0].Row[10].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rajesh Kushal Hegde",
+      "context": "Name column in Promoter Selling Shareholder table"
+    },
+    {
+      "location": "Table[0].Row[11].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rohit Kushal Hegde",
+      "context": "Name column in Promoter Selling Shareholder table"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "email",
+      "text": "ksh.ipo@nuvama.com",
+      "context": "E-mail: ksh.ipo@nuvama.com"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "email",
+      "text": "customerservice.mb@nuvama.com",
+      "context": "Investor grievance email: customerservice.mb@nuvama.com"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "phone",
+      "text": "+91 22 40094400",
+      "context": "Tel: +91 22 40094400"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Lokesh Shah",
+      "context": "Contact Person: Lokesh Shah/ Soumavo Sarkar"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Soumavo Sarkar",
+      "context": "Contact Person: Lokesh Shah/ Soumavo Sarkar"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "email",
+      "text": "ksh@icicisecurities.com",
+      "context": "E-mail: ksh@icicisecurities.com"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "email",
+      "text": "customercare@icicisecurities.com",
+      "context": "Investor grievance email: customercare@icicisecurities.com"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "phone",
+      "text": "+91 22 6807 7100",
+      "context": "Tel: +91 22 6807 7100"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "person_name",
+      "text": "Kishan Rastogi",
+      "context": "Contact Person: Kishan Rastogi/Abhijit Diwan"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "person_name",
+      "text": "Abhijit Diwan",
+      "context": "Contact Person: Kishan Rastogi/Abhijit Diwan"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[6]",
+      "pii_type": "email",
+      "text": "kshinternational.ipo@in.mpms.mufg.com",
+      "context": "E-mail: kshinternational.ipo@in.mpms.mufg.com"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[6]",
+      "pii_type": "phone",
+      "text": "+91 81081 14949",
+      "context": "Tel: +91 81081 14949"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[6]",
+      "pii_type": "person_name",
+      "text": "Shanti Gopalkrishnan",
+      "context": "Contact Person: Shanti Gopalkrishnan"
+    },
+    {
+      "location": "Table[4].Row[7].Cell[1]",
+      "pii_type": "person_name",
+      "text": "Kushal Subbayya Hegde",
+      "context": "The chairman and executive director of our Company, being Kushal Subbayya Hegde"
+    },
+    {
+      "location": "Table[4].Row[8].Cell[1]",
+      "pii_type": "person_name",
+      "text": "Sandesh Bhagwat",
+      "context": "The chief executive officer of our Company, being Sandesh Bhagwat"
+    },
+    {
+      "location": "Table[4].Row[9].Cell[1]",
+      "pii_type": "person_name",
+      "text": "Amod Joshi",
+      "context": "The chief financial officer of our Company, being Amod Joshi"
+    },
+    {
+      "location": "Table[4].Row[10].Cell[1]",
+      "pii_type": "person_name",
+      "text": "Sarthak Malvadkar",
+      "context": "The company secretary and compliance officer of our Company, being Sarthak Malvadkar"
+    },
+    {
+      "location": "Table[70].Row[1].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Kushal Subbayya Hegde",
+      "context": "Name column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[1].Cell[2]",
+      "pii_type": "din",
+      "text": "00135070",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[1].Cell[3]",
+      "pii_type": "address",
+      "text": "S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, lane no. 3 Prabhat Road, Pune \u2013 411 004, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[2].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rajesh Kushal Hegde",
+      "context": "Name column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[2].Cell[2]",
+      "pii_type": "din",
+      "text": "00114193",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[2].Cell[3]",
+      "pii_type": "address",
+      "text": "12 Buena Monte, NCL co-operative housing society, Panchvati, Pashan, Pune \u2013 411 008, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[3].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rohit Kushal Hegde",
+      "context": "Name column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[3].Cell[2]",
+      "pii_type": "din",
+      "text": "00134926",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[3].Cell[3]",
+      "pii_type": "address",
+      "text": "Pushpakamal Apartment, Flat \u2013 1, S. no. 245/ 104, Prabhat Road Lane no. 3, Shivajinagar, Pune \u2013 411 004, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[4].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Rakhi Girija Shetty",
+      "context": "Name column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[4].Cell[2]",
+      "pii_type": "din",
+      "text": "03124510",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[4].Cell[3]",
+      "pii_type": "address",
+      "text": "S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, lane no. 3 Prabhat Road, Pune \u2013 411 004, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[73].Row[1].Cell[0]",
+      "pii_type": "email",
+      "text": "parag.pansare@kirtanepandit.com",
+      "context": "E-mail: parag.pansare@kirtanepandit.com"
+    },
+    {
+      "location": "Table[73].Row[1].Cell[0]",
+      "pii_type": "phone",
+      "text": "+ 91 20 6729 5100",
+      "context": "Telephone: + 91 20 6729 5100"
+    },
+    {
+      "location": "Table[73].Row[2].Cell[0]",
+      "pii_type": "email",
+      "text": "hingnetare@gmail.com",
+      "context": "E-mail: hingnetare@gmail.com"
+    },
+    {
+      "location": "Para[755]",
+      "pii_type": "address",
+      "text": "Bandra East, Mumbai \u2013 400 051 Maharashtra, India",
+      "context": "Nuvama Wealth Management Limited address"
+    },
+    {
+      "location": "Para[761]",
+      "pii_type": "address",
+      "text": "ICICI Venture House Appasaheb Marathe Marg Prabhadevi, Mumbai \u2013 400 025 Maharashtra, India",
+      "context": "ICICI Securities Limited address"
+    },
+    {
+      "location": "Para[801]",
+      "pii_type": "address",
+      "text": "1st Floor, L B S Marg, Vikhroli (West) Mumbai 400083, (Maharashtra), India",
+      "context": "MUFG Intime India Private Limited address"
+    },
+    {
+      "location": "Para[886]",
+      "pii_type": "address",
+      "text": "Koregaon Park, Pune \u2013 411 001 Maharashtra, India",
+      "context": "Citibank N.A. address"
+    },
+    {
+      "location": "Para[897]",
+      "pii_type": "address",
+      "text": "Signature Building, Bhandarkar road Shivaji Nagar, Pune \u2013 411 004 Maharashtra, India",
+      "context": "Export-Import Bank of India address"
+    },
+    {
+      "location": "Para[909]",
+      "pii_type": "address",
+      "text": "Bund Garden Road, Pune \u2013 411 001 Maharashtra, India",
+      "context": "ICICI Bank Limited address"
+    },
+    {
+      "location": "Table[70].Row[5].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Dinesh Hirachand Munot",
+      "context": "Name column in Board of Directors table, Independent Director"
+    },
+    {
+      "location": "Table[70].Row[5].Cell[2]",
+      "pii_type": "din",
+      "text": "00049801",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[5].Cell[3]",
+      "pii_type": "address",
+      "text": "Pratik Bunglow, Senapati Bapat Road, behind Sahara Hotel, Shivajinagar, Model Colony, Pune \u2013 411 016, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[6].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Ajay Shriram Patil",
+      "context": "Name column in Board of Directors table, Independent Director"
+    },
+    {
+      "location": "Table[70].Row[6].Cell[2]",
+      "pii_type": "din",
+      "text": "01217000",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[6].Cell[3]",
+      "pii_type": "address",
+      "text": "602, Gopalkrupa Apartment, Bhonde colony, Prabhat Road, Erandawane, Pune \u2013 411 004, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[7].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Ram Kumar Tiwari",
+      "context": "Name column in Board of Directors table, Independent Director"
+    },
+    {
+      "location": "Table[70].Row[7].Cell[2]",
+      "pii_type": "din",
+      "text": "10938958",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[7].Cell[3]",
+      "pii_type": "address",
+      "text": "A-259, JK Road, Minal Residency, Huzur, Govindpura, Bhopal \u2013 462 023, Madhya Pradesh, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[8].Cell[0]",
+      "pii_type": "person_name",
+      "text": "Indu Jacob",
+      "context": "Name column in Board of Directors table, Independent Director"
+    },
+    {
+      "location": "Table[70].Row[8].Cell[2]",
+      "pii_type": "din",
+      "text": "05293084",
+      "context": "DIN column in Board of Directors table"
+    },
+    {
+      "location": "Table[70].Row[8].Cell[3]",
+      "pii_type": "address",
+      "text": "A29, Abhimanshree Society, Pashan Road, Pune \u2013 411 008, Maharashtra, India",
+      "context": "Address column in Board of Directors table"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[0]",
+      "pii_type": "address",
+      "text": "801 - 804, Wing A, Building No 3, Inspire BKC, G Block, Bandra Kurla Complex, Bandra East, Mumbai 400051, Maharashtra, India",
+      "context": "Nuvama Wealth Management Limited address in cover page"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[2]",
+      "pii_type": "address",
+      "text": "ICICI Venture House, Appasaheb Marathe Marg, Prabhadevi, Mumbai 400025, Maharashtra, India",
+      "context": "ICICI Securities Limited address in cover page"
+    },
+    {
+      "location": "Table[2].Row[14].Cell[6]",
+      "pii_type": "address",
+      "text": "C-101, Embassy 247, 1st Floor, L B S Marg, Vikhroli (West), Mumbai 400083, (Maharashtra), India",
+      "context": "MUFG Intime India Private Limited address in cover page"
+    },
+    {
+      "location": "Table[73].Row[1].Cell[0]",
+      "pii_type": "address",
+      "text": "5th Floor, Gopal House, Opposite Harshal Hall, above HDFC Limited Karve Road, Pune \u2013 411 038, Maharashtra, India",
+      "context": "Kirtane & Pandit LLP statutory auditor address"
+    },
+    {
+      "location": "Table[73].Row[2].Cell[0]",
+      "pii_type": "address",
+      "text": "Flat No. 102, Sai Complex Shaniwar Peth, Pune \u2013 411 030 Maharashtra, India",
+      "context": "Hingne Tare & Associates address"
+    },
+    {
+      "location": "Para[166]",
+      "pii_type": "person_name",
+      "text": "Kushal Subbayya Hegde",
+      "context": "Our Promoters are Kushal Subbayya Hegde..."
+    },
+    {
+      "location": "Para[166]",
+      "pii_type": "person_name",
+      "text": "Pushpa Kushal Hegde",
+      "context": "...Pushpa Kushal Hegde..."
+    },
+    {
+      "location": "Para[166]",
+      "pii_type": "person_name",
+      "text": "Rajesh Kushal Hegde",
+      "context": "...Rajesh Kushal Hegde..."
+    },
+    {
+      "location": "Para[166]",
+      "pii_type": "person_name",
+      "text": "Rohit Kushal Hegde",
+      "context": "...Rohit Kushal Hegde..."
+    },
+    {
+      "location": "Para[166]",
+      "pii_type": "person_name",
+      "text": "Rakhi Girija Shetty",
+      "context": "...Rakhi Girija Shetty..."
+    }
+  ]
+}
