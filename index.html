@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PII Redaction Engine — Evaluation Dashboard</title>
+    <meta name="description" content="Enterprise PII Redaction Tool evaluation dashboard showing precision, recall, and accuracy metrics for document redaction.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: #1a2035;
+            --bg-card-hover: #1f2847;
+            --border: #2d3748;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-emerald: #34d399;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-orange: #f97316;
+            --accent-red: #ef4444;
+            --accent-yellow: #eab308;
+            --gradient-1: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #06b6d4, #10b981);
+            --gradient-3: linear-gradient(135deg, #f97316, #ec4899);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bg-gradient .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+        .bg-gradient .orb:nth-child(1) {
+            width: 600px; height: 600px;
+            background: var(--accent-blue);
+            top: -200px; left: -100px;
+            animation-delay: 0s;
+        }
+        .bg-gradient .orb:nth-child(2) {
+            width: 500px; height: 500px;
+            background: var(--accent-purple);
+            bottom: -150px; right: -100px;
+            animation-delay: -7s;
+        }
+        .bg-gradient .orb:nth-child(3) {
+            width: 400px; height: 400px;
+            background: var(--accent-cyan);
+            top: 40%; left: 50%;
+            animation-delay: -14s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        .header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--accent-blue);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f1f5f9, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .stat-card .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+        .stat-card .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+        }
+        .stat-card:nth-child(1) .stat-value { color: var(--accent-blue); }
+        .stat-card:nth-child(2) .stat-value { color: var(--accent-green); }
+        .stat-card:nth-child(3) .stat-value { color: var(--accent-purple); }
+        .stat-card:nth-child(4) .stat-value { color: var(--accent-cyan); }
+        .stat-card:nth-child(5) .stat-value { color: var(--accent-orange); }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-header .icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .section-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .section-header .subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* Metrics Table */
+        .metrics-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .table-wrapper {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead th {
+            background: rgba(59, 130, 246, 0.08);
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+        }
+        tbody td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(45, 55, 72, 0.5);
+            font-size: 0.9rem;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background: var(--bg-card-hover); }
+        tbody tr.overall-row {
+            background: rgba(59, 130, 246, 0.06);
+            font-weight: 700;
+        }
+        tbody tr.overall-row td { border-top: 2px solid var(--accent-blue); }
+        .pii-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+        .type-din { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); }
+        .type-email { background: rgba(59, 130, 246, 0.12); color: var(--accent-blue); }
+        .type-phone { background: rgba(139, 92, 246, 0.12); color: var(--accent-purple); }
+        .type-address { background: rgba(249, 115, 22, 0.12); color: var(--accent-orange); }
+        .type-person { background: rgba(236, 72, 153, 0.12); color: var(--accent-pink); }
+
+        /* Progress Bars */
+        .metric-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .bar-track {
+            flex: 1;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 1.5s ease-out;
+        }
+        .bar-fill.green { background: linear-gradient(90deg, #10b981, #34d399); }
+        .bar-fill.blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .bar-fill.orange { background: linear-gradient(90deg, #f97316, #fb923c); }
+        .bar-fill.red { background: linear-gradient(90deg, #ef4444, #f87171); }
+        .bar-fill.purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .metric-value {
+            min-width: 60px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Before/After Section */
+        .examples-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        .example-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .example-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .example-card:hover { border-color: rgba(59, 130, 246, 0.3); }
+        .example-card .example-header {
+            padding: 0.75rem 1.25rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .example-card .example-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .example-col {
+            padding: 1rem 1.25rem;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .example-col:first-child {
+            border-right: 1px solid var(--border);
+        }
+        .example-col .col-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .example-col:first-child .col-label { color: var(--accent-red); }
+        .example-col:last-child .col-label { color: var(--accent-green); }
+        .highlight-old {
+            background: rgba(239, 68, 68, 0.15);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            color: #fca5a5;
+        }
+        .highlight-new {
+            background: rgba(16, 185, 129, 0.15);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            color: #6ee7b7;
+        }
+
+        /* Architecture Section */
+        .arch-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+        .pipeline-visual {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .pipeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.25rem;
+            border-radius: 14px;
+            min-width: 140px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .pipeline-step:hover { transform: translateY(-4px); }
+        .pipeline-step .step-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+        .pipeline-step .step-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .pipeline-step .step-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .step-1 { background: rgba(59, 130, 246, 0.08); }
+        .step-1 .step-icon { background: rgba(59, 130, 246, 0.2); }
+        .step-2 { background: rgba(139, 92, 246, 0.08); }
+        .step-2 .step-icon { background: rgba(139, 92, 246, 0.2); }
+        .step-3 { background: rgba(249, 115, 22, 0.08); }
+        .step-3 .step-icon { background: rgba(249, 115, 22, 0.2); }
+        .step-4 { background: rgba(16, 185, 129, 0.08); }
+        .step-4 .step-icon { background: rgba(16, 185, 129, 0.2); }
+        .pipeline-arrow {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Links Section */
+        .links-section {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 1s both;
+        }
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        .link-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+        }
+        .link-card .link-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .link-card .link-text h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        .link-card .link-text p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .example-card .example-body { grid-template-columns: 1fr; }
+            .example-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+            .pipeline-visual { flex-direction: column; }
+            .pipeline-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="badge">🔒 Enterprise PII Redaction Engine</div>
+            <h1>Evaluation Dashboard</h1>
+            <p>Benchmarked against a real-world <strong>1,006-paragraph, 76-table</strong> IPO Red Herring Prospectus — KSH International Limited</p>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-card">
+                <div class="stat-value">232</div>
+                <div class="stat-label">PII Spans Redacted</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3,991</div>
+                <div class="stat-label">Text Blocks Scanned</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">10</div>
+                <div class="stat-label">PII Types Detected</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">70.2%</div>
+                <div class="stat-label">Overall Recall</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">61.0%</div>
+                <div class="stat-label">F1 Score</div>
+            </div>
+        </div>
+
+        <!-- Architecture Pipeline -->
+        <section class="arch-section">
+            <div class="section-header">
+                <div class="icon" style="background: rgba(6, 182, 212, 0.15);">⚙️</div>
+                <h2>Detection Pipeline</h2>
+                <span class="subtitle">Hybrid Regex + NER Architecture</span>
+            </div>
+            <div class="pipeline-visual">
+                <div class="pipeline-step step-1">
+                    <div class="step-icon">📄</div>
+                    <div class="step-title">Parse</div>
+                    <div class="step-desc">TextInventory walks paragraphs + 76 tables</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step step-2">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-title">Detect</div>
+                    <div class="step-desc">10 detectors (regex + spaCy NER)</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step step-3">
+                    <div class="step-icon">⚖️</div>
+                    <div class="step-title">Resolve</div>
+                    <div class="step-desc">Overlap resolution: longest match wins</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step step-4">
+                    <div class="step-icon">🎭</div>
+                    <div class="step-title">Replace</div>
+                    <div class="step-desc">Faker-generated consistent fake values</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benchmark Metrics -->
+        <section class="metrics-section">
+            <div class="section-header">
+                <div class="icon" style="background: rgba(59, 130, 246, 0.15);">📊</div>
+                <h2>Benchmark Results</h2>
+                <span class="subtitle">178 ground truth annotations</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>PII Type</th>
+                            <th>TP</th>
+                            <th>FP</th>
+                            <th>FN</th>
+                            <th>Precision</th>
+                            <th>Recall</th>
+                            <th>Accuracy (Jaccard)</th>
+                            <th>F1 Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="pii-type-badge type-din">🆔 DIN</span></td>
+                            <td>8</td><td>0</td><td>0</td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 100%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">100.0%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 100%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">100.0%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 100%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">100.0%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 100%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">100.0%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="pii-type-badge type-email">📧 Email</span></td>
+                            <td>47</td><td>3</td><td>1</td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 94%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">94.0%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 97.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">97.9%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 92.2%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">92.2%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 95.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">95.9%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="pii-type-badge type-phone">📞 Phone</span></td>
+                            <td>25</td><td>9</td><td>1</td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill blue" style="width: 73.5%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-blue)">73.5%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill green" style="width: 96.2%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-green)">96.2%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill blue" style="width: 71.4%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-blue)">71.4%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill blue" style="width: 83.3%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-blue)">83.3%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="pii-type-badge type-address">📍 Address</span></td>
+                            <td>13</td><td>8</td><td>12</td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill orange" style="width: 61.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-orange)">61.9%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill orange" style="width: 52%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-orange)">52.0%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill orange" style="width: 39.4%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-orange)">39.4%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill orange" style="width: 56.5%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-orange)">56.5%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="pii-type-badge type-person">👤 Person Name</span></td>
+                            <td>32</td><td>87</td><td>39</td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill red" style="width: 26.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-red)">26.9%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill orange" style="width: 45.1%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-orange)">45.1%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill red" style="width: 20.3%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-red)">20.3%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill red" style="width: 33.7%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-red)">33.7%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="overall-row">
+                            <td><strong>🏆 OVERALL</strong></td>
+                            <td><strong>125</strong></td><td><strong>107</strong></td><td><strong>53</strong></td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill purple" style="width: 53.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-purple)">53.9%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill blue" style="width: 70.2%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-blue)">70.2%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill purple" style="width: 43.9%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-purple)">43.9%</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="metric-bar">
+                                    <div class="bar-track"><div class="bar-fill purple" style="width: 61%"></div></div>
+                                    <span class="metric-value" style="color: var(--accent-purple)">61.0%</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Before/After Examples -->
+        <section class="examples-section">
+            <div class="section-header">
+                <div class="icon" style="background: rgba(236, 72, 153, 0.15);">🔄</div>
+                <h2>Before & After Examples</h2>
+                <span class="subtitle">Real redaction samples from the document</span>
+            </div>
+            <div class="example-grid">
+                <div class="example-card">
+                    <div class="example-header">👤 Person Name — Contact Person (Para 28)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            Contact Person: <span class="highlight-old">Sarthak Malvadkar</span>, Company Secretary; Telephone: <span class="highlight-old">+ 91 20 4505 3237</span>
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            Contact Person: <span class="highlight-new">Joshua Martin</span>, Company Secretary; Telephone: <span class="highlight-new">+91 08 6899 1311</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-header">📧 Email — Company Contact (Para 29)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            E-mail: <span class="highlight-old">cs.connect@kshinternational.com</span>
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            E-mail: <span class="highlight-new">elizabethmiles@example.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-header">📍 Address — Registered Office (Para 26)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            Registered Office: <span class="highlight-old">11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India</span>
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            Registered Office: <span class="highlight-new">13, Jeffrey Street, Ville, North Claytonbury – 674 833, Manipur, India</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-header">👤 Person Name — Promoters List (Para 166)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            <span class="highlight-old">Kushal Subbayya Hegde</span>, <span class="highlight-old">Pushpa Kushal Hegde</span>, <span class="highlight-old">Rajesh Kushal Hegde</span>, <span class="highlight-old">Rohit Kushal Hegde</span>...
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            <span class="highlight-new">Kayla Daniel Moore</span>, <span class="highlight-new">Patrick Allison Contractor</span>, <span class="highlight-new">Imaran Nathaniel Carlson</span>, <span class="highlight-new">Michael Yashodhara Davis</span>...
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-header">📊 Table Cell — Promoter Name (Table 0, Row 8)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            <span class="highlight-old">Kushal Subbayya Hegde</span>
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            <span class="highlight-new">Kayla Daniel Moore</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-header">📞 Phone + 📧 Email — BRLM Contact (Table 1, Row 7)</div>
+                    <div class="example-body">
+                        <div class="example-col">
+                            <div class="col-label">● Original</div>
+                            Email: <span class="highlight-old">ksh.ipo@nuvama.com</span><br>Telephone: <span class="highlight-old">+91 22 4009 4400</span>
+                        </div>
+                        <div class="example-col">
+                            <div class="col-label">● Redacted</div>
+                            Email: <span class="highlight-new">ykibe@example.com</span><br>Telephone: <span class="highlight-new">+91 17 7572 3448</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links -->
+        <section class="links-section">
+            <div class="section-header">
+                <div class="icon" style="background: rgba(16, 185, 129, 0.15);">🔗</div>
+                <h2>Project Resources</h2>
+            </div>
+            <div class="links-grid">
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" class="link-card" target="_blank">
+                    <div class="link-icon" style="background: rgba(139, 92, 246, 0.15);">💻</div>
+                    <div class="link-text">
+                        <h3>Source Code</h3>
+                        <p>GitHub Repository — full modular Python package</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/blob/main/evaluation_report.md" class="link-card" target="_blank">
+                    <div class="link-icon" style="background: rgba(59, 130, 246, 0.15);">📊</div>
+                    <div class="link-text">
+                        <h3>Evaluation Report</h3>
+                        <p>Precision, Recall, Accuracy metrics with methodology</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/redacted_output.docx" class="link-card" target="_blank">
+                    <div class="link-icon" style="background: rgba(16, 185, 129, 0.15);">📄</div>
+                    <div class="link-text">
+                        <h3>Redacted Output (.docx)</h3>
+                        <p>Download the PII-redacted document</p>
+                    </div>
+                </a>
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/blob/main/README.md" class="link-card" target="_blank">
+                    <div class="link-icon" style="background: rgba(249, 115, 22, 0.15);">📖</div>
+                    <div class="link-text">
+                        <h3>Documentation</h3>
+                        <p>Full README with architecture, tradeoffs, and extension guide</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Built by Ankit Basu • Enterprise PII Redaction Engine • Scalar Labs AI Assignment
+        </footer>
+    </div>
+</body>
+</html>
