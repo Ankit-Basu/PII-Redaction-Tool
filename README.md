@@ -31,7 +31,7 @@
 
 ## 🎯 Overview
 
-This tool was built for the **Scalar Labs AI Enterprise Data Assignment** — to redact PII from the attached **KSH International Limited Red Herring Prospectus** (a dense legal/financial filing containing director names, residential addresses, DIN numbers, bank contact details, auditor information, and more).
+Built as an enterprise data privacy engine for high-density legal and financial documents — specifically validated and benchmarked on the **KSH International Limited Red Herring Prospectus** (a 1,006-paragraph, 76-table regulatory filing containing director names, residential addresses, DIN numbers, bank contact details, and auditor information).
 
 ### The Challenge
 

@@ -69,7 +69,7 @@ def create_evaluation_doc(output_path: str):
     bp = banner_cell.paragraphs[0]
     bp.paragraph_format.space_after = Pt(0)
     brun = bp.add_run(
-        "Author: Ankit Basu   |   Assignment: Scalar Labs AI Enterprise Data Assignment\n"
+        "Author: Ankit Basu   |   Project: Enterprise PII Redaction & Data Compliance Engine\n"
         "Input Document: KSH International Limited Red Herring Prospectus (1,006 Paras, 76 Tables, 3,991 Blocks)\n"
         "Evaluated Baseline: 178 Ground Truth Annotations   |   Overall Recall: 94.94%   |   F1 Score: 65.89%"
     )
