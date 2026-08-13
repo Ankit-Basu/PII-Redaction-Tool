@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise PII Redaction Engine — Benchmark & Live Evaluation Platform</title>
-    <meta name="description" content="Production-grade PII detection and redaction platform for enterprise financial filings. 87.6% benchmark recall, hybrid NER + regex architecture.">
+    <title>PII REDACTOR. — Enterprise Data Redaction Platform</title>
+    <meta name="description" content="Neo-Brutalist Enterprise PII Detection and Redaction Platform for large financial filings. 87.6% Recall, 100% DIN accuracy.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #050811;
-            --bg-surface: #0b1220;
-            --bg-card: rgba(15, 23, 42, 0.82);
-            --bg-card-hover: rgba(24, 36, 60, 0.94);
-            --border-subtle: rgba(148, 163, 184, 0.18);
-            --border-accent: rgba(99, 102, 241, 0.35);
+            --bg: #F8F9FA;
+            --surface: #FFFFFF;
+            --black: #000000;
+            --text-dark: #000000;
+            --text-muted: #555555;
             
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
+            /* Neo-Brutalist Palette */
+            --yellow: #FFE600;
+            --pink: #FF90B3;
+            --cyan: #70D6FF;
+            --green: #00F0A8;
+            --purple: #C4B5FD;
+            --orange: #FF9F43;
+            --lime: #A3E635;
             
-            --brand-primary: #6366f1;
-            --brand-secondary: #06b6d4;
-            --brand-accent: #f59e0b;
-            
-            --color-success: #10b981;
-            --color-warning: #f59e0b;
-            --color-danger: #ef4444;
-            --color-info: #38bdf8;
-            
-            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
-            --gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            --gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --shadow-glow: 0 18px 45px -30px rgba(56, 189, 248, 0.55);
+            --border: 2.5px solid #000000;
+            --border-thick: 3.5px solid #000000;
+            --shadow-sm: 3px 3px 0px #000000;
+            --shadow: 5px 5px 0px #000000;
+            --shadow-lg: 8px 8px 0px #000000;
+            --shadow-hover: 7px 7px 0px #000000;
+            --radius: 14px;
+            --radius-sm: 8px;
+            --radius-pill: 9999px;
         }
 
         * {
@@ -42,174 +42,237 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text-dark);
             min-height: 100vh;
             line-height: 1.5;
             overflow-x: hidden;
-            background-image: 
-                linear-gradient(180deg, rgba(15, 23, 42, 0.96) 0%, rgba(5, 8, 17, 1) 46%, rgba(4, 12, 22, 1) 100%),
-                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 100% 100%, 48px 48px, 48px 48px;
-            background-attachment: fixed;
+            background-image: radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
         }
 
-        /* Top Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(5, 8, 17, 0.85);
-            border-bottom: 1px solid var(--border-subtle);
+        /* Top Bar */
+        .topbar {
+            background: #FFFFFF;
+            border-bottom: var(--border-thick);
             padding: 0.85rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .nav-brand {
+        .brand-logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
             text-decoration: none;
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 1.05rem;
+            color: var(--black);
         }
 
-        .nav-logo {
-            width: 34px;
-            height: 34px;
-            background: var(--gradient-primary);
-            border-radius: 8px;
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--yellow);
+            border: 2px solid var(--black);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+            font-size: 1.1rem;
+            box-shadow: 2px 2px 0px #000000;
         }
 
-        .nav-links {
+        .nav-items {
             display: flex;
             align-items: center;
-            gap: 1.75rem;
+            gap: 1.25rem;
         }
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
+        .nav-tag {
+            background: var(--green);
+            border: 2px solid var(--black);
+            padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-pill);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 800;
+            box-shadow: 2px 2px 0px #000;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        .live-dot {
-            display: inline-block;
+        .nav-tag-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #10b981;
-            box-shadow: 0 0 10px #10b981;
-            animation: pulse 2s infinite;
+            background: #000;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-
-        .btn-gh {
+        .btn-neo {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-subtle);
-            padding: 0.45rem 0.95rem;
-            border-radius: 8px;
-            color: var(--text-main);
+            padding: 0.5rem 1.1rem;
+            background: var(--yellow);
+            border: var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--black);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
             font-size: 0.85rem;
-            font-weight: 600;
+            text-transform: uppercase;
             text-decoration: none;
-            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s;
         }
 
-        .btn-gh:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-            transform: translateY(-1px);
+        .btn-neo:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow);
+            background: #FFE000;
         }
 
-        /* Container */
+        .btn-neo:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #000;
+        }
+
+        .btn-neo-white {
+            background: #FFFFFF;
+        }
+
+        .btn-neo-white:hover {
+            background: #F1F5F9;
+        }
+
+        .btn-neo-pink {
+            background: var(--pink);
+        }
+
+        .btn-neo-pink:hover {
+            background: #FF7FA7;
+        }
+
+        .btn-neo-cyan {
+            background: var(--cyan);
+        }
+
+        .btn-neo-cyan:hover {
+            background: #56CCFC;
+        }
+
+        /* Wrapper */
         .wrapper {
             max-width: 1240px;
             margin: 0 auto;
-            padding: 2.5rem 1.5rem 5rem;
+            padding: 3rem 1.5rem 6rem;
+            position: relative;
         }
 
-        /* Hero */
-        .hero {
+        /* Floating Sticky Notes */
+        .sticky-note {
+            position: absolute;
+            background: var(--yellow);
+            border: var(--border);
+            padding: 1rem 1.25rem;
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1.4;
+            max-width: 220px;
+            z-index: 10;
+        }
+
+        .sticky-1 {
+            top: 2rem;
+            right: 1.5rem;
+            transform: rotate(3deg);
+        }
+
+        .sticky-2 {
+            top: 14rem;
+            left: -1rem;
+            background: var(--pink);
+            transform: rotate(-4deg);
+        }
+
+        @media (max-width: 1100px) {
+            .sticky-note { display: none; }
+        }
+
+        /* Hero Card (Inspired by Penspace) */
+        .hero-box {
+            background: #FFFFFF;
+            border: var(--border-thick);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
             text-align: center;
+            box-shadow: var(--shadow-lg);
             margin-bottom: 3.5rem;
             position: relative;
         }
 
-        .hero-pill {
+        .badge-live {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1.1rem;
-            background: rgba(99, 102, 241, 0.12);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #a5b4fc;
-            margin-bottom: 1.25rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .hero-title {
-            font-size: 3.4rem;
+            gap: 0.45rem;
+            background: var(--cyan);
+            border: 2px solid #000000;
+            padding: 0.35rem 1rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.12;
-            margin-bottom: 1rem;
-            background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            box-shadow: 3px 3px 0px #000;
         }
 
-        .hero-title span {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-heading {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            color: #000000;
         }
 
-        .hero-desc {
-            font-size: 1.125rem;
-            color: var(--text-muted);
+        .hero-heading span {
+            background: var(--yellow);
+            padding: 0 0.4rem;
+            border: 3px solid #000;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px #000;
+            display: inline-block;
+            transform: rotate(-1deg);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #334155;
             max-width: 780px;
-            margin: 0 auto 2.2rem;
-            font-weight: 400;
-            line-height: 1.6;
+            margin: 0 auto 2.5rem;
+            font-weight: 600;
+            line-height: 1.5;
         }
 
-        .hero-actions {
+        .hero-cta-group {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -217,995 +280,880 @@
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: var(--gradient-primary);
-            color: #ffffff;
-            padding: 0.8rem 1.6rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            box-shadow: 0 4px 22px rgba(99, 102, 241, 0.45);
-            transition: all 0.2s;
+        .btn-cta-main {
+            padding: 0.95rem 1.9rem;
+            font-size: 1.05rem;
+            border: var(--border-thick);
+            box-shadow: var(--shadow);
+            border-radius: 12px;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 28px rgba(99, 102, 241, 0.6);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            padding: 0.8rem 1.6rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* KPI Highlights */
-        .kpi-grid {
+        /* Metrics Bar (Cards with solid drop-shadows) */
+        .kpi-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 1.25rem;
             margin-bottom: 3.5rem;
         }
 
-        .kpi-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1.6rem;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+        .kpi-neo {
+            background: #FFFFFF;
+            border: var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
             position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .kpi-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.45);
-            box-shadow: var(--shadow-glow);
+        .kpi-neo:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .kpi-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            opacity: 0.85;
-        }
-
-        .kpi-value {
-            font-size: 2.6rem;
+        .kpi-tag {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
-            color: #ffffff;
+            text-transform: uppercase;
+            padding: 0.2rem 0.5rem;
+            border: 1.5px solid #000;
+            border-radius: 4px;
+            margin-bottom: 0.6rem;
+            box-shadow: 1.5px 1.5px 0px #000;
+        }
+
+        .kpi-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 0.3rem;
         }
 
         .kpi-label {
-            font-size: 0.825rem;
-            color: var(--text-muted);
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            color: #000000;
         }
 
-        .kpi-sub {
+        .kpi-desc {
             font-size: 0.775rem;
-            color: var(--text-dim);
-            margin-top: 0.35rem;
+            color: #475569;
+            font-weight: 600;
+            margin-top: 0.25rem;
         }
 
-        /* Section Headings */
-        .section-title {
-            font-size: 1.55rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
+        /* Section Title (Neo-Brutalist Block) */
+        .section-header-neo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+            gap: 0.85rem;
             margin-bottom: 1.5rem;
         }
 
-        /* Requirements Matrix */
-        .req-grid {
+        .section-badge {
+            background: #000000;
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 1.15rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+
+        .section-heading-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        /* Neo-Brutalist Matrix Grid */
+        .matrix-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
+            gap: 1.25rem;
             margin-bottom: 3.5rem;
         }
 
-        .req-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1.25rem;
+        .matrix-card {
+            background: #FFFFFF;
+            border: var(--border);
+            border-radius: var(--radius);
+            padding: 1.35rem;
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
-            transition: all 0.2s;
+            gap: 0.5rem;
+            transition: transform 0.15s ease;
         }
 
-        .req-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            background: var(--bg-card-hover);
+        .matrix-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .req-top {
+        .matrix-card-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .req-name {
-            font-weight: 700;
-            font-size: 0.95rem;
+        .matrix-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
-        .req-status {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.15rem 0.55rem;
-            border-radius: 6px;
+        .matrix-pill {
             font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 0.2rem 0.55rem;
+            border: 1.5px solid #000;
+            border-radius: var(--radius-pill);
+            box-shadow: 1.5px 1.5px 0px #000;
         }
 
-        .status-pass {
-            background: rgba(16, 185, 129, 0.15);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+        .matrix-desc {
+            font-size: 0.825rem;
+            color: #334155;
+            font-weight: 600;
+            line-height: 1.45;
         }
 
-        .status-toggle {
-            background: rgba(148, 163, 184, 0.15);
-            color: #cbd5e1;
-            border: 1px solid rgba(148, 163, 184, 0.25);
-        }
-
-        .req-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        /* Glass Panel */
-        .glass-panel {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
+        /* Neo Table Container */
+        .table-neo-box {
+            background: #FFFFFF;
+            border: var(--border-thick);
+            border-radius: 18px;
             overflow: hidden;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-lg);
             margin-bottom: 3.5rem;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
         }
 
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
+        .table-neo-header {
+            background: var(--yellow);
+            border-bottom: var(--border-thick);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        table {
+        .table-neo-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .neo-table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
         }
 
-        thead {
-            background: rgba(255, 255, 255, 0.035);
-            border-bottom: 1px solid var(--border-subtle);
+        .neo-table thead {
+            background: #F1F5F9;
+            border-bottom: var(--border);
         }
 
-        th {
-            padding: 1.15rem 1.25rem;
-            font-size: 0.75rem;
-            font-weight: 700;
+        .neo-table th {
+            padding: 1rem 1.25rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.07em;
-            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            color: #000;
+            border-right: var(--border);
         }
 
-        td {
-            padding: 1.15rem 1.25rem;
+        .neo-table th:last-child {
+            border-right: none;
+        }
+
+        .neo-table td {
+            padding: 1rem 1.25rem;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-weight: 700;
+            border-bottom: 2px solid #000000;
+            border-right: 2px solid #000000;
+            color: #000;
         }
 
-        tbody tr:hover {
-            background: rgba(255, 255, 255, 0.025);
+        .neo-table td:last-child {
+            border-right: none;
         }
 
-        tbody tr:last-child td {
+        .neo-table tr:last-child td {
             border-bottom: none;
         }
 
-        .tr-highlight {
-            background: rgba(99, 102, 241, 0.08);
-            font-weight: 700;
+        .neo-table tbody tr:hover {
+            background: #FFFDF0;
         }
 
-        .tr-highlight td {
-            border-top: 1px solid rgba(99, 102, 241, 0.35);
-            color: #ffffff;
+        .row-total {
+            background: #E2E8F0 !important;
+            font-weight: 900 !important;
         }
 
-        .badge-type {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.3rem 0.7rem;
-            border-radius: 7px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .row-total td {
+            border-top: var(--border-thick);
+            font-size: 0.95rem;
+        }
+
+        .tag-type {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border: 1.5px solid #000;
+            border-radius: 6px;
             font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 800;
+            box-shadow: 2px 2px 0px #000;
         }
 
-        .badge-din { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-        .badge-email { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
-        .badge-phone { background: rgba(139, 92, 246, 0.15); color: #c084fc; }
-        .badge-address { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-        .badge-person { background: rgba(236, 72, 153, 0.15); color: #f472b6; }
-
-        /* Progress bars */
-        .prog-container {
+        .prog-neo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
-        .prog-track {
+        .prog-neo-track {
             flex: 1;
-            height: 7px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
+            height: 12px;
+            background: #E2E8F0;
+            border: 2px solid #000;
+            border-radius: 6px;
             overflow: hidden;
             min-width: 60px;
         }
 
-        .prog-fill {
+        .prog-neo-fill {
             height: 100%;
-            border-radius: 8px;
+            border-right: 2px solid #000;
         }
 
-        .prog-val {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 600;
-            min-width: 52px;
+        /* Interactive Sandbox */
+        .sandbox-box {
+            background: #FFFFFF;
+            border: var(--border-thick);
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3.5rem;
         }
 
-        /* Interactive Simulator */
-        .simulator-grid {
+        .sandbox-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin-top: 1rem;
+            margin-top: 1.25rem;
         }
 
-        .sim-box {
+        .sandbox-panel {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.6rem;
         }
 
-        .sim-box label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
+        .sandbox-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .sim-textarea {
+        .sandbox-textarea {
             width: 100%;
             height: 220px;
-            background: rgba(6, 9, 19, 0.85);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--text-main);
+            background: #F8FAFC;
+            border: var(--border);
+            border-radius: 10px;
+            padding: 1.1rem;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.875rem;
+            font-weight: 600;
             line-height: 1.6;
             resize: none;
             outline: none;
-            transition: border-color 0.2s;
+            box-shadow: var(--shadow-sm);
         }
 
-        .sim-textarea:focus {
-            border-color: var(--brand-primary);
+        .sandbox-textarea:focus {
+            background: #FFFFFF;
+            border-color: #000000;
+            box-shadow: var(--shadow);
         }
 
-        .sim-output {
+        .sandbox-output {
             width: 100%;
             height: 220px;
-            background: rgba(6, 9, 19, 0.95);
-            border: 1px solid var(--border-accent);
-            border-radius: 8px;
-            padding: 1rem;
-            color: #38bdf8;
+            background: #000000;
+            color: #00F0A8;
+            border: var(--border);
+            border-radius: 10px;
+            padding: 1.1rem;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.875rem;
+            font-weight: 600;
             line-height: 1.6;
             overflow-y: auto;
             white-space: pre-wrap;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-sm);
         }
 
-        /* Tabs */
-        .tab-nav {
+        /* Diff Cards Tabs */
+        .diff-container {
+            background: #FFFFFF;
+            border: var(--border-thick);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 3.5rem;
+        }
+
+        .diff-tabs {
             display: flex;
-            gap: 0.5rem;
-            border-bottom: 1px solid var(--border-subtle);
-            padding: 0 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
+            border-bottom: var(--border-thick);
+            background: #F1F5F9;
         }
 
-        .tab-btn {
+        .tab-item {
             background: transparent;
             border: none;
-            color: var(--text-muted);
-            padding: 1.1rem 1.3rem;
-            font-weight: 600;
-            font-size: 0.875rem;
+            border-right: var(--border);
+            padding: 1rem 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+            transition: background 0.15s;
         }
 
-        .tab-btn.active {
-            color: #ffffff;
-            border-bottom-color: var(--brand-primary);
+        .tab-item.active {
+            background: var(--yellow);
         }
 
-        .tab-pane {
+        .tab-content {
             display: none;
             padding: 1.75rem;
         }
 
-        .tab-pane.active {
+        .tab-content.active {
             display: block;
         }
 
-        /* Diff Cards */
-        .diff-card {
-            background: rgba(6, 9, 19, 0.65);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            margin-bottom: 1rem;
+        .diff-card-neo {
+            border: var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
             overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
 
-        .diff-header {
-            padding: 0.8rem 1.1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid var(--border-subtle);
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-dim);
+        .diff-card-neo-header {
+            background: #F1F5F9;
+            border-bottom: var(--border);
+            padding: 0.75rem 1rem;
             font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 0.825rem;
+            text-transform: uppercase;
         }
 
-        .diff-body {
+        .diff-card-neo-body {
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
 
-        .diff-col {
+        .diff-card-neo-col {
             padding: 1.1rem;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
+            font-weight: 600;
             line-height: 1.6;
         }
 
-        .diff-col:first-child {
-            border-right: 1px solid var(--border-subtle);
-            background: rgba(239, 68, 68, 0.02);
+        .diff-card-neo-col:first-child {
+            border-right: var(--border);
+            background: #FFF1F2;
         }
 
-        .diff-col:last-child {
-            background: rgba(16, 185, 129, 0.02);
+        .diff-card-neo-col:last-child {
+            background: #F0FDF4;
         }
 
-        .diff-tag {
-            font-size: 0.725rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.45rem;
-            letter-spacing: 0.06em;
-        }
-
-        .diff-tag.red { color: var(--color-danger); }
-        .diff-tag.green { color: var(--color-success); }
-
-        .hl-red {
-            background: rgba(239, 68, 68, 0.22);
-            color: #fca5a5;
-            padding: 0.12rem 0.35rem;
+        .diff-pill-red {
+            background: #FFE4E6;
+            border: 1.5px solid #000;
+            padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
+            font-weight: 700;
         }
 
-        .hl-green {
-            background: rgba(16, 185, 129, 0.22);
-            color: #86efac;
-            padding: 0.12rem 0.35rem;
+        .diff-pill-green {
+            background: #DCFCE7;
+            border: 1.5px solid #000;
+            padding: 0.1rem 0.4rem;
             border-radius: 4px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-        }
-
-        /* Architecture Steps */
-        .arch-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .arch-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .arch-step-num {
-            width: 32px;
-            height: 32px;
-            background: rgba(99, 102, 241, 0.15);
-            border: 1px solid rgba(99, 102, 241, 0.35);
-            color: #a5b4fc;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-weight: 700;
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
         }
 
-        .arch-title {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text-main);
-            margin-top: 0.25rem;
-        }
-
-        .arch-text {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* Submission checklist */
-        .submission-panel {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(8, 13, 25, 0.92));
-            border: 1px solid rgba(56, 189, 248, 0.24);
-            border-radius: 8px;
-            padding: 1.25rem;
-            margin-bottom: 3.5rem;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .submission-head {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .submission-title {
-            font-weight: 800;
-            font-size: 1.05rem;
-        }
-
-        .submission-note {
-            color: var(--text-muted);
-            font-size: 0.86rem;
-            margin-top: 0.25rem;
-        }
-
-        .submission-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .submission-item {
-            background: rgba(255, 255, 255, 0.035);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 0.9rem;
-        }
-
-        .submission-item strong {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .submission-item span {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            line-height: 1.45;
-        }
-
-        /* Tradeoffs Callouts */
-        .tradeoffs-grid {
+        /* Tradeoff Boxes */
+        .tradeoff-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.25rem;
             margin-bottom: 3.5rem;
         }
 
-        .tradeoff-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
+        .tradeoff-neo {
+            background: #FFFFFF;
+            border: var(--border);
+            border-radius: var(--radius);
             padding: 1.5rem;
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.5rem;
         }
 
-        .tradeoff-title {
-            font-weight: 700;
-            font-size: 1rem;
+        .tradeoff-neo-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #ffffff;
         }
 
-        .tradeoff-text {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .tradeoff-neo-text {
+            font-size: 0.875rem;
+            color: #334155;
+            font-weight: 600;
             line-height: 1.5;
         }
 
         /* Footer */
-        .footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-subtle);
+        .footer-neo {
+            border-top: var(--border-thick);
+            background: #FFFFFF;
+            padding: 2.5rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            color: var(--text-dim);
-            font-size: 0.85rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         @media (max-width: 860px) {
-            .hero-title { font-size: 2.3rem; }
-            .simulator-grid { grid-template-columns: 1fr; }
-            .diff-body { grid-template-columns: 1fr; }
-            .diff-col:first-child { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-            .navbar { padding: 0.85rem 1rem; }
+            .hero-heading { font-size: 2.8rem; }
+            .sandbox-grid { grid-template-columns: 1fr; }
+            .diff-card-neo-body { grid-template-columns: 1fr; }
+            .diff-card-neo-col:first-child { border-right: none; border-bottom: var(--border); }
+            .topbar { padding: 0.85rem 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Nav -->
-    <nav class="navbar">
-        <a href="#" class="nav-brand">
-            <div class="nav-logo">🛡️</div>
-            <span>PII Redactor Engine</span>
+    <!-- Topbar -->
+    <header class="topbar">
+        <a href="#" class="brand-logo">
+            <div class="brand-icon">🛡️</div>
+            <span>PII REDACTOR.</span>
         </a>
-        <div class="nav-links">
-            <span style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #34d399; font-weight: 600;">
-                <span class="live-dot"></span> Evaluation v2.0
-            </span>
-            <a href="#requirements">PII Matrix</a>
-            <a href="#deliverables">Deliverables</a>
-            <a href="#metrics">Benchmark</a>
-            <a href="#simulator">Live Sandbox</a>
-            <a href="#examples">Diff Samples</a>
-            <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" class="btn-gh">
+        <div class="nav-items">
+            <div class="nav-tag">
+                <span class="nav-tag-dot"></span>
+                <span>EVALUATION V2.0</span>
+            </div>
+            <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" class="btn-neo btn-neo-white">
                 <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-                GitHub Repo
+                <span>GITHUB REPO</span>
             </a>
         </div>
-    </nav>
+    </header>
 
     <div class="wrapper">
 
-        <!-- Hero -->
-        <header class="hero">
-            <div class="hero-pill">⚡ Scalar Labs AI — Enterprise Assignment</div>
-            <h1 class="hero-title">Enterprise <span>PII Redaction</span> Engine</h1>
-            <p class="hero-desc">
-                High-precision hybrid regex & spaCy NER detection engine evaluated against the 
-                <strong>1,006-paragraph, 76-table</strong> KSH International IPO Red Herring Prospectus.
-            </p>
-            <div class="hero-actions">
-                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/redacted_output.docx" class="btn-primary">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Download Redacted .docx (1.88 MB)
-                </a>
-                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/Evaluation_Strategy_and_Metrics.docx" class="btn-secondary">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Download Evaluation Metrics .docx
-                </a>
-                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/blob/main/evaluation_report.md" target="_blank" class="btn-secondary">
-                    View Markdown Report ↗
-                </a>
-            </div>
-        </header>
-
-        <!-- KPI Grid -->
-        <div class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-value" style="color: #38bdf8;">87.6%</div>
-                <div class="kpi-label">Overall Recall</div>
-                <div class="kpi-sub">156 true positives matched</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value" style="color: #34d399;">100%</div>
-                <div class="kpi-label">DIN Detection</div>
-                <div class="kpi-sub">100% Precision & 100% Recall</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value" style="color: #818cf8;">97.9%</div>
-                <div class="kpi-label">Email Recall</div>
-                <div class="kpi-sub">47/48 emails captured</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value" style="color: #f472b6;">96.2%</div>
-                <div class="kpi-label">Phone Recall</div>
-                <div class="kpi-sub">+91, STD & landline patterns</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-value" style="color: #fbbf24;">294</div>
-                <div class="kpi-label">Applied Redactions</div>
-                <div class="kpi-sub">In-place run formatting preserved</div>
-            </div>
+        <!-- Floating Stickers -->
+        <div class="sticky-note sticky-1">
+            📌 <strong>100% DIN Precision</strong><br>
+            Director IDs under Table 70 captured with 0 false positives!
+        </div>
+        <div class="sticky-note sticky-2">
+            🚀 <strong>87.64% Recall</strong><br>
+            Evaluated on 1,006 paras & 76 tables in RHP.docx!
         </div>
 
-        <!-- Submission Deliverables -->
-        <section id="deliverables" class="submission-panel">
-            <div class="submission-head">
-                <div>
-                    <div class="submission-title">Submission Package Status</div>
-                    <div class="submission-note">Required assignment artifacts are generated and linked for reviewer access.</div>
-                </div>
-                <span class="req-status status-pass">✓ Ready</span>
-            </div>
-            <div class="submission-grid">
-                <div class="submission-item">
-                    <strong>Source Code</strong>
-                    <span>Modular Python package under <code>src/</code>, CLI runners under <code>scripts/</code>, and root wrappers <code>redact.py</code>/<code>evaluate.py</code>.</span>
-                </div>
-                <div class="submission-item">
-                    <strong>Output PII Processed DOCX</strong>
-                    <span><code>output/redacted_output.docx</code> is generated from the RHP and linked via the download button above.</span>
-                </div>
-                <div class="submission-item">
-                    <strong>Evaluation Strategy & Metrics DOCX</strong>
-                    <span><code>output/Evaluation_Strategy_and_Metrics.docx</code> documents methodology, precision, recall, accuracy, and F1.</span>
-                </div>
-                <div class="submission-item">
-                    <strong>README + Tradeoffs</strong>
-                    <span>README explains regex + spaCy detection, run-level DOCX replacement, false positives/negatives, and configurable company-name handling.</span>
-                </div>
+        <!-- Hero Box -->
+        <section class="hero-box">
+            <div class="badge-live">⚡ SCALAR LABS AI — ENTERPRISE DATA ASSIGNMENT</div>
+            <h1 class="hero-heading">
+                REDACT PII.<br>
+                <span>PROTECT PRIVACY.</span>
+            </h1>
+            <p class="hero-sub">
+                A production-grade, hybrid regex & spaCy NER redaction engine benchmarked on the 
+                <strong>1,006-paragraph, 76-table</strong> KSH International Limited IPO Red Herring Prospectus.
+            </p>
+            <div class="hero-cta-group">
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/redacted_output.docx" class="btn-neo btn-cta-main">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    <span>DOWNLOAD REDACTED .DOCX</span>
+                </a>
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/Evaluation_Strategy_and_Metrics.docx" class="btn-neo btn-neo-pink btn-cta-main">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>EVALUATION METRIC .DOCX</span>
+                </a>
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/blob/main/evaluation_report.md" target="_blank" class="btn-neo btn-neo-white btn-cta-main">
+                    <span>VIEW MARKDOWN REPORT ↗</span>
+                </a>
             </div>
         </section>
 
-        <!-- Requirements Coverage Matrix -->
-        <section id="requirements" style="margin-bottom: 3.5rem;">
-            <h2 class="section-title">📋 Assignment PII Coverage Matrix</h2>
-            <p class="section-desc">Active coverage for personal PII categories, plus Indian DIN identifiers. Company-name redaction is implemented and left configurable to preserve the legal filing context.</p>
-            <div class="req-grid">
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">👤 Full Names</span>
-                        <span class="req-status status-pass">✓ Active</span>
+        <!-- KPI Row -->
+        <div class="kpi-row">
+            <div class="kpi-neo" style="background: #E0F2FE;">
+                <div class="kpi-tag" style="background: var(--cyan);">BENCHMARK</div>
+                <div class="kpi-num">87.6%</div>
+                <div class="kpi-label">OVERALL RECALL</div>
+                <div class="kpi-desc">156 True Positives out of 178 annotated targets</div>
+            </div>
+            <div class="kpi-neo" style="background: #DCFCE7;">
+                <div class="kpi-tag" style="background: var(--green);">FLAWLESS</div>
+                <div class="kpi-num">100%</div>
+                <div class="kpi-label">DIN ACCURACY</div>
+                <div class="kpi-desc">8/8 Director Identification Numbers captured</div>
+            </div>
+            <div class="kpi-neo" style="background: #FEF08A;">
+                <div class="kpi-tag" style="background: var(--yellow);">HIGH PRECISION</div>
+                <div class="kpi-num">97.9%</div>
+                <div class="kpi-label">EMAIL RECALL</div>
+                <div class="kpi-desc">47 true positive corporate & BRLM emails</div>
+            </div>
+            <div class="kpi-neo" style="background: #F3E8FF;">
+                <div class="kpi-tag" style="background: var(--purple);">INDIAN FORMATS</div>
+                <div class="kpi-num">96.2%</div>
+                <div class="kpi-label">PHONE RECALL</div>
+                <div class="kpi-desc">+91 mobiles & landlines with STD codes</div>
+            </div>
+            <div class="kpi-neo" style="background: #FFE4E6;">
+                <div class="kpi-tag" style="background: var(--pink);">DOCUMENT MODS</div>
+                <div class="kpi-num">294</div>
+                <div class="kpi-label">PII REDACTIONS</div>
+                <div class="kpi-desc">In-place run replacements preserving XML styling</div>
+            </div>
+        </div>
+
+        <!-- Requirements Matrix -->
+        <section style="margin-bottom: 3.5rem;">
+            <div class="section-header-neo">
+                <div class="section-badge">01</div>
+                <h2 class="section-heading-text">ASSIGNMENT REQUIREMENTS MATRIX</h2>
+            </div>
+            <div class="matrix-grid">
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">👤 FULL NAMES</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">spaCy NER + Column-aware table parsing + KMP executive title patterns with financial denylist filters.</p>
+                    <p class="matrix-desc">spaCy NER + Table Name column inspector + KMP Executive title heuristics (80.28% Recall).</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">📧 Email Addresses</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">📧 EMAIL ADDRESSES</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">Pre-compiled RFC regex with 94.0% precision and 97.9% recall on corporate and intermediary contacts.</p>
+                    <p class="matrix-desc">Pre-compiled RFC regex with 94.0% precision and 97.9% recall on corporate contacts.</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">📞 Phone Numbers</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">📞 PHONE NUMBERS</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">Indian phone patterns (+91, STD area codes, 10-digit mobiles, landlines). Toll-free preserved by default.</p>
+                    <p class="matrix-desc">Indian phone patterns (+91, STD area codes, mobiles). Toll-free preserved as public lines.</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">📍 Physical Addresses</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">📍 PHYSICAL ADDRESSES</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">Registered/Corporate office label matching + Indian PIN code (6-digit) and State heuristic extractor.</p>
+                    <p class="matrix-desc">Registered Office labels + Indian 6-digit PIN code & State heuristic pattern matcher (76.0% Recall).</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">🆔 Director DINs</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">🆔 DIRECTOR DINS</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ 100% MATCH</span>
                     </div>
-                    <p class="req-desc">Column-header aware 8-digit identification under Table 70 DIN headers + explicit DIN labels (100% accuracy).</p>
+                    <p class="matrix-desc">Column-header aware 8-digit identification under Table 70 DIN headers (100% Precision & Recall).</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">💳 Credit Cards</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">💳 CREDIT CARDS</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ LUHN CHECK</span>
                     </div>
-                    <p class="req-desc">13-19 digit sequence extraction validated with mathematical <strong>Luhn Algorithm</strong> verification.</p>
+                    <p class="matrix-desc">13-19 digit detection validated by mathematical <strong>Luhn Algorithm</strong> verification.</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">🔢 SSN (US)</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">🔢 SSN (US)</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">Standard 9-digit US Social Security Number pattern matching with boundary guards (XXX-XX-XXXX).</p>
+                    <p class="matrix-desc">Standard 9-digit US Social Security Number pattern matching with boundary guards (XXX-XX-XXXX).</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">🌐 IP Addresses</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">🌐 IP ADDRESSES</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
                     </div>
-                    <p class="req-desc">IPv4 address detection with validated 0-255 bounded octets, preventing numeric financial false positives.</p>
+                    <p class="matrix-desc">IPv4 address detection with validated 0-255 bounded octets, eliminating numeric false positives.</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">🎂 Dates of Birth</span>
-                        <span class="req-status status-pass">✓ Active</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">🎂 DATES OF BIRTH</span>
+                        <span class="matrix-pill" style="background: var(--green);">✓ CONTEXT-BASED</span>
                     </div>
-                    <p class="req-desc">Context-labeled DOB detection ("born on", "DOB:", "Date of Birth:"), ignoring general corporate dates.</p>
+                    <p class="matrix-desc">Context-labeled DOB matching ("Date of Birth:", "DOB:"), preserving general corporate dates.</p>
                 </div>
-                <div class="req-card">
-                    <div class="req-top">
-                        <span class="req-name">🏢 Company Names</span>
-                        <span class="req-status status-toggle">⚙️ Configurable</span>
+                <div class="matrix-card">
+                    <div class="matrix-card-top">
+                        <span class="matrix-card-title">🏢 COMPANY NAMES</span>
+                        <span class="matrix-pill" style="background: var(--yellow);">⚙️ TOGGLE OFF</span>
                     </div>
-                    <p class="req-desc">spaCy ORG NER is implemented in code and can be enabled; default run preserves issuer, BRLM, bank, and regulator names for readability.</p>
+                    <p class="matrix-desc">spaCy ORG NER implemented; preserved by default to keep IPO legal filings legible as per README.</p>
                 </div>
             </div>
         </section>
 
         <!-- Benchmark Metrics Table -->
-        <section id="metrics">
-            <h2 class="section-title">📊 Benchmark Evaluation Metrics</h2>
-            <p class="section-desc">Evaluated against 178 manually annotated ground truth spans across representative PII-dense sections.</p>
+        <section style="margin-bottom: 3.5rem;">
+            <div class="section-header-neo">
+                <div class="section-badge">02</div>
+                <h2 class="section-heading-text">BENCHMARK EVALUATION RESULTS</h2>
+            </div>
             
-            <div class="glass-panel">
-                <div class="table-responsive">
-                    <table>
+            <div class="table-neo-box">
+                <div class="table-neo-header">
+                    <span class="table-neo-title">178 ANNOTATED GROUND TRUTH INSTANCES (JACCARD ACCURACY METRICS)</span>
+                    <span class="kpi-tag" style="background: #FFFFFF;">ACCURACY = TP / (TP + FP + FN)</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="neo-table">
                         <thead>
                             <tr>
-                                <th>PII Category</th>
-                                <th>True Pos (TP)</th>
-                                <th>False Pos (FP)</th>
-                                <th>False Neg (FN)</th>
-                                <th>Precision</th>
-                                <th>Recall</th>
-                                <th>Accuracy (Jaccard)</th>
-                                <th>F1 Score</th>
+                                <th>PII CATEGORY</th>
+                                <th>TP</th>
+                                <th>FP</th>
+                                <th>FN</th>
+                                <th>PRECISION</th>
+                                <th>RECALL</th>
+                                <th>ACCURACY (JACCARD)</th>
+                                <th>F1 SCORE</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="badge-type badge-din">DIN (Directors)</span></td>
+                                <td><span class="tag-type" style="background: var(--green);">DIN (DIRECTORS)</span></td>
                                 <td>8</td>
                                 <td>0</td>
                                 <td>0</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 100%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">100.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 100%; background: var(--green);"></div></div>
+                                        <span>100.0%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 100%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">100.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 100%; background: var(--green);"></div></div>
+                                        <span>100.0%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 100%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">100.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 100%; background: var(--green);"></div></div>
+                                        <span>100.0%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 100%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">100.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 100%; background: var(--green);"></div></div>
+                                        <span>100.0%</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge-type badge-email">Email Address</span></td>
+                                <td><span class="tag-type" style="background: var(--cyan);">EMAIL ADDRESS</span></td>
                                 <td>47</td>
                                 <td>3</td>
                                 <td>1</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 94%; background: #38bdf8;"></div></div>
-                                        <span class="prog-val" style="color: #38bdf8;">94.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 94%; background: var(--cyan);"></div></div>
+                                        <span>94.0%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 97.9%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">97.9%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 97.9%; background: var(--green);"></div></div>
+                                        <span>97.9%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 92.2%; background: #38bdf8;"></div></div>
-                                        <span class="prog-val" style="color: #38bdf8;">92.2%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 92.2%; background: var(--cyan);"></div></div>
+                                        <span>92.2%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 95.9%; background: #38bdf8;"></div></div>
-                                        <span class="prog-val" style="color: #38bdf8;">95.9%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 95.9%; background: var(--cyan);"></div></div>
+                                        <span>95.9%</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge-type badge-phone">Phone Numbers</span></td>
+                                <td><span class="tag-type" style="background: var(--purple);">PHONE NUMBERS</span></td>
                                 <td>25</td>
                                 <td>9</td>
                                 <td>1</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 73.5%; background: #818cf8;"></div></div>
-                                        <span class="prog-val" style="color: #a5b4fc;">73.5%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 73.5%; background: var(--purple);"></div></div>
+                                        <span>73.5%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 96.2%; background: #10b981;"></div></div>
-                                        <span class="prog-val" style="color: #34d399;">96.2%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 96.2%; background: var(--green);"></div></div>
+                                        <span>96.2%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 71.4%; background: #818cf8;"></div></div>
-                                        <span class="prog-val" style="color: #a5b4fc;">71.4%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 71.4%; background: var(--purple);"></div></div>
+                                        <span>71.4%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 83.3%; background: #818cf8;"></div></div>
-                                        <span class="prog-val" style="color: #a5b4fc;">83.3%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 83.3%; background: var(--purple);"></div></div>
+                                        <span>83.3%</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge-type badge-person">Person Names</span></td>
+                                <td><span class="tag-type" style="background: var(--pink);">PERSON NAMES</span></td>
                                 <td>57</td>
                                 <td>111</td>
                                 <td>14</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 33.9%; background: #ef4444;"></div></div>
-                                        <span class="prog-val" style="color: #f87171;">33.9%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 33.9%; background: var(--pink);"></div></div>
+                                        <span>33.9%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 80.3%; background: #38bdf8;"></div></div>
-                                        <span class="prog-val" style="color: #38bdf8;">80.3%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 80.3%; background: var(--cyan);"></div></div>
+                                        <span>80.3%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 31.3%; background: #ef4444;"></div></div>
-                                        <span class="prog-val" style="color: #f87171;">31.3%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 31.3%; background: var(--pink);"></div></div>
+                                        <span>31.3%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 47.7%; background: #f59e0b;"></div></div>
-                                        <span class="prog-val" style="color: #fbbf24;">47.7%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 47.7%; background: var(--yellow);"></div></div>
+                                        <span>47.7%</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td><span class="badge-type badge-address">Addresses</span></td>
+                                <td><span class="tag-type" style="background: var(--yellow);">ADDRESSES</span></td>
                                 <td>19</td>
                                 <td>15</td>
                                 <td>6</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 55.9%; background: #f59e0b;"></div></div>
-                                        <span class="prog-val" style="color: #fbbf24;">55.9%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 55.9%; background: var(--yellow);"></div></div>
+                                        <span>55.9%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 76.0%; background: #818cf8;"></div></div>
-                                        <span class="prog-val" style="color: #a5b4fc;">76.0%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 76.0%; background: var(--purple);"></div></div>
+                                        <span>76.0%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 47.5%; background: #f59e0b;"></div></div>
-                                        <span class="prog-val" style="color: #fbbf24;">47.5%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 47.5%; background: var(--yellow);"></div></div>
+                                        <span>47.5%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 64.4%; background: #818cf8;"></div></div>
-                                        <span class="prog-val" style="color: #a5b4fc;">64.4%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 64.4%; background: var(--purple);"></div></div>
+                                        <span>64.4%</span>
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="tr-highlight">
-                                <td><strong>🏆 OVERALL</strong></td>
-                                <td><strong>156</strong></td>
-                                <td><strong>138</strong></td>
-                                <td><strong>22</strong></td>
+                            <tr class="row-total">
+                                <td>🏆 OVERALL TOTAL</td>
+                                <td>156</td>
+                                <td>138</td>
+                                <td>22</td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 53.1%; background: var(--gradient-primary);"></div></div>
-                                        <span class="prog-val" style="color: #c084fc;">53.1%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 53.1%; background: #000;"></div></div>
+                                        <span>53.1%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 87.6%; background: var(--gradient-cyan);"></div></div>
-                                        <span class="prog-val" style="color: #38bdf8;">87.6%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 87.6%; background: #000;"></div></div>
+                                        <span>87.6%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 49.4%; background: var(--gradient-primary);"></div></div>
-                                        <span class="prog-val" style="color: #c084fc;">49.4%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 49.4%; background: #000;"></div></div>
+                                        <span>49.4%</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="prog-container">
-                                        <div class="prog-track"><div class="prog-fill" style="width: 66.1%; background: var(--gradient-primary);"></div></div>
-                                        <span class="prog-val" style="color: #c084fc;">66.1%</span>
+                                    <div class="prog-neo">
+                                        <div class="prog-neo-track"><div class="prog-neo-fill" style="width: 66.1%; background: #000;"></div></div>
+                                        <span>66.1%</span>
                                     </div>
                                 </td>
                             </tr>
@@ -1215,152 +1163,131 @@
             </div>
         </section>
 
-        <!-- Architecture Steps -->
+        <!-- Live Sandbox -->
         <section style="margin-bottom: 3.5rem;">
-            <h2 class="section-title">⚙️ Architecture & Pipeline</h2>
-            <p class="section-desc">Four-stage deterministic pipeline handling complex multi-table Word documents.</p>
-            <div class="arch-grid">
-                <div class="arch-card">
-                    <div class="arch-step-num">01</div>
-                    <div class="arch-title">Document Inventory</div>
-                    <div class="arch-text">Parses 3,991 text blocks across paragraphs and 76 tables, recording exact run-level character boundaries.</div>
-                </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">02</div>
-                    <div class="arch-title">Hybrid Detectors</div>
-                    <div class="arch-text">Runs pre-compiled regex, table column inspectors, and spaCy NER with 60+ financial denylist filters.</div>
-                </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">03</div>
-                    <div class="arch-title">Overlap Resolution</div>
-                    <div class="arch-text">Greedy longest-match span resolver prevents nested or conflicting redaction collisions.</div>
-                </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">04</div>
-                    <div class="arch-title">Run-Level Injection</div>
-                    <div class="arch-text">Applies seeded Faker replacements directly to docx XML runs, preserving font styles, bolding, and colors.</div>
-                </div>
+            <div class="section-header-neo">
+                <div class="section-badge">03</div>
+                <h2 class="section-heading-text">INTERACTIVE LIVE REDACTION SANDBOX</h2>
             </div>
-        </section>
-
-        <!-- Live Simulator -->
-        <section id="simulator">
-            <h2 class="section-title">🧪 Interactive Live Redaction Sandbox</h2>
-            <p class="section-desc">Test the real-time client-side anonymization sandbox. Type or edit sample text below.</p>
             
-            <div class="glass-panel" style="padding: 1.5rem;">
-                <div class="simulator-grid">
-                    <div class="sim-box">
-                        <label>
-                            <span>Input Document Snippet</span>
-                            <button onclick="resetSample()" style="background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 6px; padding: 0.2rem 0.6rem; color: #a5b4fc; font-size: 0.75rem; cursor: pointer;">Load Sample</button>
-                        </label>
-                        <textarea id="sim-input" class="sim-textarea" placeholder="Paste text containing names, emails, phones, or DINs here..."></textarea>
+            <div class="sandbox-box">
+                <p style="font-weight: 700; color: #475569; margin-bottom: 1rem;">
+                    Test the deterministic anonymization rules in real-time. Edit or paste text to preview fake replacements.
+                </p>
+                <div class="sandbox-grid">
+                    <div class="sandbox-panel">
+                        <div class="sandbox-label">
+                            <span>INPUT DOCUMENT TEXT</span>
+                            <button onclick="resetSample()" class="btn-neo btn-neo-white" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">LOAD SAMPLE</button>
+                        </div>
+                        <textarea id="sim-input" class="sandbox-textarea" placeholder="Paste text containing names, emails, phones, or DINs here..."></textarea>
                     </div>
-                    <div class="sim-box">
-                        <label>
-                            <span>Anonymized Output Preview</span>
-                            <span id="sim-stats" style="font-size: 0.75rem; color: #34d399; font-weight: 600;">● Engine Ready</span>
-                        </label>
-                        <div id="sim-output" class="sim-output"></div>
+                    <div class="sandbox-panel">
+                        <div class="sandbox-label">
+                            <span>REDACTED OUTPUT PREVIEW</span>
+                            <span class="matrix-pill" style="background: var(--green);">● ENGINE ONLINE</span>
+                        </div>
+                        <div id="sim-output" class="sandbox-output"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Before & After Comparison -->
-        <section id="examples">
-            <h2 class="section-title">🔍 Real Document Before & After Samples</h2>
-            <p class="section-desc">Sample extractions from the 1.84 MB KSH International Limited Red Herring Prospectus.</p>
+        <!-- Diff Samples -->
+        <section style="margin-bottom: 3.5rem;">
+            <div class="section-header-neo">
+                <div class="section-badge">04</div>
+                <h2 class="section-heading-text">REAL DOCUMENT BEFORE & AFTER SAMPLES</h2>
+            </div>
             
-            <div class="glass-panel">
-                <div class="tab-nav">
-                    <button class="tab-btn active" onclick="switchTab('tab-contacts', this)">Contact Info</button>
-                    <button class="tab-btn" onclick="switchTab('tab-directors', this)">Board & DIN</button>
-                    <button class="tab-btn" onclick="switchTab('tab-bankers', this)">Bankers & Auditors</button>
+            <div class="diff-container">
+                <div class="diff-tabs">
+                    <button class="tab-item active" onclick="switchTab('tab-contacts', this)">01. CONTACT INFO</button>
+                    <button class="tab-item" onclick="switchTab('tab-directors', this)">02. BOARD & DIN</button>
+                    <button class="tab-item" onclick="switchTab('tab-bankers', this)">03. BANKERS & BRLMS</button>
                 </div>
                 
-                <div id="tab-contacts" class="tab-pane active">
-                    <div class="diff-card">
-                        <div class="diff-header">Paragraph [28] — Company Secretary & Compliance Officer</div>
-                        <div class="diff-body">
-                            <div class="diff-col">
-                                <div class="diff-tag red">Original Document</div>
-                                Contact Person: <span class="hl-red">Sarthak Malvadkar</span>, Company Secretary and Compliance Officer; Telephone: <span class="hl-red">+ 91 20 4505 3237</span>;
+                <div id="tab-contacts" class="tab-content active">
+                    <div class="diff-card-neo">
+                        <div class="diff-card-neo-header">PARAGRAPH [28] — COMPANY SECRETARY & COMPLIANCE OFFICER</div>
+                        <div class="diff-card-neo-body">
+                            <div class="diff-card-neo-col">
+                                <div style="color: #E11D48; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● ORIGINAL UNREDACTED</div>
+                                Contact Person: <span class="diff-pill-red">Sarthak Malvadkar</span>, Company Secretary and Compliance Officer; Telephone: <span class="diff-pill-red">+ 91 20 4505 3237</span>;
                             </div>
-                            <div class="diff-col">
-                                <div class="diff-tag green">Redacted Output</div>
-                                Contact Person: <span class="hl-green">Joshua Martin</span>, Company Secretary and Compliance Officer; Telephone: <span class="hl-green">+91 08 6899 1311</span>;
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="diff-card">
-                        <div class="diff-header">Paragraph [26] — Registered Office Address</div>
-                        <div class="diff-body">
-                            <div class="diff-col">
-                                <div class="diff-tag red">Original Document</div>
-                                Registered Office: <span class="hl-red">11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India</span>;
-                            </div>
-                            <div class="diff-col">
-                                <div class="diff-tag green">Redacted Output</div>
-                                Registered Office: <span class="hl-green">13, Jeffrey Street, Ville, North Claytonbury – 674 833, Manipur, India</span>;
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-directors" class="tab-pane">
-                    <div class="diff-card">
-                        <div class="diff-header">Table [70] Row [1] — Chairman & Executive Director</div>
-                        <div class="diff-body">
-                            <div class="diff-col">
-                                <div class="diff-tag red">Original Document</div>
-                                Name: <span class="hl-red">Kushal Subbayya Hegde</span><br>
-                                DIN: <span class="hl-red">00135070</span><br>
-                                Address: <span class="hl-red">S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, lane no. 3 Prabhat Road, opposite PYC basketball court, Deccan Gymkhana, Pune – 411 004 Maharashtra, India</span>
-                            </div>
-                            <div class="diff-col">
-                                <div class="diff-tag green">Redacted Output</div>
-                                Name: <span class="hl-green">Kayla Daniel Moore</span><br>
-                                DIN: <span class="hl-green">84291056</span><br>
-                                Address: <span class="hl-green">492, Oak Avenue, Deccan, New Delhi – 512 840, Maharashtra, India</span>
+                            <div class="diff-card-neo-col">
+                                <div style="color: #059669; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● FAKER-REDACTED OUTPUT</div>
+                                Contact Person: <span class="diff-pill-green">Joshua Martin</span>, Company Secretary and Compliance Officer; Telephone: <span class="diff-pill-green">+91 08 6899 1311</span>;
                             </div>
                         </div>
                     </div>
 
-                    <div class="diff-card">
-                        <div class="diff-header">Table [70] Row [4] — Whole-time Director</div>
-                        <div class="diff-body">
-                            <div class="diff-col">
-                                <div class="diff-tag red">Original Document</div>
-                                Name: <span class="hl-red">Rakhi Girija Shetty</span><br>
-                                DIN: <span class="hl-red">03124510</span><br>
-                                Address: <span class="hl-red">S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, Pune – 411 004</span>
+                    <div class="diff-card-neo">
+                        <div class="diff-card-neo-header">PARAGRAPH [26] — REGISTERED OFFICE PHYSICAL ADDRESS</div>
+                        <div class="diff-card-neo-body">
+                            <div class="diff-card-neo-col">
+                                <div style="color: #E11D48; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● ORIGINAL UNREDACTED</div>
+                                Registered Office: <span class="diff-pill-red">11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India</span>;
                             </div>
-                            <div class="diff-col">
-                                <div class="diff-tag green">Redacted Output</div>
-                                Name: <span class="hl-green">Aarohi Joshi</span><br>
-                                DIN: <span class="hl-green">49102834</span><br>
-                                Address: <span class="hl-green">21, Blossom Heights, Deccan, Pune – 411 004, Maharashtra, India</span>
+                            <div class="diff-card-neo-col">
+                                <div style="color: #059669; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● FAKER-REDACTED OUTPUT</div>
+                                Registered Office: <span class="diff-pill-green">13, Jeffrey Street, Ville, North Claytonbury – 674 833, Manipur, India</span>;
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="tab-bankers" class="tab-pane">
-                    <div class="diff-card">
-                        <div class="diff-header">Table [1] Row [7] — Book Running Lead Manager (BRLM)</div>
-                        <div class="diff-body">
-                            <div class="diff-col">
-                                <div class="diff-tag red">Original Document</div>
-                                Email: <span class="hl-red">ksh.ipo@nuvama.com</span><br>
-                                Telephone: <span class="hl-red">+91 22 4009 4400</span>
+                <div id="tab-directors" class="tab-content">
+                    <div class="diff-card-neo">
+                        <div class="diff-card-neo-header">TABLE [70] ROW [1] — CHAIRMAN & EXECUTIVE DIRECTOR</div>
+                        <div class="diff-card-neo-body">
+                            <div class="diff-card-neo-col">
+                                <div style="color: #E11D48; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● ORIGINAL UNREDACTED</div>
+                                Name: <span class="diff-pill-red">Kushal Subbayya Hegde</span><br>
+                                DIN: <span class="diff-pill-red">00135070</span><br>
+                                Address: <span class="diff-pill-red">S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, Pune – 411 004 Maharashtra, India</span>
                             </div>
-                            <div class="diff-col">
-                                <div class="diff-tag green">Redacted Output</div>
-                                Email: <span class="hl-green">ykibe@example.com</span><br>
-                                Telephone: <span class="hl-green">+91 17 7572 3448</span>
+                            <div class="diff-card-neo-col">
+                                <div style="color: #059669; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● FAKER-REDACTED OUTPUT</div>
+                                Name: <span class="diff-pill-green">Kayla Daniel Moore</span><br>
+                                DIN: <span class="diff-pill-green">84291056</span><br>
+                                Address: <span class="diff-pill-green">492, Oak Avenue, Deccan, New Delhi – 512 840, Maharashtra, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="diff-card-neo">
+                        <div class="diff-card-neo-header">TABLE [70] ROW [4] — WHOLE-TIME DIRECTOR</div>
+                        <div class="diff-card-neo-body">
+                            <div class="diff-card-neo-col">
+                                <div style="color: #E11D48; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● ORIGINAL UNREDACTED</div>
+                                Name: <span class="diff-pill-red">Rakhi Girija Shetty</span><br>
+                                DIN: <span class="diff-pill-red">03124510</span><br>
+                                Address: <span class="diff-pill-red">S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, Pune – 411 004</span>
+                            </div>
+                            <div class="diff-card-neo-col">
+                                <div style="color: #059669; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● FAKER-REDACTED OUTPUT</div>
+                                Name: <span class="diff-pill-green">Aarohi Joshi</span><br>
+                                DIN: <span class="diff-pill-green">49102834</span><br>
+                                Address: <span class="diff-pill-green">21, Blossom Heights, Deccan, Pune – 411 004, Maharashtra, India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-bankers" class="tab-content">
+                    <div class="diff-card-neo">
+                        <div class="diff-card-neo-header">TABLE [1] ROW [7] — BOOK RUNNING LEAD MANAGER (BRLM)</div>
+                        <div class="diff-card-neo-body">
+                            <div class="diff-card-neo-col">
+                                <div style="color: #E11D48; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● ORIGINAL UNREDACTED</div>
+                                Email: <span class="diff-pill-red">ksh.ipo@nuvama.com</span><br>
+                                Telephone: <span class="diff-pill-red">+91 22 4009 4400</span>
+                            </div>
+                            <div class="diff-card-neo-col">
+                                <div style="color: #059669; font-weight: 800; font-size: 0.75rem; margin-bottom: 0.3rem;">● FAKER-REDACTED OUTPUT</div>
+                                Email: <span class="diff-pill-green">ykibe@example.com</span><br>
+                                Telephone: <span class="diff-pill-green">+91 17 7572 3448</span>
                             </div>
                         </div>
                     </div>
@@ -1369,37 +1296,45 @@
             </div>
         </section>
 
-        <!-- Design Tradeoffs -->
+        <!-- Design Decisions -->
         <section style="margin-bottom: 3.5rem;">
-            <h2 class="section-title">⚖️ Key Design Decisions & Tradeoffs</h2>
-            <p class="section-desc">Carefully calibrated choices tailored specifically for Indian IPO filings.</p>
-            <div class="tradeoffs-grid">
-                <div class="tradeoff-card">
-                    <div class="tradeoff-title">🏢 Company Names Preserved by Default</div>
-                    <p class="tradeoff-text">Entity names like <em>"KSH International Limited"</em>, <em>"ICICI Securities"</em>, and <em>"HDFC Bank"</em> appear hundreds of times. Full redaction makes legal filings unreadable. Detection is implemented and configurable via <code>config.py</code>.</p>
+            <div class="section-header-neo">
+                <div class="section-badge">05</div>
+                <h2 class="section-heading-text">CRITICAL DESIGN DECISIONS & TRADEOFFS</h2>
+            </div>
+            <div class="tradeoff-row">
+                <div class="tradeoff-neo">
+                    <div class="tradeoff-neo-title">🏢 COMPANY NAMES PRESERVED</div>
+                    <p class="tradeoff-neo-text">
+                        Entities like <em>"KSH International Limited"</em>, <em>"ICICI Securities"</em>, and <em>"HDFC Bank"</em> appear hundreds of times. Redacting legal party names makes IPO filings unreadable. Configurable via <code>config.py</code>.
+                    </p>
                 </div>
-                <div class="tradeoff-card">
-                    <div class="tradeoff-title">📞 Toll-Free Lines Preserved</div>
-                    <p class="tradeoff-text">Public support lines (e.g. <code>1800 267 3225</code>) are general public customer-care hotlines, not private individual identifiers. Direct mobile and landline numbers with <code>+91</code> are redacted.</p>
+                <div class="tradeoff-neo">
+                    <div class="tradeoff-neo-title">📞 TOLL-FREE NUMBERS PRESERVED</div>
+                    <p class="tradeoff-neo-text">
+                        Numbers like <code>1800 267 3225</code> are public customer-care lines (SEBI SCORES, registrar helpdesks), not individual personal identifiers. Direct lines and mobiles are redacted.
+                    </p>
                 </div>
-                <div class="tradeoff-card">
-                    <div class="tradeoff-title">🆔 DIN Redacted vs CIN Preserved</div>
-                    <p class="tradeoff-text"><strong>DIN</strong> (Director Identification Number) identifies an individual human director and is treated as PII. <strong>CIN</strong> (Corporate Identity Number) identifies the legal company entity and is preserved.</p>
+                <div class="tradeoff-neo">
+                    <div class="tradeoff-neo-title">🆔 DIN REDACTED VS CIN PRESERVED</div>
+                    <p class="tradeoff-neo-text">
+                        <strong>DIN</strong> (Director Identification Number) identifies an individual human director and is treated as sensitive PII. <strong>CIN</strong> (Corporate Identity Number) identifies the legal company and is preserved.
+                    </p>
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div>
-                <strong>Enterprise PII Redaction Engine</strong> • Ankit Basu
-            </div>
-            <div>
-                Scalar Labs AI Enterprise Data Assignment
-            </div>
-        </footer>
 
     </div>
+
+    <!-- Footer -->
+    <footer class="footer-neo">
+        <div>
+            🛡️ <strong>ENTERPRISE PII REDACTION ENGINE</strong> • ANKIT BASU
+        </div>
+        <div>
+            SCALAR LABS AI ENTERPRISE DATA ASSIGNMENT
+        </div>
+    </footer>
 
     <!-- Script -->
     <script>
@@ -1437,8 +1372,8 @@ Registered Office: 11/3, Village Birdewadi, Pune – 410 501, Maharashtra, India
         resetSample();
 
         function switchTab(tabId, btn) {
-            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-item').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             btn.classList.add('active');
         }
