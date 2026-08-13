@@ -41,6 +41,7 @@ class Redactor:
         self.all_spans: List[PIISpan] = []
         self._table_din_columns: Dict[int, Set[int]] = {}
         self._table_name_columns: Dict[int, Set[int]] = {}
+        self._table_addr_columns: Dict[int, Set[int]] = {}
 
     def run(self) -> None:
         """Execute complete redaction pipeline."""
@@ -55,25 +56,31 @@ class Redactor:
         self._export_log()
 
     def _identify_columns(self) -> None:
-        """Identify table columns with 'DIN' or 'Name' headers."""
+        """Identify table columns with 'DIN', 'Name', or 'Address' headers."""
         for t_idx, table in enumerate(self.doc.tables):
             if not table.rows:
                 continue
             header_row = table.rows[0]
             din_cols: Set[int] = set()
             name_cols: Set[int] = set()
+            addr_cols: Set[int] = set()
             for c_idx, cell in enumerate(header_row.cells):
                 txt = cell.text.strip().upper()
                 if 'DIN' in txt:
                     din_cols.add(c_idx)
                 if txt in ['NAME', 'NAME OF DIRECTOR', 'NAME OF THE DIRECTOR', 'NAME OF PROMOTER', 'NAME OF THE PROMOTER', 'DIRECTOR NAME']:
                     name_cols.add(c_idx)
+                if any(k in txt for k in ['ADDRESS', 'REGISTERED OFFICE', 'CORPORATE OFFICE']):
+                    addr_cols.add(c_idx)
             if din_cols:
                 self._table_din_columns[t_idx] = din_cols
                 log.info(f"Table {t_idx}: DIN column(s) at indices {din_cols}")
             if name_cols:
                 self._table_name_columns[t_idx] = name_cols
                 log.info(f"Table {t_idx}: Name column(s) at indices {name_cols}")
+            if addr_cols:
+                self._table_addr_columns[t_idx] = addr_cols
+                log.info(f"Table {t_idx}: Address column(s) at indices {addr_cols}")
 
     def _detect_all(self) -> None:
         """Run all active detectors over all blocks."""
@@ -92,6 +99,9 @@ class Redactor:
 
             if ENABLED_PII_TYPES.get("person_name", False):
                 block_spans.extend(self._detect_names_in_table_context(block, block_idx))
+
+            if ENABLED_PII_TYPES.get("address", False):
+                block_spans.extend(self._detect_addr_in_table_context(block, block_idx))
 
             self.all_spans.extend(block_spans)
             total_spans += len(block_spans)
@@ -138,6 +148,26 @@ class Redactor:
                 )
                 if not already:
                     spans.append(PIISpan(0, len(block.text), "person_name", block.text, block_idx))
+        return spans
+
+    def _detect_addr_in_table_context(self, block: TextBlock, block_idx: int) -> List[PIISpan]:
+        """Detect addresses under table Address headers."""
+        spans: List[PIISpan] = []
+        loc = block.location
+        if not isinstance(loc, CellLocation) or loc.row_idx == 0:
+            return spans
+
+        t_idx = loc.table_idx
+        c_idx = loc.cell_idx
+        if t_idx in self._table_addr_columns and c_idx in self._table_addr_columns[t_idx]:
+            text = block.text.strip()
+            if len(text) > 10:
+                already = any(
+                    s.block_index == block_idx and s.pii_type == "address"
+                    for s in self.all_spans
+                )
+                if not already:
+                    spans.append(PIISpan(0, len(block.text), "address", block.text, block_idx))
         return spans
 
     def _resolve_overlaps(self) -> None:

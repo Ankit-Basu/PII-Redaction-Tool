@@ -252,13 +252,14 @@ _EXTRA_DENYLIST_LOWER: Set[str] = {
 
 _NAME_POISON_WORDS: Set[str] = {
     'private', 'limited', 'pvt', 'ltd', 'llp', 'llc', 'inc',
-    'corporation', 'corp', 'company', 'co',
-    'bank', 'trust', 'foundation', 'society', 'association',
+    'corporation', 'corp', 'company', 'co', 'trust', 'fund', 'funds',
+    'group', 'promoter group', 'holding', 'holdings', 'enterprises',
+    'bank', 'foundation', 'society', 'association',
     'facility', 'park', 'industrial', 'international',
     'securities', 'wealth', 'management', 'finance',
     'investor', 'investors', 'bidder', 'bidders',
     'offer', 'price', 'share', 'shares', 'equity',
-    'fund', 'funds', 'mutual', 'insurance',
+    'mutual', 'insurance',
     'office', 'branch', 'floor', 'building', 'tower',
     'road', 'marg', 'nagar', 'complex', 'east', 'west',
     'north', 'south', 'district', 'taluka',
@@ -332,25 +333,38 @@ def detect_names(block: TextBlock, block_idx: int) -> List[PIISpan]:
 
         spans.append(PIISpan(ent.start_char, ent.end_char, "person_name", name, block_idx))
 
-    # Context-based name extraction: "Contact Person: FirstName LastName"
-    for m in _CONTACT_PERSON_RE.finditer(block.text):
-        for group_idx in [1, 2]:
-            name_candidate = m.group(group_idx)
-            if name_candidate:
-                name_candidate = name_candidate.strip()
-                # Clean trailing keywords like "Website", "Tel", "Telephone", "Email"
-                for tr in ["Website", "Telephone", "Tel", "Email", "Designation"]:
-                    if name_candidate.endswith(" " + tr):
-                        name_candidate = name_candidate[:-len(tr)-1].strip()
+    # Context-based name extraction: "Contact Person: Name1 / Name2 / Name3 ..."
+    cp_pattern = re.compile(r'(?:Contact\s+Person|Contact)\s*:\s*([^\n;\r]+)', re.IGNORECASE)
+    for m in cp_pattern.finditer(block.text):
+        raw_names_line = m.group(1).strip()
+        # Stop at keywords if any on same line
+        for kw in ["Telephone", "Tel:", "Tel.", "E-mail:", "Email:", "SEBI", "Website:"]:
+            if kw.lower() in raw_names_line.lower():
+                idx = raw_names_line.lower().find(kw.lower())
+                raw_names_line = raw_names_line[:idx].strip()
 
-                already = any(
-                    s.matched_text == name_candidate or name_candidate in s.matched_text
-                    for s in spans
-                )
-                if not already and len(name_candidate.split()) >= 2:
-                    g_start = m.start(group_idx)
-                    g_end = g_start + len(name_candidate)
-                    spans.append(PIISpan(g_start, g_end, "person_name", name_candidate, block_idx))
+        # Split on slashes or commas
+        parts = re.split(r'[/,]', raw_names_line)
+        line_offset = m.start(1)
+        for part in parts:
+            name_candidate = part.strip()
+            # Clean trailing keywords
+            for tr in ["Website", "Telephone", "Tel", "Email", "Designation", "and Compliance Officer"]:
+                if name_candidate.endswith(" " + tr):
+                    name_candidate = name_candidate[:-len(tr)-1].strip()
+
+            words = name_candidate.split()
+            if 2 <= len(words) <= 4 and all(w[0].isupper() or w in ['N.', 'B.', 'K.'] for w in words if len(w) > 0):
+                if not any(w.lower() in _NAME_POISON_WORDS for w in words):
+                    p_start = block.text.find(name_candidate, m.start())
+                    if p_start != -1:
+                        p_end = p_start + len(name_candidate)
+                        already = any(
+                            s.matched_text == name_candidate or name_candidate in s.matched_text
+                            for s in spans
+                        )
+                        if not already:
+                            spans.append(PIISpan(p_start, p_end, "person_name", name_candidate, block_idx))
 
     # KMP Executive title extraction (e.g. "Ganesh Prasad, Technical Director")
     for m in _KMP_NAME_RE.finditer(block.text):

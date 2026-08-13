@@ -71,7 +71,7 @@ def create_evaluation_doc(output_path: str):
     brun = bp.add_run(
         "Author: Ankit Basu   |   Assignment: Scalar Labs AI Enterprise Data Assignment\n"
         "Input Document: KSH International Limited Red Herring Prospectus (1,006 Paras, 76 Tables, 3,991 Blocks)\n"
-        "Evaluated Baseline: 178 Ground Truth Annotations   |   Overall Recall: 87.64%   |   F1 Score: 66.10%"
+        "Evaluated Baseline: 178 Ground Truth Annotations   |   Overall Recall: 94.94%   |   F1 Score: 65.89%"
     )
     brun.font.name = "Arial"
     brun.font.size = Pt(9.5)
@@ -93,7 +93,7 @@ def create_evaluation_doc(output_path: str):
         "This report evaluates the performance of the Enterprise PII Redaction Engine applied to the KSH International "
         "Limited IPO Red Herring Prospectus (.docx). The document presents dense tabular layouts (76 tables with 3,722 cells), "
         "extensive legal/financial terminology, and repetitive corporate entities that must be distinguished from individual PII.\n\n"
-        "The redaction engine successfully detected and replaced 294 PII spans across the document with realistic, format-preserving fake data generated deterministically via Faker. Against 178 manually annotated ground truth spans spanning the densest sections, the engine achieved an Overall Recall of 87.64%, with 100% Precision and Recall on Indian Director Identification Numbers (DIN), 97.92% Recall on Email addresses, and 96.15% Recall on Phone numbers."
+        "The redaction engine successfully detected and replaced 335 PII spans across the document with realistic, format-preserving fake data generated deterministically via Faker. Against 178 manually annotated ground truth spans spanning the densest sections, the engine achieved an Overall Recall of 94.94%, with 100% Precision and Recall on Indian Director Identification Numbers (DIN), 97.92% Recall on Email addresses, 96.15% Recall on Phone numbers, 95.77% Recall on Person Names, and 84.00% Recall on Addresses."
     )
 
     # Section 2: Evaluation Strategy & Methodology
@@ -137,9 +137,9 @@ def create_evaluation_doc(output_path: str):
         ["DIN (Directors)", "8", "0", "0", "100.00%", "100.00%", "100.00%", "100.00%"],
         ["Email Address", "47", "3", "1", "94.00%", "97.92%", "92.16%", "95.92%"],
         ["Phone Numbers", "25", "9", "1", "73.53%", "96.15%", "71.43%", "83.33%"],
-        ["Person Names", "57", "111", "14", "33.93%", "80.28%", "31.32%", "47.70%"],
-        ["Addresses", "19", "15", "6", "55.88%", "76.00%", "47.50%", "64.41%"],
-        ["OVERALL TOTAL", "156", "138", "22", "53.06%", "87.64%", "49.37%", "66.10%"],
+        ["Person Names", "68", "115", "3", "37.16%", "95.77%", "36.56%", "53.54%"],
+        ["Addresses", "21", "39", "4", "35.00%", "84.00%", "32.81%", "49.41%"],
+        ["OVERALL TOTAL", "169", "166", "9", "50.45%", "94.94%", "49.13%", "65.89%"],
     ]
 
     t = doc.add_table(rows=len(table_data), cols=8)
