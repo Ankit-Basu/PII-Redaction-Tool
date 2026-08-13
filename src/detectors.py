@@ -65,6 +65,25 @@ _ADDR_LABEL_RE = re.compile(
 _PIN_CODE_RE = re.compile(r'\b\d{3}\s?\d{3}\b')
 _STATE_RE = re.compile(r'\b(?:' + '|'.join(re.escape(s) for s in INDIAN_STATES) + r')\b', re.IGNORECASE)
 
+# Context-based name extraction patterns
+_CONTACT_PERSON_RE = re.compile(
+    r'(?:Contact\s+Person|Contact)\s*:\s*'
+    r'([A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)+)'
+    r'(?:\s*/\s*([A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)+))?',
+    re.MULTILINE,
+)
+
+# KMP & Executive titles pattern: "FirstName LastName, CEO" / "FirstName LastName, Technical Director"
+_KMP_NAME_RE = re.compile(
+    r'\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)'
+    r'\s*,\s*(?:CEO|CFO|CS|Managing Director|Executive Director|Technical Director|Compliance Officer)\b'
+)
+
+# Intermediary team lists (e.g., "Sachin Gawade, Pravin Teli, Siddharth Jadhav...")
+_TEAM_NAMES_RE = re.compile(
+    r'\b([A-Z][a-z]+\s+[A-Z][a-z]+)\b'
+)
+
 
 @register_detector("email")
 def detect_emails(block: TextBlock, block_idx: int) -> List[PIISpan]:
@@ -165,6 +184,7 @@ def detect_addresses(block: TextBlock, block_idx: int) -> List[PIISpan]:
     if "websites of the Stock Exchanges" in text:
         return spans
 
+    # Strategy 1: Labeled addresses ("Registered Office:", "Corporate Office:", etc.)
     for label_m in _ADDR_LABEL_RE.finditer(text):
         addr_start = label_m.end()
         rest = text[addr_start:]
@@ -175,11 +195,38 @@ def detect_addresses(block: TextBlock, block_idx: int) -> List[PIISpan]:
             if len(addr_text) > 15:
                 spans.append(PIISpan(addr_start, addr_end, "address", addr_text, block_idx))
 
+    # Strategy 2: Table cells containing PIN + State + India
     if isinstance(block.location, CellLocation) and not spans:
         if _PIN_CODE_RE.search(text) and _STATE_RE.search(text) and 'india' in text.lower():
             india_end_m = re.search(r'India\s*[;,.\n]?', text, re.IGNORECASE)
             if india_end_m and len(text[:india_end_m.end()].strip()) > 20:
                 spans.append(PIISpan(0, india_end_m.end(), "address", text[:india_end_m.end()].strip().rstrip(';,.'), block_idx))
+
+    # Strategy 3: Unlabeled paragraph addresses (PIN + State + India in paragraphs)
+    if not spans and not isinstance(block.location, CellLocation):
+        pin_m = _PIN_CODE_RE.search(text)
+        state_m = _STATE_RE.search(text)
+        india_m = re.search(r'India\b', text)
+        if pin_m and state_m and india_m:
+            # Find the start of the address: look backward from PIN for comma-separated
+            # address components (numbers, street names, city names)
+            addr_region_start = max(0, pin_m.start() - 200)
+            prefix = text[addr_region_start:pin_m.start()]
+            # Walk back to find a reasonable address start (after a label or sentence boundary)
+            last_label = -1
+            for boundary_pat in [r'[;:]\s*', r'\n']:
+                for bm in re.finditer(boundary_pat, prefix):
+                    last_label = bm.end()
+            if last_label >= 0:
+                real_start = addr_region_start + last_label
+            else:
+                real_start = addr_region_start
+
+            india_end = india_m.end()
+            addr_text = text[real_start:india_end].strip().rstrip(';,.')
+            # Only accept if it looks like an address (has comma-separated parts)
+            if len(addr_text) > 20 and ',' in addr_text:
+                spans.append(PIISpan(real_start, india_end, "address", addr_text, block_idx))
 
     return spans
 
@@ -226,7 +273,7 @@ _NAME_POISON_WORDS: Set[str] = {
     'bhavan', 'pune', 'mumbai', 'bhopal', 'listing', 'circulated',
     'newspaper', 'daily', 'jyoti', 'urja', 'suraksha', 'electricals',
     'bandra', 'vikhroli', 'shivajinagar', 'reclamation', 'churchgate',
-    'peth', 'colony', 'huf',
+    'peth', 'colony', 'huf', 'bo', 'opp',
 }
 
 
@@ -284,6 +331,36 @@ def detect_names(block: TextBlock, block_idx: int) -> List[PIISpan]:
             continue
 
         spans.append(PIISpan(ent.start_char, ent.end_char, "person_name", name, block_idx))
+
+    # Context-based name extraction: "Contact Person: FirstName LastName"
+    for m in _CONTACT_PERSON_RE.finditer(block.text):
+        for group_idx in [1, 2]:
+            name_candidate = m.group(group_idx)
+            if name_candidate:
+                name_candidate = name_candidate.strip()
+                # Clean trailing keywords like "Website", "Tel", "Telephone", "Email"
+                for tr in ["Website", "Telephone", "Tel", "Email", "Designation"]:
+                    if name_candidate.endswith(" " + tr):
+                        name_candidate = name_candidate[:-len(tr)-1].strip()
+
+                already = any(
+                    s.matched_text == name_candidate or name_candidate in s.matched_text
+                    for s in spans
+                )
+                if not already and len(name_candidate.split()) >= 2:
+                    g_start = m.start(group_idx)
+                    g_end = g_start + len(name_candidate)
+                    spans.append(PIISpan(g_start, g_end, "person_name", name_candidate, block_idx))
+
+    # KMP Executive title extraction (e.g. "Ganesh Prasad, Technical Director")
+    for m in _KMP_NAME_RE.finditer(block.text):
+        name_candidate = m.group(1).strip()
+        already = any(
+            s.matched_text == name_candidate or name_candidate in s.matched_text
+            for s in spans
+        )
+        if not already and len(name_candidate.split()) >= 2:
+            spans.append(PIISpan(m.start(1), m.end(1), "person_name", name_candidate, block_idx))
 
     return spans
 

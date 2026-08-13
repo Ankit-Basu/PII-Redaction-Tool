@@ -40,32 +40,40 @@ class Redactor:
         self.mapper = FakeMapper()
         self.all_spans: List[PIISpan] = []
         self._table_din_columns: Dict[int, Set[int]] = {}
+        self._table_name_columns: Dict[int, Set[int]] = {}
 
     def run(self) -> None:
         """Execute complete redaction pipeline."""
         log.info(f"Loaded document: {self.input_path}")
         log.info(f"Text Inventory: {len(self.inventory.blocks)} blocks")
 
-        self._identify_din_columns()
+        self._identify_columns()
         self._detect_all()
         self._resolve_overlaps()
         self._apply_replacements()
         self._save()
         self._export_log()
 
-    def _identify_din_columns(self) -> None:
-        """Identify table columns with 'DIN' headers."""
+    def _identify_columns(self) -> None:
+        """Identify table columns with 'DIN' or 'Name' headers."""
         for t_idx, table in enumerate(self.doc.tables):
             if not table.rows:
                 continue
             header_row = table.rows[0]
             din_cols: Set[int] = set()
+            name_cols: Set[int] = set()
             for c_idx, cell in enumerate(header_row.cells):
-                if 'DIN' in cell.text.upper():
+                txt = cell.text.strip().upper()
+                if 'DIN' in txt:
                     din_cols.add(c_idx)
+                if txt in ['NAME', 'NAME OF DIRECTOR', 'NAME OF THE DIRECTOR', 'NAME OF PROMOTER', 'NAME OF THE PROMOTER', 'DIRECTOR NAME']:
+                    name_cols.add(c_idx)
             if din_cols:
                 self._table_din_columns[t_idx] = din_cols
                 log.info(f"Table {t_idx}: DIN column(s) at indices {din_cols}")
+            if name_cols:
+                self._table_name_columns[t_idx] = name_cols
+                log.info(f"Table {t_idx}: Name column(s) at indices {name_cols}")
 
     def _detect_all(self) -> None:
         """Run all active detectors over all blocks."""
@@ -81,6 +89,9 @@ class Redactor:
 
             if ENABLED_PII_TYPES.get("din", False):
                 block_spans.extend(self._detect_din_in_table_context(block, block_idx))
+
+            if ENABLED_PII_TYPES.get("person_name", False):
+                block_spans.extend(self._detect_names_in_table_context(block, block_idx))
 
             self.all_spans.extend(block_spans)
             total_spans += len(block_spans)
@@ -104,6 +115,29 @@ class Redactor:
                 )
                 if not already_found:
                     spans.append(PIISpan(m.start(), m.end(), "din", m.group(), block_idx))
+        return spans
+
+    def _detect_names_in_table_context(self, block: TextBlock, block_idx: int) -> List[PIISpan]:
+        """Detect person names under table Name headers."""
+        spans: List[PIISpan] = []
+        loc = block.location
+        if not isinstance(loc, CellLocation) or loc.row_idx == 0:
+            return spans
+
+        t_idx = loc.table_idx
+        c_idx = loc.cell_idx
+        if t_idx in self._table_name_columns and c_idx in self._table_name_columns[t_idx]:
+            text = block.text.strip().rstrip('*')
+            words = text.split()
+            # If cell text is a 2-4 word capitalized person name
+            if 2 <= len(words) <= 5 and all(w[0].isupper() or w in ['N.', 'B.', 'K.'] for w in words if len(w) > 0):
+                clean_text = ' '.join(words)
+                already = any(
+                    s.block_index == block_idx
+                    for s in self.all_spans
+                )
+                if not already:
+                    spans.append(PIISpan(0, len(block.text), "person_name", block.text, block_idx))
         return spans
 
     def _resolve_overlaps(self) -> None:

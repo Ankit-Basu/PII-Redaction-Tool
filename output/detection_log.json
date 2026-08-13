@@ -1,8 +1,8 @@
 {
-  "total_spans": 232,
+  "total_spans": 294,
   "spans_by_type": {
-    "address": 21,
-    "person_name": 119,
+    "address": 34,
+    "person_name": 168,
     "phone": 34,
     "email": 50,
     "din": 8
@@ -145,6 +145,14 @@
       "location": "Para[226]"
     },
     {
+      "start": 119,
+      "end": 132,
+      "pii_type": "person_name",
+      "matched_text": "Ganesh Prasad",
+      "block_index": 144,
+      "location": "Para[226]"
+    },
+    {
       "start": 87,
       "end": 106,
       "pii_type": "person_name",
@@ -249,6 +257,14 @@
       "location": "Para[488]"
     },
     {
+      "start": 119,
+      "end": 132,
+      "pii_type": "person_name",
+      "matched_text": "Ganesh Prasad",
+      "block_index": 303,
+      "location": "Para[488]"
+    },
+    {
       "start": 62,
       "end": 81,
       "pii_type": "person_name",
@@ -298,6 +314,22 @@
     },
     {
       "start": 0,
+      "end": 31,
+      "pii_type": "address",
+      "matched_text": "Pune 411 045 Maharashtra, India",
+      "block_index": 476,
+      "location": "Para[725]"
+    },
+    {
+      "start": 0,
+      "end": 117,
+      "pii_type": "address",
+      "matched_text": "PCNTDA Green Building Block A 1st and 2nd floor Near Akurdi Railway Station Akurdi, Pune – 411 044 Maharashtra, India",
+      "block_index": 483,
+      "location": "Para[732]"
+    },
+    {
+      "start": 0,
       "end": 17,
       "pii_type": "person_name",
       "matched_text": "Sarthak Malvadkar",
@@ -319,6 +351,14 @@
       "matched_text": "Sarthak.malvadkar@kshinterantional.com",
       "block_index": 492,
       "location": "Para[745]"
+    },
+    {
+      "start": 0,
+      "end": 48,
+      "pii_type": "address",
+      "matched_text": "Bandra East, Mumbai – 400 051 Maharashtra, India",
+      "block_index": 500,
+      "location": "Para[755]"
     },
     {
       "start": 11,
@@ -343,6 +383,14 @@
       "matched_text": "customerservice.mb@nuvama.com",
       "block_index": 502,
       "location": "Para[757]"
+    },
+    {
+      "start": 0,
+      "end": 115,
+      "pii_type": "address",
+      "matched_text": "ICICI Securities Limited ICICI Venture House Appasaheb Marathe Marg Prabhadevi, Mumbai – 400 025 Maharashtra, India",
+      "block_index": 505,
+      "location": "Para[761]"
     },
     {
       "start": 11,
@@ -401,6 +449,22 @@
       "location": "Para[780]"
     },
     {
+      "start": 16,
+      "end": 31,
+      "pii_type": "person_name",
+      "matched_text": "Prakash Boricha",
+      "block_index": 519,
+      "location": "Para[782]"
+    },
+    {
+      "start": 0,
+      "end": 115,
+      "pii_type": "address",
+      "matched_text": "ICICI Securities Limited ICICI Venture House Appasaheb Marathe Marg Prabhadevi, Mumbai – 400 025 Maharashtra, India",
+      "block_index": 521,
+      "location": "Para[785]"
+    },
+    {
       "start": 11,
       "end": 28,
       "pii_type": "phone",
@@ -441,6 +505,14 @@
       "location": "Para[797]"
     },
     {
+      "start": 0,
+      "end": 74,
+      "pii_type": "address",
+      "matched_text": "1st Floor, L B S Marg, Vikhroli (West) Mumbai 400083, (Maharashtra), India",
+      "block_index": 535,
+      "location": "Para[801]"
+    },
+    {
       "start": 86,
       "end": 101,
       "pii_type": "phone",
@@ -473,6 +545,14 @@
       "location": "Para[804]"
     },
     {
+      "start": 0,
+      "end": 89,
+      "pii_type": "address",
+      "matched_text": "Next to Kanjurmarg Railway Station, Kanjurmarg (East) Mumbai – 400042, Maharashtra, India",
+      "block_index": 543,
+      "location": "Para[809]"
+    },
+    {
       "start": 11,
       "end": 26,
       "pii_type": "phone",
@@ -535,6 +615,22 @@
       "matched_text": "pravin.teli2@hdfcbank.com",
       "block_index": 545,
       "location": "Para[811]"
+    },
+    {
+      "start": 16,
+      "end": 26,
+      "pii_type": "person_name",
+      "matched_text": "Eric Bacha",
+      "block_index": 546,
+      "location": "Para[812]"
+    },
+    {
+      "start": 28,
+      "end": 41,
+      "pii_type": "person_name",
+      "matched_text": "Sachin Gawade",
+      "block_index": 546,
+      "location": "Para[812]"
     },
     {
       "start": 91,
@@ -553,6 +649,22 @@
       "location": "Para[819]"
     },
     {
+      "start": 175,
+      "end": 186,
+      "pii_type": "person_name",
+      "matched_text": "Varun Badai",
+      "block_index": 552,
+      "location": "Para[819]"
+    },
+    {
+      "start": 0,
+      "end": 89,
+      "pii_type": "address",
+      "matched_text": "Next to Kanjurmarg Railway Station, Kanjurmarg (East) Mumbai – 400042, Maharashtra, India",
+      "block_index": 557,
+      "location": "Para[825]"
+    },
+    {
       "start": 11,
       "end": 26,
       "pii_type": "phone",
@@ -615,6 +727,22 @@
       "matched_text": "pravin.teli2@hdfcbank.com",
       "block_index": 559,
       "location": "Para[827]"
+    },
+    {
+      "start": 16,
+      "end": 26,
+      "pii_type": "person_name",
+      "matched_text": "Eric Bacha",
+      "block_index": 560,
+      "location": "Para[828]"
+    },
+    {
+      "start": 28,
+      "end": 41,
+      "pii_type": "person_name",
+      "matched_text": "Sachin Gawade",
+      "block_index": 560,
+      "location": "Para[828]"
     },
     {
       "start": 91,
@@ -633,6 +761,22 @@
       "location": "Para[835]"
     },
     {
+      "start": 175,
+      "end": 186,
+      "pii_type": "person_name",
+      "matched_text": "Varun Badai",
+      "block_index": 566,
+      "location": "Para[835]"
+    },
+    {
+      "start": 0,
+      "end": 89,
+      "pii_type": "address",
+      "matched_text": "Next to Kanjurmarg Railway Station, Kanjurmarg (East) Mumbai – 400042, Maharashtra, India",
+      "block_index": 571,
+      "location": "Para[840]"
+    },
+    {
       "start": 11,
       "end": 26,
       "pii_type": "phone",
@@ -695,6 +839,22 @@
       "matched_text": "pravin.teli2@hdfcbank.com",
       "block_index": 573,
       "location": "Para[842]"
+    },
+    {
+      "start": 16,
+      "end": 26,
+      "pii_type": "person_name",
+      "matched_text": "Eric Bacha",
+      "block_index": 574,
+      "location": "Para[843]"
+    },
+    {
+      "start": 28,
+      "end": 41,
+      "pii_type": "person_name",
+      "matched_text": "Sachin Gawade",
+      "block_index": 574,
+      "location": "Para[843]"
     },
     {
       "start": 8,
@@ -705,12 +865,28 @@
       "location": "Para[873]"
     },
     {
+      "start": 0,
+      "end": 48,
+      "pii_type": "address",
+      "matched_text": "Koregaon Park, Pune – 411 001 Maharashtra, India",
+      "block_index": 610,
+      "location": "Para[886]"
+    },
+    {
       "start": 11,
       "end": 27,
       "pii_type": "phone",
       "matched_text": "+91 20 6606 4494",
       "block_index": 611,
       "location": "Para[887]"
+    },
+    {
+      "start": 16,
+      "end": 29,
+      "pii_type": "person_name",
+      "matched_text": "Hitesh Ramani",
+      "block_index": 612,
+      "location": "Para[888]"
     },
     {
       "start": 7,
@@ -721,10 +897,26 @@
       "location": "Para[890]"
     },
     {
+      "start": 0,
+      "end": 84,
+      "pii_type": "address",
+      "matched_text": "Signature Building, Bhandarkar road Shivaji Nagar, Pune – 411 004 Maharashtra, India",
+      "block_index": 618,
+      "location": "Para[897]"
+    },
+    {
       "start": 11,
       "end": 28,
       "pii_type": "phone",
       "matched_text": "+91 20 2640 3100",
+      "block_index": 619,
+      "location": "Para[898]"
+    },
+    {
+      "start": 44,
+      "end": 56,
+      "pii_type": "person_name",
+      "matched_text": "Chitra Raste",
       "block_index": 619,
       "location": "Para[898]"
     },
@@ -745,6 +937,14 @@
       "location": "Para[905]"
     },
     {
+      "start": 43,
+      "end": 57,
+      "pii_type": "person_name",
+      "matched_text": "Sharmila Joshi",
+      "block_index": 623,
+      "location": "Para[905]"
+    },
+    {
       "start": 92,
       "end": 119,
       "pii_type": "email",
@@ -753,10 +953,26 @@
       "location": "Para[905]"
     },
     {
+      "start": 0,
+      "end": 51,
+      "pii_type": "address",
+      "matched_text": "Bund Garden Road, Pune – 411 001 Maharashtra, India",
+      "block_index": 626,
+      "location": "Para[909]"
+    },
+    {
       "start": 11,
       "end": 27,
       "pii_type": "phone",
       "matched_text": "+ 91 8879770456",
+      "block_index": 627,
+      "location": "Para[910]"
+    },
+    {
+      "start": 43,
+      "end": 55,
+      "pii_type": "person_name",
+      "matched_text": "Cherag Gyara",
       "block_index": 627,
       "location": "Para[910]"
     },
@@ -777,6 +993,14 @@
       "location": "Para[916]"
     },
     {
+      "start": 44,
+      "end": 58,
+      "pii_type": "person_name",
+      "matched_text": "Manisha Shukla",
+      "block_index": 632,
+      "location": "Para[916]"
+    },
+    {
       "start": 7,
       "end": 34,
       "pii_type": "email",
@@ -789,6 +1013,14 @@
       "end": 28,
       "pii_type": "phone",
       "matched_text": "+91 20 2561 8211",
+      "block_index": 638,
+      "location": "Para[923]"
+    },
+    {
+      "start": 44,
+      "end": 58,
+      "pii_type": "person_name",
+      "matched_text": "Tushar Wakhele",
       "block_index": 638,
       "location": "Para[923]"
     },
@@ -809,6 +1041,14 @@
       "location": "Para[929]"
     },
     {
+      "start": 16,
+      "end": 37,
+      "pii_type": "person_name",
+      "matched_text": "Ashish Mathew Pulloor",
+      "block_index": 642,
+      "location": "Para[930]"
+    },
+    {
       "start": 7,
       "end": 33,
       "pii_type": "email",
@@ -825,12 +1065,28 @@
       "location": "Para[937]"
     },
     {
+      "start": 44,
+      "end": 54,
+      "pii_type": "person_name",
+      "matched_text": "Anand Soni",
+      "block_index": 648,
+      "location": "Para[937]"
+    },
+    {
       "start": 92,
       "end": 118,
       "pii_type": "email",
       "matched_text": "anand.soni@bajajfinserv.in",
       "block_index": 648,
       "location": "Para[937]"
+    },
+    {
+      "start": 0,
+      "end": 69,
+      "pii_type": "address",
+      "matched_text": "Bandra Kurla Complex, Bandra (E) Mumbai – 400 051, Maharashtra, India",
+      "block_index": 665,
+      "location": "Para[956]"
     },
     {
       "start": 7,
@@ -966,6 +1222,22 @@
       "pii_type": "email",
       "matched_text": "customercare@icicisecurities.com",
       "block_index": 816,
+      "location": "Table[2].Row[14].Cell[2]"
+    },
+    {
+      "start": 16,
+      "end": 30,
+      "pii_type": "person_name",
+      "matched_text": "Kishan Rastogi",
+      "block_index": 817,
+      "location": "Table[2].Row[14].Cell[2]"
+    },
+    {
+      "start": 31,
+      "end": 44,
+      "pii_type": "person_name",
+      "matched_text": "Abhijit Diwan",
+      "block_index": 817,
       "location": "Table[2].Row[14].Cell[2]"
     },
     {
@@ -1281,28 +1553,124 @@
       "location": "Table[23].Row[16].Cell[1]"
     },
     {
-      "start": 7,
-      "end": 19,
+      "start": 0,
+      "end": 22,
       "pii_type": "person_name",
-      "matched_text": "Kushal Hegde",
+      "matched_text": "Kushal\tSubbayya Hegde*",
+      "block_index": 1858,
+      "location": "Table[24].Row[4].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 20,
+      "pii_type": "person_name",
+      "matched_text": "Pushpa\tKushal Hegde*",
       "block_index": 1885,
       "location": "Table[25].Row[3].Cell[0]"
     },
     {
-      "start": 6,
-      "end": 18,
+      "start": 0,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Kushal Hegde",
+      "matched_text": "Rajesh\tKushal Hegde*",
+      "block_index": 1892,
+      "location": "Table[25].Row[4].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Rohit\tKushal Hegde*",
       "block_index": 1899,
       "location": "Table[25].Row[5].Cell[0]"
     },
     {
-      "start": 9,
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Rakhi Girija Shetty",
+      "block_index": 1906,
+      "location": "Table[25].Row[6].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 23,
+      "pii_type": "person_name",
+      "matched_text": "Dhaulagiri Family Trust",
+      "block_index": 1913,
+      "location": "Table[25].Row[7].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 20,
+      "pii_type": "person_name",
+      "matched_text": "Everest\tFamily Trust",
+      "block_index": 1920,
+      "location": "Table[25].Row[8].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Makalu\tFamily Trust",
+      "block_index": 1927,
+      "location": "Table[25].Row[9].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 18,
+      "pii_type": "person_name",
+      "matched_text": "Broad Family Trust",
+      "block_index": 1934,
+      "location": "Table[25].Row[10].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Annapurna Family Trust",
+      "block_index": 1941,
+      "location": "Table[25].Row[11].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 25,
+      "pii_type": "person_name",
+      "matched_text": "Kanchenjunga Family Trust",
+      "block_index": 1948,
+      "location": "Table[25].Row[12].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 14,
+      "pii_type": "person_name",
+      "matched_text": "Promoter Group",
+      "block_index": 1962,
+      "location": "Table[25].Row[14].Cell[0]"
+    },
+    {
+      "start": 0,
       "end": 21,
       "pii_type": "person_name",
-      "matched_text": "Rajesh Hegde",
+      "matched_text": "Maithili\tRajesh Hegde",
       "block_index": 1963,
       "location": "Table[25].Row[15].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 25,
+      "pii_type": "person_name",
+      "matched_text": "Katyayani Balasubramanian",
+      "block_index": 1970,
+      "location": "Table[25].Row[16].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 26,
+      "pii_type": "person_name",
+      "matched_text": "Malabar India Fund Limited",
+      "block_index": 1985,
+      "location": "Table[25].Row[19].Cell[0]"
     },
     {
       "start": 0,
@@ -1321,10 +1689,10 @@
       "location": "Table[25].Row[21].Cell[0]"
     },
     {
-      "start": 7,
+      "start": 0,
       "end": 17,
       "pii_type": "person_name",
-      "matched_text": "Ajay Menon",
+      "matched_text": "Jabeen Ajay Menon",
       "block_index": 2006,
       "location": "Table[25].Row[22].Cell[0]"
     },
@@ -1338,67 +1706,187 @@
     },
     {
       "start": 0,
-      "end": 21,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Kushal Subbayya Hegde",
+      "matched_text": "Sunil\tNagayya Shetty",
+      "block_index": 2020,
+      "location": "Table[25].Row[24].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Kushal Subbayya Hegde*",
       "block_index": 2358,
       "location": "Table[32].Row[1].Cell[0]"
     },
     {
       "start": 0,
-      "end": 19,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Pushpa Kushal Hegde",
+      "matched_text": "Pushpa Kushal Hegde*",
       "block_index": 2364,
       "location": "Table[33].Row[1].Cell[0]"
     },
     {
       "start": 0,
-      "end": 19,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Rajesh Kushal Hegde",
+      "matched_text": "Rajesh Kushal Hegde*",
       "block_index": 2367,
       "location": "Table[33].Row[2].Cell[0]"
     },
     {
-      "start": 6,
-      "end": 18,
+      "start": 0,
+      "end": 19,
       "pii_type": "person_name",
-      "matched_text": "Kushal Hegde",
+      "matched_text": "Rohit Kushal Hegde*",
       "block_index": 2370,
       "location": "Table[33].Row[3].Cell[0]"
     },
     {
       "start": 0,
-      "end": 21,
+      "end": 19,
       "pii_type": "person_name",
-      "matched_text": "Kushal Subbayya Hegde",
+      "matched_text": "Rakhi Girija Shetty",
+      "block_index": 2373,
+      "location": "Table[33].Row[4].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 23,
+      "pii_type": "person_name",
+      "matched_text": "Dhaulagiri Family Trust",
+      "block_index": 2376,
+      "location": "Table[33].Row[5].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 20,
+      "pii_type": "person_name",
+      "matched_text": "Everest Family Trust",
+      "block_index": 2379,
+      "location": "Table[33].Row[6].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Makalu Family Trust",
+      "block_index": 2382,
+      "location": "Table[33].Row[7].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 18,
+      "pii_type": "person_name",
+      "matched_text": "Broad Family Trust",
+      "block_index": 2385,
+      "location": "Table[33].Row[8].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Annapurna Family Trust",
+      "block_index": 2388,
+      "location": "Table[33].Row[9].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 25,
+      "pii_type": "person_name",
+      "matched_text": "Kanchenjunga Family Trust",
+      "block_index": 2391,
+      "location": "Table[33].Row[10].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Kushal Subbayya Hegde*",
       "block_index": 2413,
       "location": "Table[35].Row[1].Cell[0]"
     },
     {
       "start": 0,
-      "end": 19,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Pushpa Kushal Hegde",
+      "matched_text": "Pushpa Kushal Hegde*",
       "block_index": 2416,
       "location": "Table[35].Row[2].Cell[0]"
     },
     {
       "start": 0,
-      "end": 19,
+      "end": 20,
       "pii_type": "person_name",
-      "matched_text": "Rajesh Kushal Hegde",
+      "matched_text": "Rajesh Kushal Hegde*",
       "block_index": 2419,
       "location": "Table[35].Row[3].Cell[0]"
     },
     {
-      "start": 6,
-      "end": 18,
+      "start": 0,
+      "end": 19,
       "pii_type": "person_name",
-      "matched_text": "Kushal Hegde",
+      "matched_text": "Rohit Kushal Hegde*",
       "block_index": 2422,
       "location": "Table[35].Row[4].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Rakhi Girija Shetty",
+      "block_index": 2425,
+      "location": "Table[35].Row[5].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 23,
+      "pii_type": "person_name",
+      "matched_text": "Dhaulagiri Family Trust",
+      "block_index": 2428,
+      "location": "Table[35].Row[6].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 20,
+      "pii_type": "person_name",
+      "matched_text": "Everest Family Trust",
+      "block_index": 2431,
+      "location": "Table[35].Row[7].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Makalu Family Trust",
+      "block_index": 2434,
+      "location": "Table[35].Row[8].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 18,
+      "pii_type": "person_name",
+      "matched_text": "Broad Family Trust",
+      "block_index": 2437,
+      "location": "Table[35].Row[9].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Annapurna Family Trust",
+      "block_index": 2440,
+      "location": "Table[35].Row[10].Cell[0]"
+    },
+    {
+      "start": 0,
+      "end": 25,
+      "pii_type": "person_name",
+      "matched_text": "Kanchenjunga Family Trust",
+      "block_index": 2443,
+      "location": "Table[35].Row[11].Cell[0]"
     },
     {
       "start": 9,
@@ -1461,14 +1949,6 @@
       "end": 46,
       "pii_type": "person_name",
       "matched_text": "Kushal Hegde",
-      "block_index": 3201,
-      "location": "Table[53].Row[1].Cell[3]"
-    },
-    {
-      "start": 66,
-      "end": 74,
-      "pii_type": "person_name",
-      "matched_text": "Gopal BO",
       "block_index": 3201,
       "location": "Table[53].Row[1].Cell[3]"
     },
@@ -1730,6 +2210,14 @@
     },
     {
       "start": 0,
+      "end": 19,
+      "pii_type": "person_name",
+      "matched_text": "Rakhi Girija Shetty",
+      "block_index": 3830,
+      "location": "Table[70].Row[4].Cell[0]"
+    },
+    {
+      "start": 0,
       "end": 8,
       "pii_type": "din",
       "matched_text": "03124510",
@@ -1743,6 +2231,14 @@
       "matched_text": "3 Prabhat Road, opposite PYC basketball court, Erandawane, Deccan Gymkhana, Pune – 411 004 Maharashtra, India",
       "block_index": 3834,
       "location": "Table[70].Row[4].Cell[3]"
+    },
+    {
+      "start": 0,
+      "end": 22,
+      "pii_type": "person_name",
+      "matched_text": "Dinesh Hirachand Munot",
+      "block_index": 3835,
+      "location": "Table[70].Row[5].Cell[0]"
     },
     {
       "start": 0,
@@ -1785,10 +2281,10 @@
       "location": "Table[70].Row[6].Cell[3]"
     },
     {
-      "start": 4,
+      "start": 0,
       "end": 16,
       "pii_type": "person_name",
-      "matched_text": "Kumar Tiwari",
+      "matched_text": "Ram Kumar Tiwari",
       "block_index": 3843,
       "location": "Table[70].Row[7].Cell[0]"
     },
@@ -1871,45 +2367,55 @@
       "201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner, Pune – 411 045, Maharashtra, India": "415, Sami Street, view, Naihati – 194 199, Rhode Island, India",
       "at 201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner, Pune – 411 045, Maharashtra, India": "312, Konda Circle, Ville, Veronicaside – 801 963, Uttarakhand, India",
       "at 11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India": "413, Adams Forest, borough, Wilkersonmouth – 371 352, Pennsylvania, India",
-      "ICICI Venture House, Appasaheb Marathe Marg, Prabhadevi, Mumbai 400025, Maharashtra, India": "265, Khurana Zila, fort, Pallavaram – 911 195, Madhya Pradesh, India",
-      "C-101, Embassy 247, 1st Floor, L B S Marg, Vikhroli (West), Mumbai 400083, (Maharashtra), India": "157, Tran Key, side, Jacquelineview – 357 223, Delaware, India",
-      "of our company located at 201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner, Pune – 411 045, Maharashtra, India": "99, Malhotra Chowk, ville, Ambattur – 283 114, Arizona, India",
-      "of our Company located at 11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka-Khed, Pune – 410 501, Maharashtra, India": "284, Dana Terrace, ville, Nandyal – 551 288, New Mexico, India",
-      "Our manufacturing facility located at Plot No. J-25, Taloja Industrial Area, Village Padghe, Taluka Panvel, Raigad – 410 208, Maharashtra, India": "416, Victoria Crest, bury, Kerrport – 412 724, Rajasthan, India",
-      "Our manufacturing facility located at 11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India": "136, Khatri Street, Ville, Alappuzha – 805 398, Jharkhand, India",
-      "Our manufacturing facility located at Plot No. 5, Chakan Industrial Area, Phase II, Village Khalumbre, Taluka Khed, Pune – 410 501, Maharashtra, India": "360, Grace Greens, Ville, Jalgaon – 946 173, Uttar Pradesh, India",
-      "S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, lane no. 3 Prabhat Road, opposite PYC basketball court, Deccan Gymkhana, Pune – 411 004 Maharashtra, India": "321, James Plaza, Ville, Martinezbury – 418 665, Haryana, India",
-      "12 Buena Monte, NCL co-operative housing society, Panchvati, Pashan, Pune – 411 008, Maharashtra, India": "443, Sachdeva Road, haven, West Jessicashire – 986 557, Michigan, India",
-      "Pushpakamal Apartment, Flat – 1, S. no. 245/ 104, Prabhat Road Lane no. 3, Shivaji Nagar, Deccan Gymkhana, Pune – 411 004, Maharashtra, India": "65, Morgan Mill, Ville, Alappuzha – 176 900, South Carolina, India",
-      "3 Prabhat Road, opposite PYC basketball court, Erandawane, Deccan Gymkhana, Pune – 411 004 Maharashtra, India": "390, Ganesan Chowk, town, Pimpri-Chinchwad – 467 541, Mizoram, India",
-      "Pratik Bunglow, Senapati Bapat Road, behind Sahara Hotel, Shivajinagar, Model Colony, Pune – 411 016, Maharashtra, India": "461, Byrd Estate, Ville, Daniellechester – 567 303, Connecticut, India",
-      "602, Gopalkrupa Apartment, Bhonde colony, Prabhat Road, Erandawane, Pune – 411 004, Maharashtra, India": "113, Krishna, Ville, Gandhidham – 693 849, Jharkhand, India",
-      "A-259, JK Road, Minal Residency, Huzur, Govindpura, Bhopal – 462 023, Madhya Pradesh, India": "47, Joseph Crossing, stad, Carsonstad – 791 582, South Carolina, India",
-      "A29, Abhimanshree Society, Pashan Road, Pune – 411 008, Maharashtra, India": "301, Chaudhary Marg, chester, Lake Mitchellmouth – 341 201, Arkansas, India",
-      "Hingne Tare & Associates Flat No. 102, Sai Complex Shaniwar Peth, Pune – 411 030 Maharashtra, India": "397, Agate, berg, Akola – 776 234, Kansas, India"
+      "Pune 411 045 Maharashtra, India": "33, Brianna Forks, Ville, Berhampur – 132 172, Texas, India",
+      "PCNTDA Green Building Block A 1st and 2nd floor Near Akurdi Railway Station Akurdi, Pune – 411 044 Maharashtra, India": "110, Solanki, Ville, North Collin – 462 520, Sikkim, India",
+      "Bandra East, Mumbai – 400 051 Maharashtra, India": "249, Michelle Circle, Ville, Bilaspur – 392 813, Gujarat, India",
+      "ICICI Securities Limited ICICI Venture House Appasaheb Marathe Marg Prabhadevi, Mumbai – 400 025 Maharashtra, India": "105, Joseph Curve, mouth, North Stephenshire – 175 618, Kerala, India",
+      "1st Floor, L B S Marg, Vikhroli (West) Mumbai 400083, (Maharashtra), India": "177, Obrien Pass, Ville, Varanasi – 101 472, Sikkim, India",
+      "Next to Kanjurmarg Railway Station, Kanjurmarg (East) Mumbai – 400042, Maharashtra, India": "284, Salvi Ganj, burgh, Kelleytown – 393 540, New Hampshire, India",
+      "Koregaon Park, Pune – 411 001 Maharashtra, India": "143, Conley Mountains, Ville, Lake Casey – 872 353, Punjab, India",
+      "Signature Building, Bhandarkar road Shivaji Nagar, Pune – 411 004 Maharashtra, India": "178, Jones Rue, town, Garciastad – 824 545, South Carolina, India",
+      "Bund Garden Road, Pune – 411 001 Maharashtra, India": "62, Dar Path, Ville, Bally – 202 403, Idaho, India",
+      "Bandra Kurla Complex, Bandra (E) Mumbai – 400 051, Maharashtra, India": "282, Sarma Road, ville, Kozhikode – 664 665, Haryana, India",
+      "ICICI Venture House, Appasaheb Marathe Marg, Prabhadevi, Mumbai 400025, Maharashtra, India": "479, Justin Hills, berg, Reedside – 566 990, Odisha, India",
+      "C-101, Embassy 247, 1st Floor, L B S Marg, Vikhroli (West), Mumbai 400083, (Maharashtra), India": "254, Thakkar Street, ville, New Reneetown – 519 176, Michigan, India",
+      "of our company located at 201, Tower 2, Montreal Business Centre, Off Pallod Farms, Baner, Pune – 411 045, Maharashtra, India": "333, Walla Path, mouth, New Caseyport – 864 544, Manipur, India",
+      "of our Company located at 11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka-Khed, Pune – 410 501, Maharashtra, India": "356, Brandon Underpass, Ville, Ryanbury – 679 274, Punjab, India",
+      "Our manufacturing facility located at Plot No. J-25, Taloja Industrial Area, Village Padghe, Taluka Panvel, Raigad – 410 208, Maharashtra, India": "327, Scott Branch, port, Mango – 701 754, New Jersey, India",
+      "Our manufacturing facility located at 11/3, 11/4 and 11/5, Village Birdewadi, Chakan Taluka - Khed, Pune – 410 501, Maharashtra, India": "102, Rodriguez Light, shire, Andrewfurt – 108 720, Wyoming, India",
+      "Our manufacturing facility located at Plot No. 5, Chakan Industrial Area, Phase II, Village Khalumbre, Taluka Khed, Pune – 410 501, Maharashtra, India": "311, Dana River, berg, Tirupati – 134 849, Jharkhand, India",
+      "S. no. 245/ 104, Pushpakamal, Deccan Gymkhana Society, lane no. 3 Prabhat Road, opposite PYC basketball court, Deccan Gymkhana, Pune – 411 004 Maharashtra, India": "80, Melanie Keys, ville, Port Roy – 723 129, Vermont, India",
+      "12 Buena Monte, NCL co-operative housing society, Panchvati, Pashan, Pune – 411 008, Maharashtra, India": "81, Griffith Trail, Ville, Tadipatri – 790 378, New York, India",
+      "Pushpakamal Apartment, Flat – 1, S. no. 245/ 104, Prabhat Road Lane no. 3, Shivaji Nagar, Deccan Gymkhana, Pune – 411 004, Maharashtra, India": "4, Kakar Road, Ville, Davidfort – 279 489, California, India",
+      "3 Prabhat Road, opposite PYC basketball court, Erandawane, Deccan Gymkhana, Pune – 411 004 Maharashtra, India": "88, Davis Vista, Ville, Warrenfurt – 863 326, Assam, India",
+      "Pratik Bunglow, Senapati Bapat Road, behind Sahara Hotel, Shivajinagar, Model Colony, Pune – 411 016, Maharashtra, India": "443, Scott Mountains, port, West Williamport – 562 158, California, India",
+      "602, Gopalkrupa Apartment, Bhonde colony, Prabhat Road, Erandawane, Pune – 411 004, Maharashtra, India": "21, Sarna Chowk, Ville, Paulmouth – 908 167, Nagaland, India",
+      "A-259, JK Road, Minal Residency, Huzur, Govindpura, Bhopal – 462 023, Madhya Pradesh, India": "487, Sunder Path, Ville, Solapur – 964 619, Wyoming, India",
+      "A29, Abhimanshree Society, Pashan Road, Pune – 411 008, Maharashtra, India": "463, Sastry Path, port, Burchborough – 993 153, Oklahoma, India",
+      "Hingne Tare & Associates Flat No. 102, Sai Complex Shaniwar Peth, Pune – 411 030 Maharashtra, India": "42, Anthony Courts, berg, Baranagar – 812 877, South Carolina, India"
     },
     "phone": {
       "+ 91 20 4505 3237": "+91 08 6899 1311",
-      "+ 91 20 45053237": "+91 13 5990 0158",
-      "+91 22 40094400": "+91 61 6671 6138",
-      "+91 22 6807 7100": "+91 67 6204 4824",
-      "+ 91 22 4009 4400": "+91 05 0802 9319",
-      "+91 22 4079 1000": "+91 71 7182 1528",
-      "+91 81081 14949": "+91 98 1414 9544",
-      "+91 22 30752914": "+91 28 8125 6055",
-      "+91 22 30752928": "+91 35 9320 5326",
-      "+91 22 30752929": "+91 73 5306 4488",
-      "022-68052182": "071-18668369",
-      "+91 20 6606 4494": "+91 77 8241 4303",
-      "+91 20 2640 3100": "+91 21 3801 2878",
-      "+91-20-26234000": "+91 38 3744 5232",
-      "+ 91 8879770456": "+91 86 3697 5687",
-      "+91 20 6769 4648": "+91 47 6679 6122",
-      "+91 20 2561 8211": "+91 56 6105 1039",
-      "+ 91 91586 40360": "+91 97 5921 4611",
-      "+91 20 7157 6403": "+91 07 6768 9795",
-      "+91 22 4009 4400": "+91 17 7572 3448",
-      "+ 91 20 6729 5100": "+91 41 1903 9193"
+      "+ 91 20 45053237": "+91 05 3322 7180",
+      "+91 22 40094400": "+91 50 8029 3199",
+      "+91 22 6807 7100": "+91 81 4149 5441",
+      "+ 91 22 4009 4400": "+91 40 2288 1256",
+      "+91 22 4079 1000": "+91 05 3267 3530",
+      "+91 81081 14949": "+91 64 4880 4909",
+      "+91 22 30752914": "+91 32 4143 0397",
+      "+91 22 30752928": "+91 96 6213 8012",
+      "+91 22 30752929": "+91 87 8273 8374",
+      "022-68052182": "061-52261224",
+      "+91 20 6606 4494": "+91 37 9759 2146",
+      "+91 20 2640 3100": "+91 77 5723 4488",
+      "+91-20-26234000": "+91 71 3397 6544",
+      "+ 91 8879770456": "+91 70 7724 1612",
+      "+91 20 6769 4648": "+91 89 8744 9342",
+      "+91 20 2561 8211": "+91 43 4146 8220",
+      "+ 91 91586 40360": "+91 44 7969 0342",
+      "+91 20 7157 6403": "+91 75 5686 3973",
+      "+91 22 4009 4400": "+91 72 4677 6916",
+      "+ 91 20 6729 5100": "+91 84 2763 5663"
     },
     "person_name": {
       "Sarthak Malvadkar": "Joshua Martin",
@@ -1917,64 +2423,102 @@
       "Rajesh Kushal Hegde": "Imaran Nathaniel Carlson",
       "Pushpa Kushal Hegde": "Patrick Allison Contractor",
       "Kushal Subbayya Hegde": "Kayla Daniel Moore",
-      "Amod Joshi": "Adya Tripathi",
-      "Sandesh Bhagwat": "Chanchal Dua",
-      "Jayaram N. Shetty": "Kathryn Ekiya Smith",
-      "Narayna B. Shetty": "Natasha John Brar",
-      "Karunakar N. Bhandary": "Vedika Jeremiah Soman",
-      "Ajay Shriram Patil": "Alka Tamara Muni",
-      "Pushpa Hegde": "Wanda Kim",
-      "Shanti Gopalkrishnan": "Aarush Wise",
-      "Sangeeta Ramprasad Rai": "Dhruv Travis Doshi",
-      "Kushal Hegde": "Brooke Gonzales",
-      "Rajesh Hegde": "Haley Bender",
-      "Rupal K. Sancheti": "Samuel Rachana Munoz",
-      "Salil Ajay Bhargava": "Gavin Ansh Johnston",
-      "Ajay Menon": "Upma Moon",
-      "Gopal BO": "Rajata Costa",
-      "Karunakar Hegde": "Michael Morris",
-      "Rohit Hegde": "Naveen Jenkins",
-      "Vijay Hegde": "Keith Cervantes",
-      "Kumar Tiwari": "Julie Iyer",
-      "Indu Jacob": "Dev Blankenship"
+      "Ganesh Prasad": "Adya Tripathi",
+      "Amod Joshi": "Chanchal Dua",
+      "Sandesh Bhagwat": "Kathryn Naik",
+      "Jayaram N. Shetty": "Andrew Natasha Allen",
+      "Narayna B. Shetty": "Farhan Vedika Walia",
+      "Karunakar N. Bhandary": "Kabir Stacey Lanka",
+      "Ajay Shriram Patil": "Tamara Devika Carney",
+      "Pushpa Hegde": "Samuel Martinez",
+      "Prakash Boricha": "Kimberly Dickson",
+      "Shanti Gopalkrishnan": "Elizabeth Powell",
+      "Sachin Gawade": "Lajita Smith",
+      "Eric Bacha": "Kenneth Castaneda",
+      "Varun Badai": "Amanda Sura",
+      "Hitesh Ramani": "Faqid Chaudry",
+      "Chitra Raste": "Marcus Chadha",
+      "Sharmila Joshi": "Angela Soni",
+      "Cherag Gyara": "Chatura Terry",
+      "Manisha Shukla": "Daksha Kothari",
+      "Tushar Wakhele": "Nilima Norris",
+      "Ashish Mathew Pulloor": "April Sabrina Sarin",
+      "Anand Soni": "Keith Cervantes",
+      "Abhijit Diwan": "Jesus Williams",
+      "Kishan Rastogi": "Janet Hughes",
+      "Sangeeta Ramprasad Rai": "Christine Widisha Kata",
+      "Kushal Hegde": "Julie Iyer",
+      "Rajesh Hegde": "Jasmit Rivas",
+      "Kushal\tSubbayya Hegde*": "Robin Tammy Francis",
+      "Pushpa\tKushal Hegde*": "Linda Sydney Kara",
+      "Rajesh\tKushal Hegde*": "Tammy Christopher Smith",
+      "Rohit\tKushal Hegde*": "Suhani Emily Richards",
+      "Rakhi Girija Shetty": "Daniel Urishilla Narang",
+      "Dhaulagiri Family Trust": "Dev Regina Banks",
+      "Everest\tFamily Trust": "Logan Baljiwan Ferrell",
+      "Makalu\tFamily Trust": "Gunbir Krishna Chavez",
+      "Broad Family Trust": "Brenda Oeshi Suri",
+      "Annapurna Family Trust": "Sheila Antonio Robinson",
+      "Kanchenjunga Family Trust": "Stephanie Cory Stephens",
+      "Promoter Group": "Bruce Lopez",
+      "Maithili\tRajesh Hegde": "Suhani Simon Bedi",
+      "Katyayani Balasubramanian": "John Jha",
+      "Malabar India Fund Limited": "Sarthak Viraj Schroeder",
+      "Rupal K. Sancheti": "Aradhana Kalpit Lindsey",
+      "Salil Ajay Bhargava": "Atharv Alexander Tyler",
+      "Jabeen Ajay Menon": "Ekiya Owen Williams",
+      "Ajay Menon": "Alicia Soni",
+      "Sunil\tNagayya Shetty": "Kimberly Siya Bassi",
+      "Kushal Subbayya Hegde*": "Stephen Darsh Boone",
+      "Pushpa Kushal Hegde*": "Gina Jennifer Jones",
+      "Rajesh Kushal Hegde*": "Ekanta Dominic Maharaj",
+      "Rohit Kushal Hegde*": "Oscar Shawn Garcia",
+      "Everest Family Trust": "Tanveer Shannon Sachdev",
+      "Makalu Family Trust": "Maria Robert Munshi",
+      "Karunakar Hegde": "Larry Brooks",
+      "Rohit Hegde": "Urvi Chand",
+      "Vijay Hegde": "Girik Davis",
+      "Dinesh Hirachand Munot": "Yashvi Ikshita Luna",
+      "Ram Kumar Tiwari": "Justin Gauri Dhaliwal",
+      "Indu Jacob": "Krisha Gaba"
     },
     "email": {
       "cs.connect@kshinternational.com": "elizabethmiles@example.com",
-      "sarthak.malvadkar@kshinterantional.com": "vedika38@example.com",
-      "ksh.ipo@nuvama.com": "ykibe@example.com",
-      "customerservice.mb@nuvama.com": "robertramirez@example.com",
-      "customercare@icicisecurities.com": "savantguneet@example.com",
-      "ksh@icicisecurities.com": "chanderwarjas@example.com",
-      "sheetal.parab@nuvama.com": "sainidiya@example.com",
-      "prakash.boricha@nuvama.com": "elizabethedwards@example.com",
-      "ipo@trilegal.com": "panderson@example.com",
-      "kshinternational.ipo@in.mpms.mufg.com": "sampatharadhana@example.com",
-      "pravin.teli2@hdfcbank.com": "wilsontara@example.com",
-      "tushar.gavankar@hdfcbank.com": "balvan19@example.com",
-      "eric.bacha@hdfcbank.com": "jessica56@example.com",
-      "sachin.gawade@hdfcbank.com": "qgupta@example.com",
-      "siddharth.jadhav@hdfcbank.com": "hagarwal@example.com",
-      "ipocmg@icicibank.com": "raagini15@example.com",
-      "parag.pansare@kirtanepandit.com": "bhavini36@example.com",
-      "hitesh.ramani@citi.com": "gibsonolivia@example.com",
-      "pro@eximbankindia.in": "ztalwar@example.com",
-      "sharmila.joshi@indusind.com": "juliawells@example.com",
-      "cherag.gyara@icicibank.com": "sachdevanikita@example.com",
-      "manisha.shukla@hdfcbank.com": "ladli53@example.com",
-      "rm6.ifbpune@sbi.co.in": "jonathansolanki@example.com",
-      "ashishmp@federalbank.co.in": "hoganashlee@example.com",
-      "anand.soni@bajajfinserv.in": "priya51@example.com",
-      "hingnetare@gmail.com": "thompsonbrian@example.com"
+      "sarthak.malvadkar@kshinterantional.com": "khalsaojas@example.com",
+      "ksh.ipo@nuvama.com": "tanyariley@example.com",
+      "customerservice.mb@nuvama.com": "uvirk@example.com",
+      "customercare@icicisecurities.com": "kalamane@example.com",
+      "ksh@icicisecurities.com": "nmittal@example.com",
+      "sheetal.parab@nuvama.com": "morarjanya@example.com",
+      "prakash.boricha@nuvama.com": "shivansh31@example.com",
+      "ipo@trilegal.com": "nicholasgoel@example.com",
+      "kshinternational.ipo@in.mpms.mufg.com": "elizabeth14@example.com",
+      "pravin.teli2@hdfcbank.com": "gautami58@example.com",
+      "tushar.gavankar@hdfcbank.com": "matthewkashyap@example.com",
+      "eric.bacha@hdfcbank.com": "jasminebrown@example.com",
+      "sachin.gawade@hdfcbank.com": "amy60@example.com",
+      "siddharth.jadhav@hdfcbank.com": "xramachandran@example.com",
+      "ipocmg@icicibank.com": "rajata70@example.com",
+      "parag.pansare@kirtanepandit.com": "vnarain@example.com",
+      "hitesh.ramani@citi.com": "hoganashlee@example.com",
+      "pro@eximbankindia.in": "ugraham@example.com",
+      "sharmila.joshi@indusind.com": "khurananiharika@example.com",
+      "cherag.gyara@icicibank.com": "ericksondavid@example.com",
+      "manisha.shukla@hdfcbank.com": "falandugar@example.com",
+      "rm6.ifbpune@sbi.co.in": "bhavya71@example.com",
+      "ashishmp@federalbank.co.in": "harrisonricky@example.com",
+      "anand.soni@bajajfinserv.in": "hodgemark@example.com",
+      "hingnetare@gmail.com": "bahlaahana@example.com"
     },
     "din": {
-      "00135070": "75568639",
-      "00114193": "72467769",
-      "00134926": "73930767",
-      "03124510": "18589336",
-      "00049801": "92197344",
-      "01217000": "69460949",
-      "10938958": "88275726",
-      "05293084": "62071865"
+      "00135070": "29150959",
+      "00114193": "50210867",
+      "00134926": "63519806",
+      "03124510": "00199610",
+      "00049801": "32391799",
+      "01217000": "97758011",
+      "10938958": "42458604",
+      "05293084": "97639784"
     }
   }
 }
