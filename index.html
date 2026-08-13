@@ -31,7 +31,7 @@
             --shadow: 5px 5px 0px #000000;
             --shadow-lg: 8px 8px 0px #000000;
             --shadow-hover: 7px 7px 0px #000000;
-            --radius: 14px;
+            --radius: 8px;
             --radius-sm: 8px;
             --radius-pill: 9999px;
         }
@@ -74,7 +74,7 @@
             font-size: 1.25rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.03em;
+            letter-spacing: 0;
             text-decoration: none;
             color: var(--black);
         }
@@ -149,6 +149,14 @@
             box-shadow: 1px 1px 0px #000;
         }
 
+        .btn-neo:focus-visible,
+        .preset-btn:focus-visible,
+        .tab-item:focus-visible,
+        .brand-logo:focus-visible {
+            outline: 3px solid var(--cyan);
+            outline-offset: 3px;
+        }
+
         .btn-neo-white {
             background: #FFFFFF;
         }
@@ -181,7 +189,7 @@
             position: relative;
         }
 
-        /* Floating Sticky Notes */
+        /* Submission annotations */
         .sticky-note {
             position: absolute;
             background: var(--yellow);
@@ -214,11 +222,11 @@
             .sticky-note { display: none; }
         }
 
-        /* Hero Box (Inspired by Penspace) */
+        /* Hero box */
         .hero-box {
             background: #FFFFFF;
             border: var(--border-thick);
-            border-radius: 24px;
+            border-radius: var(--radius);
             padding: 3.5rem 2.5rem;
             text-align: center;
             box-shadow: var(--shadow-lg);
@@ -247,7 +255,7 @@
             font-size: 4.2rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.04em;
+            letter-spacing: 0;
             line-height: 0.95;
             margin-bottom: 1.5rem;
             color: #000000;
@@ -328,7 +336,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.8rem;
             font-weight: 900;
-            letter-spacing: -0.03em;
+            letter-spacing: 0;
             line-height: 1;
             margin-bottom: 0.3rem;
         }
@@ -371,7 +379,7 @@
             font-size: 1.75rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -0.02em;
+            letter-spacing: 0;
         }
 
         /* Document Stats & Anatomy Box */
@@ -905,6 +913,15 @@
             .diff-card-neo-col:first-child { border-right: none; border-bottom: var(--border); }
             .topbar { padding: 0.85rem 1rem; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -912,15 +929,15 @@
     <!-- Topbar -->
     <header class="topbar">
         <a href="#" class="brand-logo">
-            <div class="brand-icon">🛡️</div>
+            <div class="brand-icon" aria-hidden="true">PII</div>
             <span>PII REDACTOR.</span>
         </a>
         <div class="nav-items">
             <div class="nav-tag">
                 <span class="nav-tag-dot"></span>
-                <span>EVALUATION V2.0</span>
+                <span>SUBMISSION READY</span>
             </div>
-            <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" class="btn-neo btn-neo-white">
+            <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" rel="noopener noreferrer" class="btn-neo btn-neo-white">
                 <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
                 <span>GITHUB REPO</span>
             </a>
@@ -931,17 +948,17 @@
 
         <!-- Floating Stickers -->
         <div class="sticky-note sticky-1">
-            📌 <strong>100% DIN Precision</strong><br>
+            <strong>100% DIN Precision</strong><br>
             Director IDs under Table 70 captured with 0 false positives!
         </div>
         <div class="sticky-note sticky-2">
-            🚀 <strong>87.64% Recall</strong><br>
+            <strong>87.64% Recall</strong><br>
             Evaluated on 1,006 paras & 76 tables in RHP.docx!
         </div>
 
         <!-- Hero Box -->
         <section class="hero-box">
-            <div class="badge-live">⚡ SCALAR LABS AI — ENTERPRISE DATA ASSIGNMENT</div>
+            <div class="badge-live">SCALAR LABS AI: ENTERPRISE DATA ASSIGNMENT</div>
             <h1 class="hero-heading">
                 REDACT PII.<br>
                 <span>PROTECT PRIVACY.</span>
@@ -1002,7 +1019,7 @@
         <!-- Document Anatomy Box -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">📊</div>
+                <div class="section-badge">01</div>
                 <h2 class="section-heading-text">DOCUMENT ANATOMY & SCANNING METRICS</h2>
             </div>
             <div class="anatomy-box">
@@ -1041,15 +1058,15 @@
         <!-- Requirements Matrix -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">01</div>
+                <div class="section-badge">02</div>
                 <h2 class="section-heading-text">ASSIGNMENT REQUIREMENTS MATRIX</h2>
             </div>
             <div class="matrix-grid">
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">👤 FULL NAMES</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">FULL NAMES</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">spaCy NER + Table Name column inspector + KMP Executive title heuristics.</p>
                     </div>
@@ -1062,8 +1079,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">📧 EMAIL ADDRESSES</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">EMAIL ADDRESSES</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Pre-compiled RFC regex matching company secretary, registrar, and merchant banker contacts.</p>
                     </div>
@@ -1076,8 +1093,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">📞 PHONE NUMBERS</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">PHONE NUMBERS</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Indian phone patterns (+91, STD area codes, mobiles). Toll-free preserved as public lines.</p>
                     </div>
@@ -1090,8 +1107,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">📍 PHYSICAL ADDRESSES</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">PHYSICAL ADDRESSES</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Registered Office labels + Indian 6-digit PIN code & State heuristic pattern matcher.</p>
                     </div>
@@ -1104,8 +1121,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">🆔 DIRECTOR DINS</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">DIRECTOR DINS</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Column-header aware 8-digit identification under Table 70 DIN headers.</p>
                     </div>
@@ -1118,8 +1135,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">💳 CREDIT CARDS</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">CREDIT CARDS</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">13-19 digit detection validated by mathematical <strong>Luhn Algorithm</strong> verification.</p>
                     </div>
@@ -1132,8 +1149,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">🔢 SSN (US)</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">SSN (US)</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Standard 9-digit US Social Security Number pattern matching with boundary guards (XXX-XX-XXXX).</p>
                     </div>
@@ -1146,8 +1163,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">🌐 IP ADDRESSES</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">IP ADDRESSES</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">IPv4 address detection with validated 0-255 bounded octets, eliminating numeric false positives.</p>
                     </div>
@@ -1160,8 +1177,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">🎂 DATES OF BIRTH</span>
-                            <span class="matrix-pill" style="background: var(--green);">✓ ACTIVE</span>
+                            <span class="matrix-card-title">DATES OF BIRTH</span>
+                            <span class="matrix-pill" style="background: var(--green);">ACTIVE</span>
                         </div>
                         <p class="matrix-desc">Context-labeled DOB matching ("Date of Birth:", "DOB:"), preserving general corporate dates.</p>
                     </div>
@@ -1174,8 +1191,8 @@
                 <div class="matrix-card">
                     <div>
                         <div class="matrix-card-top">
-                            <span class="matrix-card-title">🏢 COMPANY NAMES</span>
-                            <span class="matrix-pill" style="background: var(--yellow);">⚙️ OPTIONAL</span>
+                            <span class="matrix-card-title">COMPANY NAMES</span>
+                            <span class="matrix-pill" style="background: var(--yellow);">CONFIGURABLE</span>
                         </div>
                         <p class="matrix-desc">spaCy ORG NER implemented; preserved by default to keep IPO legal filings legible as per README.</p>
                     </div>
@@ -1190,7 +1207,7 @@
         <!-- Benchmark Metrics Table -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">02</div>
+                <div class="section-badge">03</div>
                 <h2 class="section-heading-text">BENCHMARK EVALUATION RESULTS</h2>
             </div>
             
@@ -1365,7 +1382,7 @@
                                 </td>
                             </tr>
                             <tr class="row-total">
-                                <td>🏆 OVERALL TOTAL</td>
+                                <td>OVERALL TOTAL</td>
                                 <td>156</td>
                                 <td>138</td>
                                 <td>22</td>
@@ -1403,7 +1420,7 @@
         <!-- Live Sandbox with Quick Presets -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">03</div>
+                <div class="section-badge">04</div>
                 <h2 class="section-heading-text">INTERACTIVE LIVE REDACTION SANDBOX</h2>
             </div>
             
@@ -1412,10 +1429,10 @@
                     Test the deterministic anonymization rules in real-time. Choose a quick preset or type your own text:
                 </p>
                 <div class="preset-pills">
-                    <button class="preset-btn" onclick="loadPreset('contacts')">📄 01. Contact Person & Office</button>
-                    <button class="preset-btn" onclick="loadPreset('directors')">👔 02. Board of Directors & DIN</button>
-                    <button class="preset-btn" onclick="loadPreset('bankers')">🏦 03. Merchant Bankers & BRLM</button>
-                    <button class="preset-btn" onclick="loadPreset('clear')">🧹 Clear Text</button>
+                    <button type="button" class="preset-btn" onclick="loadPreset('contacts')">01. Contact Person & Office</button>
+                    <button type="button" class="preset-btn" onclick="loadPreset('directors')">02. Board of Directors & DIN</button>
+                    <button type="button" class="preset-btn" onclick="loadPreset('bankers')">03. Merchant Bankers & BRLM</button>
+                    <button type="button" class="preset-btn" onclick="loadPreset('clear')">Clear Text</button>
                 </div>
                 <div class="sandbox-grid">
                     <div class="sandbox-panel">
@@ -1423,7 +1440,7 @@
                             <span>INPUT DOCUMENT TEXT</span>
                             <span id="detected-counter" class="matrix-pill" style="background: var(--yellow);">0 DETECTED</span>
                         </div>
-                        <textarea id="sim-input" class="sandbox-textarea" placeholder="Paste text containing names, emails, phones, or DINs here..."></textarea>
+                        <textarea id="sim-input" class="sandbox-textarea" aria-label="Input document text" placeholder="Paste text containing names, emails, phones, or DINs here..."></textarea>
                     </div>
                     <div class="sandbox-panel">
                         <div class="sandbox-label">
@@ -1439,7 +1456,7 @@
         <!-- Reproduce CLI Box -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">💻</div>
+                <div class="section-badge">CMD</div>
                 <h2 class="section-heading-text">QUICK START & REPRODUCIBILITY</h2>
             </div>
             <div class="cli-box">
@@ -1450,7 +1467,7 @@
                         python scripts/run_redaction.py && python scripts/evaluate.py
                     </div>
                 </div>
-                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" class="btn-neo btn-neo-pink">
+                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" rel="noopener noreferrer" class="btn-neo btn-neo-pink">
                     <span>EXPLORE ON GITHUB ↗</span>
                 </a>
             </div>
@@ -1459,15 +1476,15 @@
         <!-- Diff Samples -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">04</div>
+                <div class="section-badge">05</div>
                 <h2 class="section-heading-text">REAL DOCUMENT BEFORE & AFTER SAMPLES</h2>
             </div>
             
             <div class="diff-container">
                 <div class="diff-tabs">
-                    <button class="tab-item active" onclick="switchTab('tab-contacts', this)">01. CONTACT INFO</button>
-                    <button class="tab-item" onclick="switchTab('tab-directors', this)">02. BOARD & DIN</button>
-                    <button class="tab-item" onclick="switchTab('tab-bankers', this)">03. BANKERS & BRLMS</button>
+                    <button type="button" class="tab-item active" onclick="switchTab('tab-contacts', this)">01. CONTACT INFO</button>
+                    <button type="button" class="tab-item" onclick="switchTab('tab-directors', this)">02. BOARD & DIN</button>
+                    <button type="button" class="tab-item" onclick="switchTab('tab-bankers', this)">03. BANKERS & BRLMS</button>
                 </div>
                 
                 <div id="tab-contacts" class="tab-content active">
@@ -1562,24 +1579,24 @@
         <!-- Design Decisions -->
         <section style="margin-bottom: 3.5rem;">
             <div class="section-header-neo">
-                <div class="section-badge">05</div>
+                <div class="section-badge">06</div>
                 <h2 class="section-heading-text">CRITICAL DESIGN DECISIONS & TRADEOFFS</h2>
             </div>
             <div class="tradeoff-row">
                 <div class="tradeoff-neo">
-                    <div class="tradeoff-neo-title">🏢 COMPANY NAMES PRESERVED</div>
+                    <div class="tradeoff-neo-title">COMPANY NAMES PRESERVED</div>
                     <p class="tradeoff-neo-text">
                         Entities like <em>"KSH International Limited"</em>, <em>"ICICI Securities"</em>, and <em>"HDFC Bank"</em> appear hundreds of times. Redacting legal party names makes IPO filings unreadable. Configurable via <code>config.py</code>.
                     </p>
                 </div>
                 <div class="tradeoff-neo">
-                    <div class="tradeoff-neo-title">📞 TOLL-FREE NUMBERS PRESERVED</div>
+                    <div class="tradeoff-neo-title">TOLL-FREE NUMBERS PRESERVED</div>
                     <p class="tradeoff-neo-text">
                         Numbers like <code>1800 267 3225</code> are public customer-care lines (SEBI SCORES, registrar helpdesks), not individual personal identifiers. Direct lines and mobiles are redacted.
                     </p>
                 </div>
                 <div class="tradeoff-neo">
-                    <div class="tradeoff-neo-title">🆔 DIN REDACTED VS CIN PRESERVED</div>
+                    <div class="tradeoff-neo-title">DIN REDACTED VS CIN PRESERVED</div>
                     <p class="tradeoff-neo-text">
                         <strong>DIN</strong> (Director Identification Number) identifies an individual human director and is treated as sensitive PII. <strong>CIN</strong> (Corporate Identity Number) identifies the legal company and is preserved.
                     </p>
@@ -1592,7 +1609,7 @@
     <!-- Footer -->
     <footer class="footer-neo">
         <div>
-            🛡️ <strong>ENTERPRISE PII REDACTION ENGINE</strong> • ANKIT BASU
+            <strong>ENTERPRISE PII REDACTION ENGINE</strong> &bull; ANKIT BASU
         </div>
         <div>
             SCALAR LABS AI ENTERPRISE DATA ASSIGNMENT
