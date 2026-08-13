@@ -97,6 +97,7 @@ PII-Redaction-Tool/
 │
 └── output/                            # Generated Outputs
     ├── redacted_output.docx           # Redacted document (1.88 MB)
+    ├── Evaluation_Strategy_and_Metrics.docx # Evaluation strategy & metrics Word doc
     └── detection_log.json             # Complete detection metadata + mapping
 ```
 
