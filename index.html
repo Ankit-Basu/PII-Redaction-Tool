@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise PII Redaction Engine — Benchmark & Live Evaluation</title>
+    <title>Enterprise PII Redaction Engine — Benchmark & Live Evaluation Platform</title>
     <meta name="description" content="Production-grade PII detection and redaction platform for enterprise financial filings. 87.6% benchmark recall, hybrid NER + regex architecture.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #070a13;
-            --bg-surface: #0e1526;
-            --bg-card: rgba(15, 23, 42, 0.75);
-            --bg-card-hover: rgba(24, 35, 62, 0.85);
+            --bg-base: #050811;
+            --bg-surface: #0a0f1d;
+            --bg-card: rgba(14, 21, 38, 0.7);
+            --bg-card-hover: rgba(22, 33, 58, 0.85);
             --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-accent: rgba(99, 102, 241, 0.4);
+            --border-accent: rgba(99, 102, 241, 0.35);
             
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -33,13 +33,17 @@
             --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
             --gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             --gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --shadow-glow: 0 0 50px -8px rgba(99, 102, 241, 0.3);
+            --shadow-glow: 0 0 50px -10px rgba(99, 102, 241, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -50,9 +54,12 @@
             line-height: 1.5;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 20% 15%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
-                radial-gradient(circle at 80% 25%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 55%);
+                radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.16) 0%, transparent 40%),
+                radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.13) 0%, transparent 45%),
+                radial-gradient(circle at 50% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
             background-attachment: fixed;
         }
 
@@ -63,7 +70,7 @@
             z-index: 100;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            background: rgba(7, 10, 19, 0.85);
+            background: rgba(5, 8, 17, 0.85);
             border-bottom: 1px solid var(--border-subtle);
             padding: 0.85rem 2rem;
             display: flex;
@@ -179,10 +186,10 @@
         }
 
         .hero-title {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             font-weight: 800;
             letter-spacing: -0.03em;
-            line-height: 1.15;
+            line-height: 1.12;
             margin-bottom: 1rem;
             background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
@@ -198,7 +205,7 @@
         .hero-desc {
             font-size: 1.125rem;
             color: var(--text-muted);
-            max-width: 760px;
+            max-width: 780px;
             margin: 0 auto 2.2rem;
             font-weight: 400;
             line-height: 1.6;
@@ -291,7 +298,7 @@
         }
 
         .kpi-value {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             font-weight: 800;
             letter-spacing: -0.02em;
             margin-bottom: 0.25rem;
@@ -329,7 +336,71 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Benchmark Metrics Table */
+        /* Requirements Matrix */
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .req-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            transition: all 0.2s;
+        }
+
+        .req-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .req-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .req-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .req-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .status-pass {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-toggle {
+            background: rgba(148, 163, 184, 0.15);
+            color: #cbd5e1;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+        }
+
+        .req-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Glass Panel */
         .glass-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -460,7 +531,7 @@
 
         .sim-textarea {
             width: 100%;
-            height: 200px;
+            height: 220px;
             background: rgba(6, 9, 19, 0.85);
             border: 1px solid var(--border-subtle);
             border-radius: 12px;
@@ -480,7 +551,7 @@
 
         .sim-output {
             width: 100%;
-            height: 200px;
+            height: 220px;
             background: rgba(6, 9, 19, 0.95);
             border: 1px solid var(--border-accent);
             border-radius: 12px;
@@ -643,6 +714,39 @@
             line-height: 1.5;
         }
 
+        /* Tradeoffs Callouts */
+        .tradeoffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .tradeoff-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .tradeoff-title {
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+        }
+
+        .tradeoff-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
         /* Footer */
         .footer {
             margin-top: 4rem;
@@ -676,9 +780,10 @@
         </a>
         <div class="nav-links">
             <span style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #34d399; font-weight: 600;">
-                <span class="live-dot"></span> Live v1.2
+                <span class="live-dot"></span> Evaluation v2.0
             </span>
-            <a href="#metrics">Evaluation Metrics</a>
+            <a href="#requirements">PII Matrix</a>
+            <a href="#metrics">Benchmark</a>
             <a href="#simulator">Live Sandbox</a>
             <a href="#examples">Diff Samples</a>
             <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" class="btn-gh">
@@ -692,7 +797,7 @@
 
         <!-- Hero -->
         <header class="hero">
-            <div class="hero-pill">⚡ High Accuracy Hybrid Engine</div>
+            <div class="hero-pill">⚡ Scalar Labs AI — Enterprise Assignment</div>
             <h1 class="hero-title">Enterprise <span>PII Redaction</span> Engine</h1>
             <p class="hero-desc">
                 High-precision hybrid regex & spaCy NER detection engine evaluated against the 
@@ -738,30 +843,80 @@
             </div>
         </div>
 
-        <!-- Architecture Steps -->
-        <section style="margin-bottom: 3.5rem;">
-            <h2 class="section-title">⚙️ Architecture & Pipeline</h2>
-            <p class="section-desc">Four-stage deterministic pipeline handling complex multi-table Word documents.</p>
-            <div class="arch-grid">
-                <div class="arch-card">
-                    <div class="arch-step-num">01</div>
-                    <div class="arch-title">Document Inventory</div>
-                    <div class="arch-text">Parses 3,991 text blocks across paragraphs and 76 tables, recording exact run-level character boundaries.</div>
+        <!-- Requirements Coverage Matrix -->
+        <section id="requirements" style="margin-bottom: 3.5rem;">
+            <h2 class="section-title">📋 Assignment PII Coverage Matrix</h2>
+            <p class="section-desc">Full compliance with all 9 required minimum PII categories + Indian DIN financial director identifiers.</p>
+            <div class="req-grid">
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">👤 Full Names</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">spaCy NER + Column-aware table parsing + KMP executive title patterns with financial denylist filters.</p>
                 </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">02</div>
-                    <div class="arch-title">Hybrid Detectors</div>
-                    <div class="arch-text">Runs pre-compiled regex, table column inspectors, and spaCy NER with 60+ financial denylist filters.</div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">📧 Email Addresses</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Pre-compiled RFC regex with 94.0% precision and 97.9% recall on corporate and intermediary contacts.</p>
                 </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">03</div>
-                    <div class="arch-title">Overlap Resolution</div>
-                    <div class="arch-text">Greedy longest-match span resolver prevents nested or conflicting redaction collisions.</div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">📞 Phone Numbers</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Indian phone patterns (+91, STD area codes, 10-digit mobiles, landlines). Toll-free preserved by default.</p>
                 </div>
-                <div class="arch-card">
-                    <div class="arch-step-num">04</div>
-                    <div class="arch-title">Run-Level Injection</div>
-                    <div class="arch-text">Applies seeded Faker replacements directly to docx XML runs, preserving font styles, bolding, and colors.</div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">📍 Physical Addresses</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Registered/Corporate office label matching + Indian PIN code (6-digit) and State heuristic extractor.</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">🆔 Director DINs</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Column-header aware 8-digit identification under Table 70 DIN headers + explicit DIN labels (100% accuracy).</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">💳 Credit Cards</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">13-19 digit sequence extraction validated with mathematical <strong>Luhn Algorithm</strong> verification.</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">🔢 SSN (US)</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Standard 9-digit US Social Security Number pattern matching with boundary guards (XXX-XX-XXXX).</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">🌐 IP Addresses</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">IPv4 address detection with validated 0-255 bounded octets, preventing numeric financial false positives.</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">🎂 Dates of Birth</span>
+                        <span class="req-status status-pass">✓ Active</span>
+                    </div>
+                    <p class="req-desc">Context-labeled DOB detection ("born on", "DOB:", "Date of Birth:"), ignoring general corporate dates.</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-top">
+                        <span class="req-name">🏢 Company Names</span>
+                        <span class="req-status status-toggle">⚙️ Configurable</span>
+                    </div>
+                    <p class="req-desc">spaCy ORG NER implemented; disabled by default to preserve IPO filing readability as explained in README.</p>
                 </div>
             </div>
         </section>
@@ -973,6 +1128,34 @@
             </div>
         </section>
 
+        <!-- Architecture Steps -->
+        <section style="margin-bottom: 3.5rem;">
+            <h2 class="section-title">⚙️ Architecture & Pipeline</h2>
+            <p class="section-desc">Four-stage deterministic pipeline handling complex multi-table Word documents.</p>
+            <div class="arch-grid">
+                <div class="arch-card">
+                    <div class="arch-step-num">01</div>
+                    <div class="arch-title">Document Inventory</div>
+                    <div class="arch-text">Parses 3,991 text blocks across paragraphs and 76 tables, recording exact run-level character boundaries.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-step-num">02</div>
+                    <div class="arch-title">Hybrid Detectors</div>
+                    <div class="arch-text">Runs pre-compiled regex, table column inspectors, and spaCy NER with 60+ financial denylist filters.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-step-num">03</div>
+                    <div class="arch-title">Overlap Resolution</div>
+                    <div class="arch-text">Greedy longest-match span resolver prevents nested or conflicting redaction collisions.</div>
+                </div>
+                <div class="arch-card">
+                    <div class="arch-step-num">04</div>
+                    <div class="arch-title">Run-Level Injection</div>
+                    <div class="arch-text">Applies seeded Faker replacements directly to docx XML runs, preserving font styles, bolding, and colors.</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Live Simulator -->
         <section id="simulator">
             <h2 class="section-title">🧪 Interactive Live Redaction Sandbox</h2>
@@ -1096,6 +1279,26 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- Design Tradeoffs -->
+        <section style="margin-bottom: 3.5rem;">
+            <h2 class="section-title">⚖️ Key Design Decisions & Tradeoffs</h2>
+            <p class="section-desc">Carefully calibrated choices tailored specifically for Indian IPO filings.</p>
+            <div class="tradeoffs-grid">
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">🏢 Company Names Preserved by Default</div>
+                    <p class="tradeoff-text">Entity names like <em>"KSH International Limited"</em>, <em>"ICICI Securities"</em>, and <em>"HDFC Bank"</em> appear hundreds of times. Full redaction makes legal filings unreadable. Detection is implemented and configurable via <code>config.py</code>.</p>
+                </div>
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">📞 Toll-Free Lines Preserved</div>
+                    <p class="tradeoff-text">Public support lines (e.g. <code>1800 267 3225</code>) are general public customer-care hotlines, not private individual identifiers. Direct mobile and landline numbers with <code>+91</code> are redacted.</p>
+                </div>
+                <div class="tradeoff-card">
+                    <div class="tradeoff-title">🆔 DIN Redacted vs CIN Preserved</div>
+                    <p class="tradeoff-text"><strong>DIN</strong> (Director Identification Number) identifies an individual human director and is treated as PII. <strong>CIN</strong> (Corporate Identity Number) identifies the legal company entity and is preserved.</p>
+                </div>
             </div>
         </section>
 
