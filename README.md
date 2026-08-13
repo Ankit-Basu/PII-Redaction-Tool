@@ -141,7 +141,7 @@ python scripts/run_redaction.py --input "data/Red_Herring_Prospectus.docx" \
 
 **Output**:
 - `output/redacted_output.docx` — The redacted Word document
-- `output/detection_log.json` — Structured log of all 232 detected PII spans with metadata
+- `output/detection_log.json` — Structured log of all 294 detected PII spans with metadata
 
 ### Running Evaluation
 
@@ -287,14 +287,14 @@ This ensures bold names stay bold, colored text stays colored, and font sizes su
 
 | Metric | Count |
 |---|---|
-| Total PII spans redacted | **232** |
-| Person names redacted | **119** |
+| Total PII spans redacted | **294** |
+| Person names redacted | **168** |
 | Emails redacted | **50** |
 | Phone numbers redacted | **34** |
-| Addresses redacted | **21** |
+| Addresses redacted | **34** |
 | DIN numbers redacted | **8** |
-| Paragraphs modified | **54** out of 1,006 |
-| Table cells modified | **111** out of 3,722 |
+| Paragraphs modified | **72** out of 1,006 |
+| Table cells modified | **127** out of 3,722 |
 
 ---
 

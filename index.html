@@ -11,10 +11,10 @@
     <style>
         :root {
             --bg-base: #050811;
-            --bg-surface: #0a0f1d;
-            --bg-card: rgba(14, 21, 38, 0.7);
-            --bg-card-hover: rgba(22, 33, 58, 0.85);
-            --border-subtle: rgba(255, 255, 255, 0.08);
+            --bg-surface: #0b1220;
+            --bg-card: rgba(15, 23, 42, 0.82);
+            --bg-card-hover: rgba(24, 36, 60, 0.94);
+            --border-subtle: rgba(148, 163, 184, 0.18);
             --border-accent: rgba(99, 102, 241, 0.35);
             
             --text-main: #f8fafc;
@@ -23,17 +23,17 @@
             
             --brand-primary: #6366f1;
             --brand-secondary: #06b6d4;
-            --brand-accent: #a855f7;
+            --brand-accent: #f59e0b;
             
             --color-success: #10b981;
             --color-warning: #f59e0b;
             --color-danger: #ef4444;
             --color-info: #38bdf8;
             
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --gradient-primary: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
             --gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             --gradient-emerald: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --shadow-glow: 0 0 50px -10px rgba(99, 102, 241, 0.3);
+            --shadow-glow: 0 18px 45px -30px rgba(56, 189, 248, 0.55);
         }
 
         * {
@@ -54,12 +54,10 @@
             line-height: 1.5;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.16) 0%, transparent 40%),
-                radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.13) 0%, transparent 45%),
-                radial-gradient(circle at 50% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.96) 0%, rgba(5, 8, 17, 1) 46%, rgba(4, 12, 22, 1) 100%),
                 linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
                 linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+            background-size: 100% 100%, 48px 48px, 48px 48px;
             background-attachment: fixed;
         }
 
@@ -92,7 +90,7 @@
             width: 34px;
             height: 34px;
             background: var(--gradient-primary);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -176,7 +174,7 @@
             padding: 0.4rem 1.1rem;
             background: rgba(99, 102, 241, 0.12);
             border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 9999px;
+            border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 600;
             color: #a5b4fc;
@@ -226,7 +224,7 @@
             background: var(--gradient-primary);
             color: #ffffff;
             padding: 0.8rem 1.6rem;
-            border-radius: 11px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
@@ -247,7 +245,7 @@
             border: 1px solid var(--border-subtle);
             color: var(--text-main);
             padding: 0.8rem 1.6rem;
-            border-radius: 11px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.95rem;
             text-decoration: none;
@@ -271,7 +269,7 @@
         .kpi-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 18px;
+            border-radius: 8px;
             padding: 1.6rem;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -347,7 +345,7 @@
         .req-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 14px;
+            border-radius: 8px;
             padding: 1.25rem;
             display: flex;
             flex-direction: column;
@@ -404,7 +402,7 @@
         .glass-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
+            border-radius: 8px;
             overflow: hidden;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -489,14 +487,14 @@
             flex: 1;
             height: 7px;
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 999px;
+            border-radius: 8px;
             overflow: hidden;
             min-width: 60px;
         }
 
         .prog-fill {
             height: 100%;
-            border-radius: 999px;
+            border-radius: 8px;
         }
 
         .prog-val {
@@ -534,7 +532,7 @@
             height: 220px;
             background: rgba(6, 9, 19, 0.85);
             border: 1px solid var(--border-subtle);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 1rem;
             color: var(--text-main);
             font-family: 'JetBrains Mono', monospace;
@@ -554,7 +552,7 @@
             height: 220px;
             background: rgba(6, 9, 19, 0.95);
             border: 1px solid var(--border-accent);
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 1rem;
             color: #38bdf8;
             font-family: 'JetBrains Mono', monospace;
@@ -604,7 +602,7 @@
         .diff-card {
             background: rgba(6, 9, 19, 0.65);
             border: 1px solid var(--border-subtle);
-            border-radius: 14px;
+            border-radius: 8px;
             margin-bottom: 1rem;
             overflow: hidden;
         }
@@ -679,7 +677,7 @@
         .arch-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border-radius: 8px;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -714,6 +712,61 @@
             line-height: 1.5;
         }
 
+        /* Submission checklist */
+        .submission-panel {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(8, 13, 25, 0.92));
+            border: 1px solid rgba(56, 189, 248, 0.24);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 3.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .submission-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .submission-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .submission-note {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            margin-top: 0.25rem;
+        }
+
+        .submission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .submission-item {
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 0.9rem;
+        }
+
+        .submission-item strong {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .submission-item span {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.45;
+        }
+
         /* Tradeoffs Callouts */
         .tradeoffs-grid {
             display: grid;
@@ -725,7 +778,7 @@
         .tradeoff-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 16px;
+            border-radius: 8px;
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
@@ -783,6 +836,7 @@
                 <span class="live-dot"></span> Evaluation v2.0
             </span>
             <a href="#requirements">PII Matrix</a>
+            <a href="#deliverables">Deliverables</a>
             <a href="#metrics">Benchmark</a>
             <a href="#simulator">Live Sandbox</a>
             <a href="#examples">Diff Samples</a>
@@ -810,7 +864,7 @@
                 </a>
                 <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/raw/main/output/Evaluation_Strategy_and_Metrics.docx" class="btn-secondary">
                     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    Download Evaluation Metric .docx
+                    Download Evaluation Metrics .docx
                 </a>
                 <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool/blob/main/evaluation_report.md" target="_blank" class="btn-secondary">
                     View Markdown Report ↗
@@ -847,10 +901,39 @@
             </div>
         </div>
 
+        <!-- Submission Deliverables -->
+        <section id="deliverables" class="submission-panel">
+            <div class="submission-head">
+                <div>
+                    <div class="submission-title">Submission Package Status</div>
+                    <div class="submission-note">Required assignment artifacts are generated and linked for reviewer access.</div>
+                </div>
+                <span class="req-status status-pass">✓ Ready</span>
+            </div>
+            <div class="submission-grid">
+                <div class="submission-item">
+                    <strong>Source Code</strong>
+                    <span>Modular Python package under <code>src/</code>, CLI runners under <code>scripts/</code>, and root wrappers <code>redact.py</code>/<code>evaluate.py</code>.</span>
+                </div>
+                <div class="submission-item">
+                    <strong>Output PII Processed DOCX</strong>
+                    <span><code>output/redacted_output.docx</code> is generated from the RHP and linked via the download button above.</span>
+                </div>
+                <div class="submission-item">
+                    <strong>Evaluation Strategy & Metrics DOCX</strong>
+                    <span><code>output/Evaluation_Strategy_and_Metrics.docx</code> documents methodology, precision, recall, accuracy, and F1.</span>
+                </div>
+                <div class="submission-item">
+                    <strong>README + Tradeoffs</strong>
+                    <span>README explains regex + spaCy detection, run-level DOCX replacement, false positives/negatives, and configurable company-name handling.</span>
+                </div>
+            </div>
+        </section>
+
         <!-- Requirements Coverage Matrix -->
         <section id="requirements" style="margin-bottom: 3.5rem;">
             <h2 class="section-title">📋 Assignment PII Coverage Matrix</h2>
-            <p class="section-desc">Full compliance with all 9 required minimum PII categories + Indian DIN financial director identifiers.</p>
+            <p class="section-desc">Active coverage for personal PII categories, plus Indian DIN identifiers. Company-name redaction is implemented and left configurable to preserve the legal filing context.</p>
             <div class="req-grid">
                 <div class="req-card">
                     <div class="req-top">
@@ -920,7 +1003,7 @@
                         <span class="req-name">🏢 Company Names</span>
                         <span class="req-status status-toggle">⚙️ Configurable</span>
                     </div>
-                    <p class="req-desc">spaCy ORG NER implemented; disabled by default to preserve IPO filing readability as explained in README.</p>
+                    <p class="req-desc">spaCy ORG NER is implemented in code and can be enabled; default run preserves issuer, BRLM, bank, and regulator names for readability.</p>
                 </div>
             </div>
         </section>
