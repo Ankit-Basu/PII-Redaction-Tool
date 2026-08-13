@@ -514,10 +514,6 @@
         .matrix-tech-tag {
             color: #64748B;
         }
-            color: #334155;
-            font-weight: 600;
-            line-height: 1.45;
-        }
 
         /* Neo Table Container */
         .table-neo-box {
@@ -1319,7 +1315,8 @@
                                         <span>83.3%</span>
                                     </div>
                                 </td>
-                            </                            <tr>
+                            </tr>
+                            <tr>
                                 <td><span class="tag-type" style="background: var(--pink);">PERSON NAMES</span></td>
                                 <td>68</td>
                                 <td>115</td>
@@ -1460,14 +1457,17 @@
             <div class="cli-box">
                 <div>
                     <div style="color: #94A3B8; font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 0.4rem;">REPRODUCE BENCHMARK LOCALLY IN 2 COMMANDS:</div>
-                    <div class="cli-code">
-                        git clone https://github.com/Ankit-Basu/PII-Redaction-Tool.git<br>
-                        python scripts/run_redaction.py && python scripts/evaluate.py
-                    </div>
+                    <div id="cli-cmd-text" class="cli-code">git clone https://github.com/Ankit-Basu/PII-Redaction-Tool.git
+python scripts/run_redaction.py && python scripts/evaluate.py</div>
                 </div>
-                <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" rel="noopener noreferrer" class="btn-neo btn-neo-pink">
-                    <span>EXPLORE ON GITHUB ↗</span>
-                </a>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <button type="button" id="copy-btn" class="btn-neo btn-neo-white" onclick="copyCliCommands()">
+                        <span id="copy-btn-text">📋 COPY COMMANDS</span>
+                    </button>
+                    <a href="https://github.com/Ankit-Basu/PII-Redaction-Tool" target="_blank" rel="noopener noreferrer" class="btn-neo btn-neo-pink">
+                        <span>EXPLORE ON GITHUB ↗</span>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -1686,6 +1686,17 @@ Branch: Bhandarkar Road, Shivaji Nagar, Pune – 411 004, Maharashtra, India`,
             document.querySelectorAll('.tab-item').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             btn.classList.add('active');
+        }
+
+        function copyCliCommands() {
+            const text = "git clone https://github.com/Ankit-Basu/PII-Redaction-Tool.git && cd PII-Redaction-Tool && python scripts/run_redaction.py && python scripts/evaluate.py";
+            navigator.clipboard.writeText(text).then(() => {
+                const btnText = document.getElementById('copy-btn-text');
+                btnText.textContent = "✓ COPIED!";
+                setTimeout(() => {
+                    btnText.textContent = "📋 COPY COMMANDS";
+                }, 2000);
+            });
         }
     </script>
 </body>
