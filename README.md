@@ -141,7 +141,7 @@ python scripts/run_redaction.py --input "data/Red_Herring_Prospectus.docx" \
 
 **Output**:
 - `output/redacted_output.docx` — The redacted Word document
-- `output/detection_log.json` — Structured log of all 294 detected PII spans with metadata
+- `output/detection_log.json` — Structured log of all 335 detected PII spans with metadata
 
 ### Running Evaluation
 
@@ -222,18 +222,24 @@ The tool uses a **three-pronged detection strategy**:
 | Strategy | PII Types | How It Works |
 |---|---|---|
 | **Pre-compiled Regex** | Email, Phone, SSN, Credit Card, IPv4, DOB | Fast pattern matching with format-aware regexes |
-| **spaCy NER** | Person names, Company names | `en_core_web_sm` model with aggressive false-positive filtering |
-| **Context-Aware Heuristics** | Addresses, DIN | Label-triggered address detection; column-header-aware DIN detection in tables |
+| **spaCy NER + denylist filters** | Person names, Company names | `en_core_web_sm` model plus legal/financial entity filtering |
+| **Context-Aware Heuristics** | Names, Addresses, DIN | Slash-delimited contact parser, table-header-aware address/DIN inspection, and label-triggered address detection |
+
+### Latest Algorithmic Improvements
+
+- **N-ary slash-delimited contact parser**: parses every valid name in `Contact Person:` lists, including sequences such as `Eric Bacha / Sachin Gawade / Pravin Teli / Siddharth Jadhav / Tushar Gavankar` that a model tokenizer may split inconsistently.
+- **Table-header DOM address inspector**: scans every paragraph in cells under `Address`, `Registered Office`, and `Corporate Office` headers. This captures multi-paragraph director residences and office locations in table-heavy sections such as Table 70 and Table 0.
+- **Trust and fund entity filters**: removes legal/financial entities containing terms such as `Trust`, `Fund`, `Promoter Group`, `Holdings`, and `Enterprises` from person-name candidates before replacement.
 
 ### PII Types Supported
 
 | # | PII Type | Detection Method | Key Details |
 |---|---|---|---|
-| 1 | **Full Names** | spaCy NER (`PERSON` entities) | Filtered through 60+ denylist terms, poison-word dictionary, capitalization rules, ALL-CAPS heading filter |
+| 1 | **Full Names** | spaCy NER + contextual parser | Filtered through denylist and poison-word rules; n-ary slash-delimited `Contact Person:` lists are parsed deterministically |
 | 2 | **Email Addresses** | Regex | Standard email pattern matching |
 | 3 | **Phone Numbers** | Regex (Indian formats) | `+91 XX XXXX XXXX`, `0XX-XXXXXXXX`, landlines. Toll-free (`1800-XXX-XXXX`) excluded by default |
 | 4 | **Company Names** | spaCy NER (`ORG` entities) | Implemented but **disabled by default** to preserve document readability |
-| 5 | **Physical Addresses** | Label regex + PIN/State/India heuristic | Triggered by "Registered Office:", "Corporate Office:", etc. Table cells use PIN+State+India pattern |
+| 5 | **Physical Addresses** | Label regex + table-header inspector + PIN/State/India heuristic | Scans all paragraphs under Address/Registered Office/Corporate Office table columns, with labeled and unstructured fallbacks |
 | 6 | **SSNs** | Regex | `XXX-XX-XXXX` format |
 | 7 | **Credit Card Numbers** | Regex + **Luhn Algorithm** | 13-19 digit sequences validated mathematically to eliminate financial figures |
 | 8 | **Dates of Birth** | Context-labeled regex | Only fires when preceded by "Date of Birth", "DOB", "born on" — never on corporate dates |
@@ -287,14 +293,14 @@ This ensures bold names stay bold, colored text stays colored, and font sizes su
 
 | Metric | Count |
 |---|---|
-| Total PII spans redacted | **294** |
-| Person names redacted | **168** |
+| Total PII spans redacted | **335** |
+| Person names redacted | **183** |
 | Emails redacted | **50** |
 | Phone numbers redacted | **34** |
-| Addresses redacted | **34** |
+| Addresses redacted | **60** |
 | DIN numbers redacted | **8** |
-| Paragraphs modified | **72** out of 1,006 |
-| Table cells modified | **127** out of 3,722 |
+| Paragraphs modified | **75** out of 1,006 |
+| Table cells modified | **145** out of 3,722 |
 
 ---
 
@@ -340,8 +346,8 @@ This covers **~15-20% of document text** but captures **~80-90% of PII instances
 ### Analysis of Results
 
 - **DIN, Email, Phone**: High precision and recall — these are structurally well-defined patterns that regex handles reliably
-- **Address**: Moderate performance — heuristic-based detection catches labeled addresses well but misses some unlabeled variants and occasionally captures non-address text that happens to contain Indian PIN codes
-- **Person Name**: Lower precision due to spaCy's `en_core_web_sm` model frequently mis-tagging legal/financial terms as PERSON entities despite extensive filtering. Many "false positives" in the evaluation are actually **correct detections of real person names** that fall outside the annotated ground truth sample (e.g., historical shareholders mentioned in other sections)
+- **Address**: Recall rose to 84.00% after the table-header inspector, while precision remains the main tuning opportunity because full cells under address columns are intentionally redacted for coverage.
+- **Person Name**: Recall rose to 95.77% after deterministic contact-list and table-name rules. Precision remains conservative because valid names outside the sampled ground truth are counted as false positives by the benchmark.
 
 ---
 
@@ -392,9 +398,8 @@ Raw regex for 13-19 digit sequences would match financial figures, ISIN codes, a
 
 | Category | Example | Root Cause |
 |---|---|---|
-| Person names | "Ganesh Prasad" — missed by spaCy NER | spaCy's `en_core_web_sm` has limited coverage of Indian names |
-| Person names | Names in "Contact Person: Lokesh Shah/ Soumavo Sarkar" | The `/` separator confuses spaCy's tokenizer |
-| Addresses | Unlabeled addresses without "Registered Office:" prefix | Heuristic requires either a label or the full PIN+State+India pattern |
+| Person names | Unlabeled short or single-token names | Conservative rules require a multi-word, contextual, or model-backed candidate |
+| Addresses | Unlabeled addresses outside known table headers | The fallback still requires a label or the PIN+State+India pattern |
 
 ### Improvement Opportunities
 

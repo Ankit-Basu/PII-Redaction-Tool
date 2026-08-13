@@ -195,11 +195,11 @@ def create_evaluation_doc(output_path: str):
         ("Phone Numbers — 73.53% Precision, 96.15% Recall",
          "Indian formats including '+91 XX XXXX XXXX', STD area codes ('022-68052182'), and landlines were detected accurately across 25 ground truth items. Toll-free 1800 numbers (customer care hotlines) are preserved by default as public utility lines."),
 
-        ("Person Names — 33.93% Precision, 80.28% Recall",
-         "A combination of spaCy NER, table column header extraction ('Name', 'Name of Director'), and KMP title patterns ('CEO', 'CFO', 'Technical Director') captured 57 out of 71 ground truth names. The 111 false positives in evaluation represent legitimate shareholder and vendor names appearing across unsampled document sections (e.g. historical allotments, vendor agreements), confirming robust real-world coverage beyond the benchmark sample."),
+        ("Person Names — 37.16% Precision, 95.77% Recall",
+         "A combination of spaCy NER, table column header extraction, KMP title patterns, and a deterministic n-ary slash-delimited Contact Person parser captured 68 out of 71 ground truth names. Trust, fund, promoter-group, holdings, and enterprise terms are rejected before replacement. Many benchmark false positives are legitimate names outside the sampled ground truth."),
 
-        ("Physical Addresses — 55.88% Precision, 76.00% Recall",
-         "Captured 19 true positives spanning registered offices, manufacturing facilities, and directors' residential addresses. Enhanced with PIN code (6-digit) and State heuristic matching for unstructured prose paragraphs.")
+        ("Physical Addresses — 35.00% Precision, 84.00% Recall",
+         "Captured 21 true positives spanning registered offices, manufacturing facilities, and directors' residential addresses. In addition to PIN code and State matching, the table-header DOM inspector scans every paragraph under Address, Registered Office, and Corporate Office columns. The coverage-first strategy can redact complete address cells, which is the main source of precision loss.")
     ]
 
     for title, desc in cats:
@@ -215,13 +215,33 @@ def create_evaluation_doc(output_path: str):
         dp.paragraph_format.space_after = Pt(6)
         dp.add_run(desc).font.size = Pt(9.5)
 
-    # Section 5: Design Tradeoffs & Decisions
+    # Section 5: Latest algorithmic improvements
     h5 = doc.add_heading(level=1)
     h5.paragraph_format.space_before = Pt(16)
     h5.paragraph_format.space_after = Pt(6)
-    r5 = h5.add_run("5. Architectural Decisions & Tradeoffs")
+    r5 = h5.add_run("5. Latest Algorithmic Improvements")
     r5.font.name = "Arial"
     r5.font.color.rgb = RGBColor(15, 23, 42)
+
+    improvements = [
+        ("Multi-Entity Slash-Delimited Parser: ", "Parses every valid name in a Contact Person list, including arbitrary slash-separated sequences that model tokenization may miss."),
+        ("Table Header DOM Address Inspector: ", "Identifies Address, Registered Office, and Corporate Office columns, then scans all paragraphs in their data cells. This captures multi-paragraph director residences and corporate-office details."),
+        ("Trust & Fund Entity Denylist: ", "Rejects legal/financial entity candidates containing terms such as Trust, Fund, Promoter Group, Holdings, and Enterprises before person-name replacement."),
+    ]
+    for improvement_title, improvement_desc in improvements:
+        ip = doc.add_paragraph(style='List Bullet')
+        ip.paragraph_format.space_after = Pt(4)
+        r = ip.add_run(improvement_title)
+        r.bold = True
+        ip.add_run(improvement_desc)
+
+    # Section 6: Design Tradeoffs & Decisions
+    h6 = doc.add_heading(level=1)
+    h6.paragraph_format.space_before = Pt(16)
+    h6.paragraph_format.space_after = Pt(6)
+    r6 = h6.add_run("6. Architectural Decisions & Tradeoffs")
+    r6.font.name = "Arial"
+    r6.font.color.rgb = RGBColor(15, 23, 42)
 
     tradeoffs = [
         ("Company Name Preservation: ", "Entity names (e.g., 'KSH International Limited', 'ICICI Securities', 'HDFC Bank') appear hundreds of times. Redacting company names would obscure the issuer and legal parties, rendering the prospectus unreadable. Detection is implemented via spaCy ORG NER and can be toggled on via config.py."),

@@ -67,10 +67,8 @@ _STATE_RE = re.compile(r'\b(?:' + '|'.join(re.escape(s) for s in INDIAN_STATES) 
 
 # Context-based name extraction patterns
 _CONTACT_PERSON_RE = re.compile(
-    r'(?:Contact\s+Person|Contact)\s*:\s*'
-    r'([A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)+)'
-    r'(?:\s*/\s*([A-Z][a-z]+(?:\s+[A-Z]\.?)?(?:\s+[A-Z][a-z]+)+))?',
-    re.MULTILINE,
+    r'(?:Contact\s+Person|Contact)\s*:\s*([^\n;\r]+)',
+    re.IGNORECASE,
 )
 
 # KMP & Executive titles pattern: "FirstName LastName, CEO" / "FirstName LastName, Technical Director"
@@ -294,48 +292,45 @@ def get_nlp() -> Optional[Language]:
 @register_detector("person_name")
 def detect_names(block: TextBlock, block_idx: int) -> List[PIISpan]:
     """Detect person names using spaCy NER with aggressive false-positive filtering."""
-    nlp = get_nlp()
-    if nlp is None:
-        return []
-
     spans: List[PIISpan] = []
-    doc = nlp(block.text)
-    for ent in doc.ents:
-        if ent.label_ != "PERSON":
-            continue
+    nlp = get_nlp()
+    if nlp is not None:
+        doc = nlp(block.text)
+        for ent in doc.ents:
+            if ent.label_ != "PERSON":
+                continue
 
-        name = ent.text.strip()
-        if (
-            name.upper() in PERSON_DENYLIST
-            or len(name) < 4
-            or re.sub(r'[\s\-\.]', '', name).isdigit()
-            or name.lower().strip() in _EXTRA_DENYLIST_LOWER
-        ):
-            continue
+            name = ent.text.strip()
+            if (
+                name.upper() in PERSON_DENYLIST
+                or len(name) < 4
+                or re.sub(r'[\s\-\.]', '', name).isdigit()
+                or name.lower().strip() in _EXTRA_DENYLIST_LOWER
+            ):
+                continue
 
-        words = name.split()
-        if len(words) < 2:
-            continue
+            words = name.split()
+            if len(words) < 2:
+                continue
 
-        name_lower_words = {w.lower().rstrip('.,;:/') for w in words}
-        if name_lower_words & _NAME_POISON_WORDS:
-            continue
+            name_lower_words = {w.lower().rstrip('.,;:/') for w in words}
+            if name_lower_words & _NAME_POISON_WORDS:
+                continue
 
-        cap_words = [w for w in words if w[0].isupper() and len(w) > 1]
-        if len(cap_words) < 2:
-            continue
+            cap_words = [w for w in words if w[0].isupper() and len(w) > 1]
+            if len(cap_words) < 2:
+                continue
 
-        if name == name.upper() and len(name) > 5:
-            continue
+            if name == name.upper() and len(name) > 5:
+                continue
 
-        if '@' in name or re.search(r'\d', name) or re.search(r'[^a-zA-Z\s.\-\']', name) or name[0].islower() or '\t' in name:
-            continue
+            if '@' in name or re.search(r'\d', name) or re.search(r'[^a-zA-Z\s.\-\']', name) or name[0].islower() or '\t' in name:
+                continue
 
-        spans.append(PIISpan(ent.start_char, ent.end_char, "person_name", name, block_idx))
+            spans.append(PIISpan(ent.start_char, ent.end_char, "person_name", name, block_idx))
 
     # Context-based name extraction: "Contact Person: Name1 / Name2 / Name3 ..."
-    cp_pattern = re.compile(r'(?:Contact\s+Person|Contact)\s*:\s*([^\n;\r]+)', re.IGNORECASE)
-    for m in cp_pattern.finditer(block.text):
+    for m in _CONTACT_PERSON_RE.finditer(block.text):
         raw_names_line = m.group(1).strip()
         # Stop at keywords if any on same line
         for kw in ["Telephone", "Tel:", "Tel.", "E-mail:", "Email:", "SEBI", "Website:"]:
